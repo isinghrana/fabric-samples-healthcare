@@ -7,7 +7,7 @@ Micrisoft Fabric is an end to end analyics platform that brings together all the
 ## Purpose
 
 
-The purpose of this repositiry is to share some end to end tutorials similar to the public docuemntation but using health care public datasets. 
+The purpose of this repository is to share some end to end tutorials similar to the public docuemntation but using health care public datasets. 
 
 <hr/>
 
