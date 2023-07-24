@@ -9,7 +9,7 @@ This demo is intended to provide experience with using the Direct Lake connector
 
 Tutorial follows similar walkthrough experience as the tutorial in [public docuemntation](https://learn.microsoft.com/en-us/fabric/data-science/tutorial-data-science-introduction)
 
-![Fabric Data Science](./directlake-architecture.png)  ![analytics-bi-directlake](.Images/DirectLake_Architecture.png) 
+![Fabric Data Science](./directlake-architecture.png)  ![analytics-bi-directlake](analytics-bi-directlake/Images/DirectLake_Architecture.png) 
 
 1. [Ingest Data for Sample Diabetest Dataset saved in this Github Repo itself](./01-Ingest-Diabetes-Dataset-to-Lakehouse.ipynb)
 2. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
