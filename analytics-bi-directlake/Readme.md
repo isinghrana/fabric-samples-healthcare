@@ -25,7 +25,12 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 ### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
 **Right now the easiest option for Git users is to manually create the Power BI Dataset. An autmoated option will be added when it becomes available in a way that is simple for end users.**
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
-2. A video walking you through these steps can be found here: Click Here
+2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
+ | Measure name | Dax code | Format | Percentage Format | Thousands seperator | Decimal places | Data category |
+ | ------------ | -------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
+ | Brand Name Count | Brand Name Count = DISTINCTCOUNT([Brand Name]) | Whole Number | NO | Yes | 0 | Uncategorized |
+5.
+6. A video walking you through these steps can be found here: Click Here
 
 
 7. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
