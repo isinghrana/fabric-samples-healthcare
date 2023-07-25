@@ -11,7 +11,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
-###Upload the Raw Data files to OneLake###
+### Upload the Raw Data files to OneLake
 1. Download the files from CMS at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
 2. 
   
