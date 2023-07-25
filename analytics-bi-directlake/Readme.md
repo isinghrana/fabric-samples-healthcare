@@ -28,7 +28,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
  | Measure name | Dax code | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | -------- | ------ | ----------------- | ------------------- | -------------- | ------------- | 
- | Brand Name Count | Brand Name Count = DISTINCTCOUNT([Brand Name]) | Whole Number | NO | Yes | 0 | Uncategorized | 
+  
 5.
 6. A video walking you through these steps can be found here: Click Here
 
