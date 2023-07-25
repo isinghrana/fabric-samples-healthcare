@@ -18,7 +18,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 4. A video walking you through these steps can be found here: Click Here
 
 ### Add Custom Columns and Append the csv files into a Delta Parquet file of the Fabric Lakehouse using a Spark Notebook
-1. ![Click Here to Access the Spark Notebook](./Load CMS Medicare Part D Data.ipynb) . Note that sometimes you may need to refresh the page to display it in GitHub.
+1. [Click Here to Access the Spark Notebook](./Load CMS Medicare Part D Data.ipynb) . Note that sometimes you may need to refresh the page to display it in GitHub.
 2. Copy the Spark Notebook to Fabric and run it.
 3. A video walking you through these steps can be found here: Click Here
 
