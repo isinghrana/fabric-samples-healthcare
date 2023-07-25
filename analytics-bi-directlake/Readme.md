@@ -29,7 +29,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 
  | Measure name | Dax code (paste this in) | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ------------------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
- | Brand Name Count | 'Brand Name Count = DISTINCTCOUNT([Brand Name])' | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Prescriber Count | Prescriber Count = DISTINCTCOUNT([Prescriber NPI]) | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Row Count | Row Count = COUNTROWS('cms_provider_drug_costs') | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Total Claims | Total Claims = SUM(cms_provider_drug_costs[Tot_Clms]) | Whole Number | NO | Yes | 0 | Uncategorized | 
