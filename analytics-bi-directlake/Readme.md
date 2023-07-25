@@ -30,14 +30,14 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
  | Measure name | Dax code (paste this in) | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ------------------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
  | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Prescriber Count | Prescriber Count = DISTINCTCOUNT([Prescriber NPI]) | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Row Count | Row Count = COUNTROWS('cms_provider_drug_costs') | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Claims | Total Claims = SUM(cms_provider_drug_costs[Tot_Clms]) | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Day Supply | Total Days Supply = SUM([Tot_Day_Suply]) | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Drug Cost | Total Drug Cost = SUM([Tot_Drug_Cst]) | Currency | NO | Yes | 0 | Uncategorized | 
- | Cost per Claim | Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims]) | Currency | NO | Yes | 0 | Uncategorized | 
- | Cost per Day | Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply]) | Currency | NO | Yes | 2 | Uncategorized | 
- | Days per Claim | Days per Claim = DIVIDE([Total Days Supply],[Total Claims]) | Decimal | NO | Yes | 1 | Uncategorized | 
+ | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | NO | Yes | 0 | Uncategorized | 
+ | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | NO | Yes | 0 | Uncategorized | 
+ | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | NO | Yes | 2 | Uncategorized | 
+ | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | NO | Yes | 1 | Uncategorized | 
   
 5.
 6. A video walking you through these steps can be found here: Click Here
