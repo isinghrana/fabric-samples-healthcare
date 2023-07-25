@@ -13,9 +13,21 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 
 ### Upload the Raw Data files to OneLake
 1. Download the files from CMS at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
-2. 
-  
-3. [Ingest Data for Sample Diabetest Dataset saved in this Github Repo itself](./01-Ingest-Diabetes-Dataset-to-Lakehouse.ipynb)
-4. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
-5. [Train and Registry Machine Learning Prediction Model](./03-Train-Register-DiabetesPredictionModel.ipynb) 
-6. [Perform Batch Predictions on simliuation data](./04-Perform-Diabetes-Batch-Predictions.ipynb)
+2. Unzip the files on your local machine.
+3. Upload the files to the Files section of a Fabric Lakehouse using the web interface.
+4. A video walking you through these steps can be found here: Click Here
+
+### Add Custom Columns and Append the csv files into a Delta Parquet file of the Fabric Lakehouse using a Spark Notebook
+1. [Click Here to Access the Spark Notebook](./Load CMS Medicare Part D Data.ipynb) . Note that sometimes you may need to refresh the page to display it in GitHub.
+2. Copy the Spark Notebook to Fabric and run it.
+3. A video walking you through these steps can be found here: Click Here
+
+### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
+**Right now the easiest option for Git users is to manually create the Power BI Dataset. An autmoated option will be added when it becomes available in a way that is simple for end users.**
+1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
+2. A video walking you through these steps can be found here: Click Here
+
+
+7. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
+8. [Train and Registry Machine Learning Prediction Model](./03-Train-Register-DiabetesPredictionModel.ipynb) 
+9. [Perform Batch Predictions on simliuation data](./04-Perform-Diabetes-Batch-Predictions.ipynb)
