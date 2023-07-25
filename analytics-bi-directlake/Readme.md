@@ -11,7 +11,11 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
-1. [Ingest Data for Sample Diabetest Dataset saved in this Github Repo itself](./01-Ingest-Diabetes-Dataset-to-Lakehouse.ipynb)
-2. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
-3. [Train and Registry Machine Learning Prediction Model](./03-Train-Register-DiabetesPredictionModel.ipynb) 
-4. [Perform Batch Predictions on simliuation data](./04-Perform-Diabetes-Batch-Predictions.ipynb)
+###Upload the Raw Data files to OneLake###
+1. Download the files from CMS at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
+2. 
+  
+3. [Ingest Data for Sample Diabetest Dataset saved in this Github Repo itself](./01-Ingest-Diabetes-Dataset-to-Lakehouse.ipynb)
+4. [Explore and Pre-Process Data](./02-data-analysis-preprocess.ipynb)
+5. [Train and Registry Machine Learning Prediction Model](./03-Train-Register-DiabetesPredictionModel.ipynb) 
+6. [Perform Batch Predictions on simliuation data](./04-Perform-Diabetes-Batch-Predictions.ipynb)
