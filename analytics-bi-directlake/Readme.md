@@ -27,8 +27,8 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
 2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
- | Measure name | Dax code (paste this in) | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
- | ------------ | ------------------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
+ | Measure name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
  | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | NO | Yes | 0 | Uncategorized | 
@@ -39,7 +39,20 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
  | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | NO | Yes | 2 | Uncategorized | 
  | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | NO | Yes | 1 | Uncategorized | 
   
-5.
+3. Modify the following metadata changes to columns (that already exist in the dataset):
+
+| Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- | 
+ | City | Text | N/A | N/A | N/A | City | 
+ | City State | Text | N/A | N/A | N/A | Place | 
+ | Prescriber NPI | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | State | Text | N/A | N/A | N/A | State or Province | 
+ | Year | Whole Number | NO | Yes | 0 | Uncategorized | 
+
+4. A video walking you through these steps can be found here: Click Here
+
+
+
 6. A video walking you through these steps can be found here: Click Here
 
 
