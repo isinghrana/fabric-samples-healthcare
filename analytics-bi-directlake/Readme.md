@@ -12,7 +12,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
 ### Upload the Raw Data files to OneLake
-1. Download the files from CMS at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
+1. Download the files from CMS, one zip file for each year of data, at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
 2. Unzip the files on your local machine.
 3. Upload the files to the Files section of a Fabric Lakehouse using the web interface.
 4. A video walking you through these steps can be found here: Click Here
