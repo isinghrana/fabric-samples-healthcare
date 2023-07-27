@@ -1,4 +1,4 @@
-# Direct Lake Connector with 220M+ Rows
+# Fabric Power BI Direct Lake Connector with 220M+ Rows
 
 
 ## Scenario
