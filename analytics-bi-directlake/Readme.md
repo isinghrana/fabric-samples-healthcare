@@ -28,7 +28,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
  | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
- | ------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
+ | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
  | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | NO | Yes | 0 | Uncategorized | 
@@ -42,7 +42,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 3. Modify the following metadata changes to columns (that already exist in the dataset):
 
 | Column name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
- | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- | 
+ | ---------- | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
  | City | Text | N/A | N/A | N/A | City | 
  | City State | Text | N/A | N/A | N/A | Place | 
  | Prescriber NPI | Whole Number | NO | Yes | 0 | Uncategorized | 
