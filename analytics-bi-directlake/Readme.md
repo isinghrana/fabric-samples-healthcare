@@ -41,8 +41,8 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
   
 3. Modify the following metadata changes to columns (that already exist in the dataset):
 
-| Column name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
- | ---------- | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
+| Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
  | City | Text | N/A | N/A | N/A | City | 
  | City State | Text | N/A | N/A | N/A | Place | 
  | Prescriber NPI | Whole Number | NO | Yes | 0 | Uncategorized | 
