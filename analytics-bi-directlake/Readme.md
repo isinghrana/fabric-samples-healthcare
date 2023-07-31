@@ -27,7 +27,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
 2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
- | Measure name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ------ | ----------------- | ------------------- | -------------- | ------------- | 
  | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
  | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | NO | Yes | 0 | Uncategorized | 
@@ -41,7 +41,7 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
   
 3. Modify the following metadata changes to columns (that already exist in the dataset):
 
-| Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+| Column name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- | 
  | City | Text | N/A | N/A | N/A | City | 
  | City State | Text | N/A | N/A | N/A | Place | 
