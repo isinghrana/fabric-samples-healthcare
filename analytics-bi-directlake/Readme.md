@@ -7,8 +7,6 @@ The Fabric Direct Lake conenctor is a new technology for querying delta parquet 
 ## Scope
 This demo is intended to provide experience with using the Direct Lake connector in Power BI to query large volumes of real data. The demo is not intended to represent the best possible arhitecture for the data model, or the best method to architect the delta parquet portion of the design. The demo will be updated in future interations to include a dimensional model, but the first version will be a simple flattened delta parquet table that can be queried directly from Power BI. 
 
-Tutorial follows similar walkthrough experience as the tutorial in [public docuemntation](https://learn.microsoft.com/en-us/fabric/data-science/tutorial-data-science-introduction)
-
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
 ### Upload the Raw Data files to OneLake
@@ -29,15 +27,15 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
 
  | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
- | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | NO | Yes | 0 | Uncategorized | 
- | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | NO | Yes | 0 | Uncategorized | 
- | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | NO | Yes | 0 | Uncategorized | 
- | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | NO | Yes | 2 | Uncategorized | 
- | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | NO | Yes | 1 | Uncategorized | 
+ | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
+ | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | No | Yes | 0 | Uncategorized | 
+ | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | No | Yes | 2 | Uncategorized | 
+ | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | No | Yes | 1 | Uncategorized | 
   
 3. Modify the following metadata changes to columns (that already exist in the dataset):
 
@@ -45,9 +43,9 @@ Tutorial follows similar walkthrough experience as the tutorial in [public docue
  | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
  | City | Text | N/A | N/A | N/A | City | 
  | City State | Text | N/A | N/A | N/A | Place | 
- | Prescriber NPI | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
  | State | Text | N/A | N/A | N/A | State or Province | 
- | Year | Whole Number | NO | Yes | 0 | Uncategorized | 
+ | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
 4. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
 5. A video walking you through these steps can be found here: Click Here
