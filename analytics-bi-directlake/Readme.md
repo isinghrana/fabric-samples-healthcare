@@ -12,6 +12,7 @@ This demo is intended to provide experience with ingesting data into Fabric Lake
 ### Pre-Requisite
 Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instricutions below are combination of Spark Notebook and some manual steps to create Power BI Dataset.
 
+### Create Lakehouse, upload data and create Delta Parquet Table using Fabric Spark
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Lakehouse or use an existing one
 3. Download Spark Notebook from Github Repo to your local machine
