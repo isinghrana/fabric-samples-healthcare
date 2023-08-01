@@ -15,10 +15,10 @@ Fabric enabled Workspace is the pre-requisite to be able to setup and end to end
 ### Create Lakehouse, upload data to Lakehouse and create Delta Parquet Table using Fabric Spark
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Lakehouse or use an existing one
-3. Download ![Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
+3. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
 4. Import the downloaded Notebook into Fabric Workspace
 5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-6. Spark Notebook has the subsequent instructions to download data files from ![CMS Website] (https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), the upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step
+6. Spark Notebook has the subsequent instructions to download data files from [CMS Website] (https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), the upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step
 
 A video walking you through these steps can be found here: <<TODO: Click here>
 
