@@ -28,6 +28,30 @@ This demo is intended to provide experience with using the Direct Lake connector
  | Lakehouse Column Name | New Dataset Column Name | 
  | --------------------- | ----------------------- | 
  | Brnd_Name | Brand Name | 
+ | GE65_Bene_Sprsn_Flag | 65 or Older Beneficiaries Suppression Flag | 
+ | GE65_Sprsn_Flag | 65 or Older Suppression Flag | 
+ | GE65_Tot_30day_Fills | 65 or Older Total 30 Day Fills | 
+ | GE65_Tot_Benes | 65 or Older Total Beneficiaries | 
+ | GE65_Tot_Clms | 65 or Older Total Claims | 
+ | GE65_Tot_Day_Suply | 65 or Older Total Days Supply | 
+ | GE65_Tot_Drug_Cst | 65 or Older Total Drug Cost | 
+ | Gnrc_Name | Generic Name |
+ | Prscrbr_City | Prescriber City | 
+ | Prscrbr_City_State | Prescriber City State | 
+ | Prscrbr_First_Name | Prescriber First Name | 
+ | Prscrbr_Full_Name | Prescriber Full Name | 
+ | Prscrbr_Last_Org_Name | Prescriber Last Name | 
+ | Prscrbr_NPI | Prescriber NPI | 
+ | Prscrbr_State_Abrvtn | Prescriber State | 
+ | Prscrbr_State_FIPS | Prescriber State FIPS | 
+ | Prscrbr_Type | Prescriber Type | 
+ | Prscrbr_Type_Src | Prescriber Type Source | 
+ | Tot_30day_Fills | Total 30m Day Fills | 
+ | Tot_Benes | Total Beneficiaries | 
+ | Tot_Clms | Total Claims | 
+ | Tot_Day_Suply | Total Days Supply | 
+ | Tot_Drug_Cst | Total Drug Cost | 
+ | Year | Year | 
  
 3. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
