@@ -61,8 +61,8 @@ This demo is intended to provide experience with using the Direct Lake connector
  | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | No | Yes | 0 | Uncategorized | 
  | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | No | Yes | 0 | Uncategorized | 
  | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
- | Total Beneficiaries | `Total Claims = SUM(cms_provider_drug_costs[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
- | Total 30 Day Fills | `Total Claims = SUM(cms_provider_drug_costs[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
+ | Total Beneficiaries | `Total Beneficiaries = SUM(cms_provider_drug_costs[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
+ | Total 30 Day Fills | `Total 30 Day Fills = SUM(cms_provider_drug_costs[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
  | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
  | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
  | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | No | Yes | 0 | Uncategorized | 
