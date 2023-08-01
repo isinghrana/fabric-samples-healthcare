@@ -5,27 +5,23 @@
 The Fabric Direct Lake connector is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 220M+ rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug 
 
 ## Scope
-This demo is intended to provide experience with ingesting data into Fabric Lakehouse, performing some minor clean-up/transformations using Fabric Spark and then using the Direct Lake connector in Power BI to query large volumes of real data. The demo is not intended to represent the best possible arhitecture for the data model, or the best method to architect the delta parquet portion of the design. The demo will be updated in future interations to include a dimensional model, but the first version will be a simple flattened delta parquet table that can be queried directly from Power BI. 
+This demo is intended to provide experience with light data engineering tasks (data type conversions, appending columns, etc.) using Fabric Spark to build out Delta Parquet tables and then using the Direct Lake connector in Power BI to query large volumes of real data. The demo is not intended to represent the best possible arhitecture for the data model, or the best method to architect the delta parquet portion of the design. The demo will be updated in future interations to include a dimensional model, but the first version will be a simple flattened delta parquet table that can be queried directly from Power BI. 
 
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
 ### Pre-Requisite
 Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instricutions below are combination of Spark Notebook and some manual steps to create Power BI Dataset.
 
-### Create Lakehouse, upload data and create Delta Parquet Table using Fabric Spark
+### Create Lakehouse, upload data to Lakehouse and create Delta Parquet Table using Fabric Spark
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Lakehouse or use an existing one
-3. Download Spark Notebook from Github Repo to your local machine
-4. Browse to Home for the workspace and use Import Notebook button at top to import the downloaded Spark Notebook
+3. Download ![Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
+4. Import the downloaded Notebook into Fabric Workspace
 5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-6. Spark Notebook has the subsequent instructions to download/upload data files to Lakeshouse and use Spark to create Delta Parquet tables to be used by Power BI in the next step
+6. Spark Notebook has the subsequent instructions to download data files from ![CMS Website] (https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), the upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step
 
-A video walking you through these steps can be found here: Click here
+A video walking you through these steps can be found here: <<TODO: Click here>
 
-### Add Custom Columns and Append the csv files into a Delta Parquet file of the Fabric Lakehouse using a Spark Notebook
-1. [Click Here to Access the Spark Notebook](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) . Note that sometimes you may need to refresh the page to display it in GitHub.
-2. Copy the Spark Notebook to Fabric and run it.
-3. A video walking you through these steps can be found here: Click Here
 
 ### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
 **Right now the easiest option for Git users is to manually create the Power BI Dataset. An automated option will be added when it becomes available in a way that is simple for end users.**
