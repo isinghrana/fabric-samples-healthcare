@@ -2,18 +2,24 @@
 
 
 ## Scenario
-The Fabric Direct Lake conenctor is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 220M+ rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug 
+The Fabric Direct Lake connector is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 220M+ rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug 
 
 ## Scope
-This demo is intended to provide experience with using the Direct Lake connector in Power BI to query large volumes of real data. The demo is not intended to represent the best possible arhitecture for the data model, or the best method to architect the delta parquet portion of the design. The demo will be updated in future interations to include a dimensional model, but the first version will be a simple flattened delta parquet table that can be queried directly from Power BI. 
+This demo is intended to provide experience with ingesting data into Fabric Lakehouse, performing some minor clean-up/transformations using Fabric Spark and then using the Direct Lake connector in Power BI to query large volumes of real data. The demo is not intended to represent the best possible arhitecture for the data model, or the best method to architect the delta parquet portion of the design. The demo will be updated in future interations to include a dimensional model, but the first version will be a simple flattened delta parquet table that can be queried directly from Power BI. 
 
 ![analytics-bi-directlake](./Images/DirectLake_Architecture.png) 
 
-### Upload the Raw Data files to OneLake
-1. Download the files from CMS, one zip file for each year of data, at the following link: [Click Here](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug)
-2. Unzip the files on your local machine.
-3. Upload the files to the Files section of a Fabric Lakehouse using the web interface.
-4. A video walking you through these steps can be found here: Click Here
+### Pre-Requisite
+Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instricutions below are combination of Spark Notebook and some manual steps to create Power BI Dataset.
+
+1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
+2. Create a new Lakehouse or use an existing one
+3. Download Spark Notebook from Github Repo to your local machine
+4. Browse to Home for the workspace and use Import Notebook button at top to import the downloaded Spark Notebook
+5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
+6. Spark Notebook has the subsequent instructions to download/upload data files to Lakeshouse and use Spark to create Delta Parquet tables to be used by Power BI in the next step
+
+A video walking you through these steps can be found here: Click here
 
 ### Add Custom Columns and Append the csv files into a Delta Parquet file of the Fabric Lakehouse using a Spark Notebook
 1. [Click Here to Access the Spark Notebook](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) . Note that sometimes you may need to refresh the page to display it in GitHub.
