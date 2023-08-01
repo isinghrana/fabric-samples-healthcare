@@ -30,7 +30,37 @@ A video walking you through these steps can be found here: Click here
 ### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
 **Right now the easiest option for Git users is to manually create the Power BI Dataset. An automated option will be added when it becomes available in a way that is simple for end users.**
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
-2. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
+2. Assign user-friendly names to the columns for user-facing values, and hide columns that will be displayed using Calculated Measures (Step 3):
+
+ | Lakehouse Column Name | New Dataset Column Name | Is hidden | 
+ | --------------------- | ----------------------- | --------- | 
+ | Brnd_Name | Brand Name | No | 
+ | GE65_Bene_Sprsn_Flag | 65 or Older Beneficiaries Suppression Flag | No | 
+ | GE65_Sprsn_Flag | 65 or Older Suppression Flag | No | 
+ | GE65_Tot_30day_Fills | 65 or Older Total 30 Day Fills | No | 
+ | GE65_Tot_Benes | 65 or Older Total Beneficiaries | No | 
+ | GE65_Tot_Clms | 65 or Older Total Claims | No | 
+ | GE65_Tot_Day_Suply | 65 or Older Total Days Supply | No | 
+ | GE65_Tot_Drug_Cst | 65 or Older Total Drug Cost | No | 
+ | Gnrc_Name | Generic Name | No | 
+ | Prscrbr_City | Prescriber City | No | 
+ | Prscrbr_City_State | Prescriber City State | No | 
+ | Prscrbr_First_Name | Prescriber First Name | No | 
+ | Prscrbr_Full_Name | Prescriber Full Name | No | 
+ | Prscrbr_Last_Org_Name | Prescriber Last Name | No | 
+ | Prscrbr_NPI | Prescriber NPI | No | 
+ | Prscrbr_State_Abrvtn | Prescriber State | No | 
+ | Prscrbr_State_FIPS | Prescriber State FIPS | No | 
+ | Prscrbr_Type | Prescriber Type | No | 
+ | Prscrbr_Type_Src | Prescriber Type Source | No | 
+ | Tot_30day_Fills | Tot_30day_Fills | Yes | 
+ | Tot_Benes | Tot_Benes | Yes | 
+ | Tot_Clms | Tot_Clms |  Yes | 
+ | Tot_Day_Suply | Tot_Day_Suply | Yes | 
+ | Tot_Drug_Cst | Tot_Drug_Cst | Yes |  
+ | Year | Year | No | 
+ 
+3. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
  | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
@@ -38,13 +68,15 @@ A video walking you through these steps can be found here: Click here
  | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | No | Yes | 0 | Uncategorized | 
  | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | No | Yes | 0 | Uncategorized | 
  | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Beneficiaries | `Total Beneficiaries = SUM(cms_provider_drug_costs[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
+ | Total 30 Day Fills | `Total 30 Day Fills = SUM(cms_provider_drug_costs[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
  | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
  | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
  | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | No | Yes | 0 | Uncategorized | 
  | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | No | Yes | 2 | Uncategorized | 
  | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | No | Yes | 1 | Uncategorized | 
   
-3. Modify the following metadata changes to columns (that already exist in the dataset):
+4. Modify the following metadata changes to columns (that already exist in the dataset):
 
 | Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
@@ -54,8 +86,8 @@ A video walking you through these steps can be found here: Click here
  | State | Text | N/A | N/A | N/A | State or Province | 
  | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
-4. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-5. A video walking you through these steps can be found here: Click Here
+5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
+6. A video walking you through these steps can be found here: Click Here
 
 ### Create Reports using Power BI or Connect using Excel
 **Right now the easiest option for Git users is to create your own reports. An automated option with a PBIX or PBIT file will be added when it becomes available in a way that is simple for end users.**
