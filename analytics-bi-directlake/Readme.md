@@ -18,9 +18,11 @@ Fabric enabled Workspace is the pre-requisite to be able to setup and end to end
 3. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
 4. Import the downloaded Notebook into Fabric Workspace
 5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-6. Spark Notebook has the subsequent instructions to download data files from [CMS Website](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), the upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step
+6. Spark Notebook has the subsequent instructions to download data files from [CMS Website](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), then upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step.
 
-A video walking you through these steps can be found here: <<TODO: Click here>
+A video walking you through all of these steps can be found [by clicking here](https://youtu.be/yblKEdmf1KE). 
+
+If you want to manually upload the files to the Fabric Lakehouse before running the Notebook, so that you only use the tools in Fabric, a video of that process can be found at [this link](https://youtu.be/Ln4mpuknuco).
 
 
 ### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
@@ -83,7 +85,7 @@ A video walking you through these steps can be found here: <<TODO: Click here>
  | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
 5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-6. A video walking you through these steps can be found here: Click Here
+6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 ### Create Reports using Power BI or Connect using Excel
 **Right now the easiest option for Git users is to create your own reports. An automated option with a PBIX or PBIT file will be added when it becomes available in a way that is simple for end users.**
