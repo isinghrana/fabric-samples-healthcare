@@ -85,7 +85,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
  | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
 5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-6. A video walking you through these steps can be found here: Click Here
+6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 ### Create Reports using Power BI or Connect using Excel
 **Right now the easiest option for Git users is to create your own reports. An automated option with a PBIX or PBIT file will be added when it becomes available in a way that is simple for end users.**
