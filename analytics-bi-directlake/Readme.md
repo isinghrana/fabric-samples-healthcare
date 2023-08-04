@@ -22,7 +22,7 @@ Fabric enabled Workspace is the pre-requisite to be able to setup and end to end
 
 A video walking you through all of these steps can be found [by clicking here](https://youtu.be/yblKEdmf1KE). 
 
-If you want to manually upload the files to the Fabric Lakehouse before running the Notebook, a video of that process can be found at [this link](https://youtu.be/Ln4mpuknuco).
+If you want to manually upload the files to the Fabric Lakehouse before running the Notebook, so that you only use the tools in Fabric, a video of that process can be found at [this link](https://youtu.be/Ln4mpuknuco).
 
 
 ### Create the Direct Lake Power BI Dataset with DAX expressions and metadata
