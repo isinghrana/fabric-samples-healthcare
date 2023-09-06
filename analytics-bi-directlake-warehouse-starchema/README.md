@@ -1,4 +1,4 @@
-# Star Schema version of Fabric Power BI Direct Lake Connector using the Fabric Data Warehouse with 220M+ Rows
+# Star Schema version of Fabric Power BI Direct Lake Connector using Fabric Data Warehouse and a Pipeline with 220M+ Rows
 
 
 ## Scenario
