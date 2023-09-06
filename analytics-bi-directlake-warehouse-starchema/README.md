@@ -10,3 +10,5 @@ The Fabric Direct Lake connector is a new technology for querying delta parquet 
 
 ## Scope
 This demo is intended to provide experience with creating a star schema design for a Power BI Direct Lake dataset. You will lear how to design dimension and fact tables in the Fabric Data Warehouse, and then write the new tables to a Fabric Data Lakehouse gold layer for use with the Direct Lake Power BI dataset.  
+
+![analytics-bi-directlake-warehouse-starschema](./Logical_Diagram_Star.png) 
