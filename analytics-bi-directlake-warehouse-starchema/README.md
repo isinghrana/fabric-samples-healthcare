@@ -1,4 +1,4 @@
-# 220M+ row Star Schema Fabric Power BI Direct Lake Connector using Fabric Data Warehouse and a Pipeline
+# 220M+ row Star Schema Fabric Power BI Direct Lake Dataset using Fabric Data Warehouse and a Pipeline
 
 
 ## Scenario
