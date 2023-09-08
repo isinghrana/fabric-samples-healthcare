@@ -1,4 +1,4 @@
-# 220M+ row Star Schema Fabric Power BI Direct Lake Dataset using Fabric Data Warehouse and a Pipeline
+# 220M+ row Star Schema Fabric Power BI Direct Lake Dataset designed with Fabric Data Warehouse and a Pipeline
 
 
 ## Scenario
@@ -12,3 +12,17 @@ The Fabric Direct Lake connector is a new technology for querying delta parquet 
 This demo is intended to provide experience with creating a star schema design for a Power BI Direct Lake dataset. You will lear how to design dimension and fact tables in the Fabric Data Warehouse, and then write the new tables to a Fabric Data Lakehouse gold layer for use with the Direct Lake Power BI dataset.  
 
 ![analytics-bi-directlake-warehouse-starschema](./Logical_Diagram_Star.png) 
+
+### Pre-Requisite
+Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instructions below are combination of SQL statements, a Fabric Pipeline, and a Power BI Direct Lake dataset.
+
+### Complete the ingestion and initial prep of the data
+Complete the solution in this Git repo which ingests and preps the CMS data. The steps can be found at this link: https://github.com/isinghrana/fabric-samples-healthcare/tree/main/analytics-bi-directlake 
+
+### Create Warehouse and add SQL scripts
+1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
+2. Create a new Warehouse or use an existing one
+3. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
+4. Import the downloaded Notebook into Fabric Workspace
+5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
+6. Spark Notebook has the subsequent instructions to download data files from [CMS Website](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), then upload data files to Lakeshouse and then run Spark Notebook to create Delta Parquet tables to be used by Power BI in the next step.
