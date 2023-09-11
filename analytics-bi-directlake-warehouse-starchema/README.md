@@ -25,11 +25,17 @@ A video that walks you through the steps below can be accessed at this link.
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
 3. Click the **+ Warehouses** button and select the Lakehouse containing the flattened table of CMS data. Examples in this repo refer to the name **CMS_Lakehouse**
-4. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
-5. Create a new SQL view for each of the scripts linked below in this repo. Follow the numeric order in the titles of the scripts:
+4. Create a new SQL view for each of the scripts linked below in this repo. Follow the numeric order in the titles of the scripts:
    - **01_dim_Year.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/01_dim_Year.sql
    - **02_dim_Drug.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/02_dim_Drug.sql
    - **03_dim_Geography.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/03_dim_Geography.sql
    - **04_dim_Provider.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/04_dim_Provider.sql
    - **05_cms_provider_no_null_key.sql** (replaces empty key fields with "missing") - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/05_cms_provider_fact_no_null_key.sql
    - **06_cms_provider_fact_star.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/06_cms_provider_fact_star.sql 
+
+### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
+A video that walks you through the steps below can be accessed at this link.
+
+1. From the Workspace select **+New** > **Show all** > **Data pipeline**
+2. Name the pipeline and select **Add** > **Copy data**
+3. 
