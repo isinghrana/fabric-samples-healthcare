@@ -46,7 +46,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
 6. Import and validate the schema for the Mapping
 7. Select **Add** > **Copy data** and repeat the process for all of the SQL views you created in the Warehouse:
 | Activity name | Source table | Destination table |
-| ------------- | ------------ | ----------------- |
-| Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_year |
+| ------------- | ------------ | ----------------- | 
+| Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_year | 
 
 9. aaa
