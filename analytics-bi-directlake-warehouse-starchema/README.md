@@ -46,8 +46,8 @@ At the time of writing this documentation, it is not posible to upload or paste 
 6. Import and validate the schema for the Mapping
 7. Select **Add** > **Copy data** and repeat the process of steps 3-6 for all of the SQL views you created in the Warehouse:
  
- | Activity name | Source table | Destination table | 
- | ------------- | ------------ | ----------------- | 
+ | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
+ | ------------- | --------------------------------- | ------------------------------------------- | 
  | Write Year Dim | dbo.cms_dim_year | cms_provider_dim_year | 
  | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_geography | 
  | Write Provider Dim | dbo.cms_provider_dim_provider | cms_provider_dim_provider | 
