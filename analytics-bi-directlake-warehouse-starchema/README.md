@@ -36,8 +36,11 @@ A video that walks you through the steps below can be accessed at this link.
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
 A video that walks you through the steps below can be accessed at this link.
 
-At the time of writing this documentation, it is not posible to upload or paste the JSON 
+At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace these manual steps in this repo.
 
 1. From the Workspace select **+New** > **Show all** > **Data pipeline**
 2. Name the pipeline and select **Add** > **Copy data**
-3. 
+3. Rename the **Copy data** activity to **Write Year Dim**
+4. Change the source to the Workspace's Fabric Warehouse table **dbo.cms_dim_year**
+5. Change the destination to the Workspace's Fabric Lakehouse Tables and name it **cms_provider_dim_year**
+6. Import and validate the schema for the Mapping 
