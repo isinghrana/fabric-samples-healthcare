@@ -36,6 +36,8 @@ A video that walks you through the steps below can be accessed at this link.
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
 A video that walks you through the steps below can be accessed at this link.
 
+At the time of writing this documentation, it is not posible to upload or paste the JSON 
+
 1. From the Workspace select **+New** > **Show all** > **Data pipeline**
 2. Name the pipeline and select **Add** > **Copy data**
 3. 
