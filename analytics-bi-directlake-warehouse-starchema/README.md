@@ -44,11 +44,14 @@ At the time of writing this documentation, it is not posible to upload or paste 
 4. Change the source to the Workspace's Fabric Warehouse table **dbo.cms_dim_year**
 5. Change the destination to the Workspace's Fabric Lakehouse Tables and name it **cms_provider_dim_year**
 6. Import and validate the schema for the Mapping
-7. Select **Add** > **Copy data** and repeat the process for all of the SQL views you created in the Warehouse:
+7. Select **Add** > **Copy data** and repeat the process of steps 3-6 for all of the SQL views you created in the Warehouse:
  
  | Activity name | Source table | Destination table | 
  | ------------- | ------------ | ----------------- | 
- | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_year | 
- | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_year | 
+ | Write Year Dim | dbo.cms_dim_year | cms_provider_dim_year | 
+ | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_geography | 
+ | Write Provider Dim | dbo.cms_provider_dim_provider | cms_provider_dim_provider | 
+ | Write Drug Dim | dbo.cms_provider_dim_drug | cms_provider_dim_drug | 
+ | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
 
 9. aaa
