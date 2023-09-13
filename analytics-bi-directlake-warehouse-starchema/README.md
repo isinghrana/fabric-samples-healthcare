@@ -60,5 +60,80 @@ At the time of writing this documentation, it is not posible to upload or paste 
 8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
 9. Your Fabric pipeline should look as follows:
 ![analytics-bi-directlake-warehouse-starschema](./Pipeline_View.png)
-10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.  
+10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
+
+### Create the Direct Lake Power BI Star Schema Dataset with DAX expressions and metadata
+**Right now the easiest option for Git users is to manually create the Power BI Dataset. An automated option will be added when it becomes available in a way that is simple for end users.**
+1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
+2. Assign user-friendly names to the columns for user-facing values, and hide columns that will be built into Calculated Measures (Step 3):
+
+ | Lakehouse Table Name | Lakehouse Table Column Name | New Dataset Column Name | Is hidden | 
+ | -------------------- | --------------------------- | ----------------------- | --------- | 
+ | cms_provider_dim_year | Year | Year | No | 
+ | cms_provider_dim_year | Year_Date_Key | Year_Date_Key | Yes | 
+ | cms_provider_dim_drug | Brnd_Name | Brand Name | No | 
+ | cms_provider_dim_drug | Gnrc_Name | Generic Name | No | 
+ | cms_provider_dim_drug | Max_Year | Max_Year_drug | Yes | 
+ | cms_provider_dim_drug | Min_Year | Min_Year_drug | Yes | 
+ | cms_provider_dim_drug | drug_key | drug_key | Yes | 
+ | cms_provider_dim_geography | Prscrbr_City | Prescriber City | No |
+ | cms_provider_dim_geography | Prscrbr_City_State | Prescriber City State | No | 
+ | cms_provider_dim_geography | Prscrbr_State_Abrvtn | Prescriber State | No | 
+ | cms_provider_dim_geography | Prscrbr_State_FIPS | Prescriber State FIPS | No | 
+ | cms_provider_dim_geography | Max_Year | Max_Year_geo | Yes | 
+ | cms_provider_dim_geography | Min_Year | Min_Year_geo | Yes | 
+ | cms_provider_dim_geography | geo_key | geo_key | Yes | 
+ | GE65_Bene_Sprsn_Flag | 65 or Older Beneficiaries Suppression Flag | No | 
+ | GE65_Sprsn_Flag | 65 or Older Suppression Flag | No | 
+ | GE65_Tot_30day_Fills | 65 or Older Total 30 Day Fills | No | 
+ | GE65_Tot_Benes | 65 or Older Total Beneficiaries | No | 
+ | GE65_Tot_Clms | 65 or Older Total Claims | No | 
+ | GE65_Tot_Day_Suply | 65 or Older Total Days Supply | No | 
+ | GE65_Tot_Drug_Cst | 65 or Older Total Drug Cost | No | 
+ | Gnrc_Name | Generic Name | No | 
+ | Prscrbr_City | Prescriber City | No | 
+ | Prscrbr_City_State | Prescriber City State | No | 
+ | Prscrbr_First_Name | Prescriber First Name | No | 
+ | Prscrbr_Full_Name | Prescriber Full Name | No | 
+ | Prscrbr_Last_Org_Name | Prescriber Last Name | No | 
+ | Prscrbr_NPI | Prescriber NPI | No | 
+ | Prscrbr_State_Abrvtn | Prescriber State | No | 
+ | Prscrbr_State_FIPS | Prescriber State FIPS | No | 
+ | Prscrbr_Type | Prescriber Type | No | 
+ | Prscrbr_Type_Src | Prescriber Type Source | No | 
+ | Tot_30day_Fills | Tot_30day_Fills | Yes | 
+ | Tot_Benes | Tot_Benes | Yes | 
+ | Tot_Clms | Tot_Clms |  Yes | 
+ | Tot_Day_Suply | Tot_Day_Suply | Yes | 
+ | Tot_Drug_Cst | Tot_Drug_Cst | Yes |  
+ | Year | Year | No | 
+ 
+3. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
+
+ | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
+ | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Beneficiaries | `Total Beneficiaries = SUM(cms_provider_drug_costs[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
+ | Total 30 Day Fills | `Total 30 Day Fills = SUM(cms_provider_drug_costs[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
+ | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
+ | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | No | Yes | 0 | Uncategorized | 
+ | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | No | Yes | 2 | Uncategorized | 
+ | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | No | Yes | 1 | Uncategorized | 
+  
+4. Modify the following metadata changes to columns (that already exist in the dataset):
+
+| Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
+ | City | Text | N/A | N/A | N/A | City | 
+ | City State | Text | N/A | N/A | N/A | Place | 
+ | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
+ | State | Text | N/A | N/A | N/A | State or Province | 
+ | Year | Whole Number | No | Yes | 0 | Uncategorized | 
+
+5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
+6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
