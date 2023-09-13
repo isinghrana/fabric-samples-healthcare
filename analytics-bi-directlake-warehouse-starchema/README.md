@@ -113,27 +113,25 @@ At the time of writing this documentation, it is not posible to upload or paste 
 
  | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
- | Brand Name Count | `Brand Name Count = DISTINCTCOUNT([Brand Name])` | Whole Number | No | Yes | 0 | Uncategorized | 
- | Prescriber Count | `Prescriber Count = DISTINCTCOUNT([Prescriber NPI]`) | Whole Number | No | Yes | 0 | Uncategorized | 
- | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs')` | Whole Number | No | Yes | 0 | Uncategorized | 
- | Total Claims | `Total Claims = SUM(cms_provider_drug_costs[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
- | Total Beneficiaries | `Total Beneficiaries = SUM(cms_provider_drug_costs[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
- | Total 30 Day Fills | `Total 30 Day Fills = SUM(cms_provider_drug_costs[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
- | Total Day Supply | `Total Days Supply = SUM([Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
- | Total Drug Cost | `Total Drug Cost = SUM([Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
+ | Row Count | `Row Count = COUNTROWS('cms_provider_drug_costs_star')` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Claims | `Total Claims = SUM(cms_provider_drug_costs_star[Tot_Clms])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Beneficiaries | `Total Beneficiaries = SUM(cms_provider_drug_costs_star[Tot_Benes])` | Whole Number | No | Yes | 0 | Uncategorized |  
+ | Total 30 Day Fills | `Total 30 Day Fills = SUM(cms_provider_drug_costs_star[Tot_30day_Fills])` | Decimal | No | Yes | 1 | Uncategorized | 
+ | Total Day Supply | `Total Days Supply = SUM(cms_provider_drug_costs_star[Tot_Day_Suply])` | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Total Drug Cost | `Total Drug Cost = SUM(cms_provider_drug_costs_star[Tot_Drug_Cst])` | Currency | No | Yes | 0 | Uncategorized | 
  | Cost per Claim | `Cost per Claim = DIVIDE([Total Drug Cost],[Total Claims])` | Currency | No | Yes | 0 | Uncategorized | 
  | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | No | Yes | 2 | Uncategorized | 
  | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | No | Yes | 1 | Uncategorized | 
   
 4. Modify the following metadata changes to columns (that already exist in the dataset):
 
-| Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
- | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
- | City | Text | N/A | N/A | N/A | City | 
- | City State | Text | N/A | N/A | N/A | Place | 
- | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
- | State | Text | N/A | N/A | N/A | State or Province | 
- | Year | Whole Number | No | Yes | 0 | Uncategorized | 
+ | Table Name | Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
+ | ---------- | ----------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
+ | cms_provider_dim_geography | City | Text | N/A | N/A | N/A | City | 
+ | cms_provider_dim_geography | City State | Text | N/A | N/A | N/A | Place | 
+ | cms_provider_dim_provider | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
+ | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
+ | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
 5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
 6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
