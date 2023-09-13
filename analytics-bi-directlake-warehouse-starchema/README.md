@@ -136,3 +136,13 @@ At the time of writing this documentation, it is not posible to upload or paste 
 5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
 6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
+### Create Reports using Power BI or Connect using Excel
+**Right now the easiest option for Git users is to create your own reports. An automated option with a PBIX or PBIT file will be added when it becomes available in a way that is simple for end users.**
+
+1. You can create a new Power BI report in Fabric by either clicking "New report" in the Data model view, clicking "Create report" from the ellipse in the Workspace view of the dataset, or by connecting to the Fabric Lakehouse using Power BI Desktop.
+2. You can also use "Analyze in Excel" from the ellipse next to the dataset in the Fabric Workspace.
+3. A video walking you through these steps can be found here: Click Here
+
+![analytics-bi-directlake](./Images/DirectLake_PBI_Landing.png) 
+
+![analytics-bi-directlake](./Images/DirectLake_PBI_QA.png) 
