@@ -44,7 +44,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
 4. Change the source to the Workspace's Fabric Warehouse table **dbo.cms_dim_year**
 5. Change the destination to the Workspace's Fabric Lakehouse Tables and name it **cms_provider_dim_year**
 6. Import and validate the schema for the Mapping
-7. Select **Add** > **Copy data** and repeat the process of steps 3-6 for all of the SQL views you created in the Warehouse:
+7. Select **Add** > **Copy data** and begin the process in steps 3-6 above of adding separate activities for all of the SQL views you created in the Warehouse:
  
  | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
  | ------------- | --------------------------------- | ------------------------------------------- | 
