@@ -76,6 +76,9 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | geo_key | geo_key | One to Many | Single | 
  | cms_provider_dim_provider | provider_key | provider_key | One to Many | Single | 
 
+ Your Data Model should now look like this:
+ ![analytics-bi-directlake-warehouse-starschema](./Relationships.png)
+
 3. Assign user-friendly names to the columns for user-facing values, and hide columns that will be built into Calculated Measures (Step 3). All columns on the fact table are hidden since the filter values are now in dimensions:
 
  | Lakehouse Table Name | Lakehouse Table Column Name | New Dataset Column Name | Is hidden | 
