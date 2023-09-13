@@ -56,4 +56,5 @@ At the time of writing this documentation, it is not posible to upload or paste 
 
 8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
 9. Your Fabric pipeline should look as follows:
+![analytics-bi-directlake-warehouse-starschema](./Pipeline_View.png) 
 
