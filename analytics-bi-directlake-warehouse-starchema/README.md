@@ -67,7 +67,16 @@ At the time of writing this documentation, it is not posible to upload or paste 
 ### Create the Direct Lake Power BI Star Schema Dataset with DAX expressions and metadata
 **Right now the easiest option for Git users is to manually create the Power BI Dataset. An automated option will be added when it becomes available in a way that is simple for end users.**
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
-2. Assign user-friendly names to the columns for user-facing values, and hide columns that will be built into Calculated Measures (Step 3). All columns on the fact table are hidden since the filter values are now in dimensions:
+2. Create relationships between the dimension tables and the fact table:
+
+ | Lakehouse Table Name | Dim Table Primary Key | Fact Table Foreign Key | Cardinality | Cross Filter Direction |
+ | -------------------- | --------------------- | ---------------------- | ----------- | ---------------------- | 
+ | cms_provider_dim_year | Year | Year | One to Many | Single | 
+ | cms_provider_dim_drug | drug_key | drug_key | One to Many | Single | 
+ | cms_provider_dim_geography | geo_key | geo_key | One to Many | Single | 
+ | cms_provider_dim_provider | provider_key | provider_key | One to Many | Single | 
+
+3. Assign user-friendly names to the columns for user-facing values, and hide columns that will be built into Calculated Measures (Step 3). All columns on the fact table are hidden since the filter values are now in dimensions:
 
  | Lakehouse Table Name | Lakehouse Table Column Name | New Dataset Column Name | Is hidden | 
  | -------------------- | --------------------------- | ----------------------- | --------- | 
@@ -111,7 +120,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | dbo.cms_provider_drug_costs_star | geo_key | geo_key | Yes | 
  | dbo.cms_provider_drug_costs_star | provider_key | provider_key | Yes | 
  
-3. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
+4. Add the following DAX espressions by clicking "New measure" in the edit Data Model view:
 
  | Measure name | DAX Syntax | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ------------ | ---------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
@@ -125,7 +134,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | Cost per Day | `Cost per Day = DIVIDE([Total Drug Cost],[Total Days Supply])` | Currency | No | Yes | 2 | Uncategorized | 
  | Days per Claim | `Days per Claim = DIVIDE([Total Days Supply],[Total Claims])` | Decimal | No | Yes | 1 | Uncategorized | 
   
-4. Modify the following metadata changes to columns (that already exist in the dataset):
+5. Modify the following metadata changes to columns (that already exist in the dataset):
 
  | Table Name | Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ---------- | ----------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
@@ -135,8 +144,9 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
  | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
-5. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-6. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
+6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
+
+7. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 ### Create Reports using Power BI or Connect using Excel
 **Right now the easiest option for Git users is to create your own reports. An automated option with a PBIX or PBIT file will be added when it becomes available in a way that is simple for end users.**
