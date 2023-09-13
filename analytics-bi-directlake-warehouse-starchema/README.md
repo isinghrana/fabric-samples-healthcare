@@ -31,7 +31,10 @@ A video that walks you through the steps below can be accessed at this link.
    - **03_dim_Geography.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/03_dim_Geography.sql
    - **04_dim_Provider.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/04_dim_Provider.sql
    - **05_cms_provider_no_null_key.sql** (replaces empty key fields with "missing") - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/05_cms_provider_fact_no_null_key.sql
-   - **06_cms_provider_fact_star.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/06_cms_provider_fact_star.sql 
+   - **06_cms_provider_fact_star.sql** - https://github.com/gregbeaumont/fabric-samples-healthcare/blob/main/analytics-bi-directlake-warehouse-starchema/06_cms_provider_fact_star.sql
+
+Your Fabric Warehouse should now contain SQL views that will be used to populate a Lakehouse for a Direct Lake dataset:
+![analytics-bi-directlake-warehouse-starschema](./Warehouse.png)
 
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
 A video that walks you through the steps below can be accessed at this link.
