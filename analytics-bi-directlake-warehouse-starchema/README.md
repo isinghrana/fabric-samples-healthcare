@@ -142,7 +142,3 @@ At the time of writing this documentation, it is not posible to upload or paste 
 1. You can create a new Power BI report in Fabric by either clicking "New report" in the Data model view, clicking "Create report" from the ellipse in the Workspace view of the dataset, or by connecting to the Fabric Lakehouse using Power BI Desktop.
 2. You can also use "Analyze in Excel" from the ellipse next to the dataset in the Fabric Workspace.
 3. A video walking you through these steps can be found here: Click Here
-
-![analytics-bi-directlake](./Images/DirectLake_PBI_Landing.png) 
-
-![analytics-bi-directlake](./Images/DirectLake_PBI_QA.png) 
