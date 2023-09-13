@@ -54,4 +54,6 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | Write Drug Dim | dbo.cms_provider_dim_drug | cms_provider_dim_drug | 
  | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
 
-9. aaa
+8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
+9. Your Fabric pipeline should look as follows:
+
