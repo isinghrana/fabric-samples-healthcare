@@ -2,6 +2,8 @@
 
 In this guide, you'll find how to build out a demo Delta Lake originating in Azure Databricks, shortcutting that Delta Lake to Microsoft Fabric, make changes in Fabric that are reflected in Delta Lake, and create a simple AI-driven Power BI dashboard!
 
+![high level diagram](./images/high_level_diagram.png)
+
 ## Building out the Delta Lake in Azure Databricks
 
 1. [Setup](https://learn.microsoft.com/en-us/azure/databricks/getting-started/#--create-an-azure-databricks-workspace) or use and existing Azure Databricks workspace.
