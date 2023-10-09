@@ -83,7 +83,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
 
 8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
 9. Your Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./images/Pipeline_View.png)
+![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View.png)
 10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 
 ***
