@@ -20,7 +20,7 @@ In this step we will upload raw files
 
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Lakehouse or use an existing one
-3. Download [Load CMS Medicare PartD Data](./01%20Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
+3. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
 4. Import the downloaded Notebook into Fabric Workspace
 5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
 6. Spark Notebook has the subsequent instructions to download data files from [CMS Website](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), then upload data files to Lakeshouse and then run Spark Notebook to create single flat Delta Parquet table with some minor modifications like data type changes, new columns based on existing columns, etc.
@@ -32,19 +32,17 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 ***
 
 ### Step 2: Create Gold Tables (Star Schema) to be used for Reporting
-Two method are documented and available for this step, choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
 
-**Please pick one out of the two - 2a or 2b**
-
-**2a. Spark Notebook** - Use this method if you prefer coding using Notebooks
-1. Download [Load StarSchema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
-2. Import the downloaded Notebook into Fabric Workspace
+**2a. Spark Notebook** - Use this method if you prefer code based implementations
+1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
+2. Import the downloaded Notebook into Fabric Workspace 
 3. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table
+4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 7 minutes to run with default setttings on F64 or P1 Workspace)
 
-***
 
 **2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
+
 A video that walks you through the steps below can be accessed at this link.
 
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
@@ -53,10 +51,10 @@ A video that walks you through the steps below can be accessed at this link.
 4. Create a new SQL view for each of the scripts linked below in this repo. Follow the numeric order in the titles of the scripts:
    - [01_dim_Year.sql](./scripts/01_dim_Year.sql)
    - [02_dim_Drug.sql](./scripts/02_dim_Drug.sql)
-   - [03_dim_Geography.sql](./scripts/03_dim_Geography.sql
-   - [04_dim_Provider.sql](./scripts/04_dim_Provider.sql
-   - [05_cms_provider_no_null_key.sql](./scripts/05_cms_provider_fact_no_null_key.sql
-   - [06_cms_provider_fact_star.sql](./scripts/06_cms_provider_fact_star.sql
+   - [03_dim_Geography.sql](./scripts/03_dim_Geography.sql)
+   - [04_dim_Provider.sql](./scripts/04_dim_Provider.sql)
+   - [05_cms_provider_no_null_key.sql](./scripts/05_cms_provider_fact_no_null_key.sql)
+   - [06_cms_provider_fact_star.sql](./scripts/06_cms_provider_fact_star.sql)
 
 Your Fabric Warehouse should now contain SQL views that will be used to populate a Lakehouse for a Direct Lake dataset:
 ![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
