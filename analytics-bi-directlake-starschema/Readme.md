@@ -32,7 +32,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 ***
 
 ### Step 2: Create Gold Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
 
 **2a. Spark Notebook** - Use this method if you prefer code based implementations
 1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
@@ -40,6 +40,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 3. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
 4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 7 minutes to run with default setttings on F64 or P1 Workspace)
 
+Skip to Step 3 if this Step 2a was chosen and successfully executed to create star schema tables.
 
 **2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
 
