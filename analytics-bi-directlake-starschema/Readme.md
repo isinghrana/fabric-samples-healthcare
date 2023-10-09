@@ -38,9 +38,9 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
 2. Import the downloaded Notebook into Fabric Workspace 
 3. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 7 minutes to run with default setttings on F64 or P1 Workspace)
+4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 8-10 minutes to run with default setttings on F64 or P1 Workspace)
 
-Skip to Step 3 if this Step 2a was chosen and successfully executed to create star schema tables.
+Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
 
 **2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
 
