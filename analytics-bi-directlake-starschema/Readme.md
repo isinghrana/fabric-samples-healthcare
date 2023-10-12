@@ -171,9 +171,14 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
  | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
-6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-
-7. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
+6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Now you can adjust some settings for the dataset to potentially enable better performance:
+  - From the Workspace, click on the ellipse next to the dataset name.
+  - Choose **Settings**
+  - Seelct **Query caching** > **On** to cache reporting results and improve perofmance for end users
+  - Turn on **Q&A** for natural language queries in the Power BI report
+  - Turn on **Large dataset storage format** which may help with the large data volumes in the fact table
+  
+8. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 ***
 
