@@ -32,7 +32,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 ***
 
 ### Step 2: Create Gold Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tables (Gold Layer) to be used for reporting. 
 
 **2a. Spark Notebook** - Use this method if you prefer code based implementations
 1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
@@ -117,16 +117,16 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | Prscrbr_City | Prescriber City | No |
  | cms_provider_dim_geography | Prscrbr_City_State | Prescriber City State | No | 
  | cms_provider_dim_geography | Prscrbr_State_Abrvtn | Prescriber State | No | 
- | cms_provider_dim_geography | Prscrbr_State_FIPS | Prescriber State FIPS | No | 
+ | cms_provider_dim_geography | Prscrbr_State_FIPS | Prescriber State FIPS | Yes | 
  | cms_provider_dim_geography | Max_Year | Max_Year_geo | Yes | 
  | cms_provider_dim_geography | Min_Year | Min_Year_geo | Yes | 
  | cms_provider_dim_geography | geo_key | geo_key | Yes | 
- | cms_provider_dim_provider | Prscrbr_First_Name | Prescriber First Name | No | 
+ | cms_provider_dim_provider | Prscrbr_First_Name | Prescriber First Name | Yes | 
  | cms_provider_dim_provider | Prscrbr_Full_Name | Prescriber Full Name | No | 
- | cms_provider_dim_provider | Prscrbr_Last_Org_Name | Prescriber Last Name | No |
+ | cms_provider_dim_provider | Prscrbr_Last_Org_Name | Prescriber Last Name | Yes |
  | cms_provider_dim_provider | Prscrbr_NPI | Prescriber NPI | No |
  | cms_provider_dim_provider | Prscrbr_Type | Prescriber Type | No |
- | cms_provider_dim_provider | Prscrbr_Type_Src | Prescriber Type Source | No |
+ | cms_provider_dim_provider | Prscrbr_Type_Src | Prescriber Type Source | Yes |
  | cms_provider_dim_provider | Max_Year | Max_Year_provider | Yes | 
  | cms_provider_dim_provider | Min_Year | Min_Year_provider | Yes | 
  | cms_provider_dim_provider | provider_key | provider_key | Yes | 
