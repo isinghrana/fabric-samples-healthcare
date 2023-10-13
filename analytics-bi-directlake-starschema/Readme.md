@@ -35,7 +35,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 **Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tables (Gold Layer) to be used for reporting. 
 
 **2a. Spark Notebook** - Use this method if you prefer code based implementations
-1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
+1. Download [Load Star Schema Tables](./Load%20CMS%20Star%20Schema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
 2. Import the downloaded Notebook into Fabric Workspace 
 3. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
 4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 8-10 minutes to run with default setttings on F64 or P1 Workspace)
