@@ -5,7 +5,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE VIEW [dbo].[cms_provider_fact_star] AS (SELECT      [GE65_Bene_Sprsn_Flag]
+CREATE VIEW [dbo].[cms_provider_drug_costs_star] AS (SELECT      [GE65_Bene_Sprsn_Flag]
             ,[GE65_Sprsn_Flag]
             ,[GE65_Tot_30day_Fills]
             ,[GE65_Tot_Benes]
