@@ -50,12 +50,12 @@ A video that walks you through the steps below can be accessed at this link.
 2. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
 3. Click the **+ Warehouses** button and select the Lakehouse containing the flattened table of CMS data. Examples in this repo refer to the name **CMS_Lakehouse**
 4. Create a new SQL view for each of the scripts linked below in this repo. Follow the numeric order in the titles of the scripts:
-   - [01_dim_Year.sql](./scripts/01_dim_Year.sql)
-   - [02_dim_Drug.sql](./scripts/02_dim_Drug.sql)
-   - [03_dim_Geography.sql](./scripts/03_dim_Geography.sql)
-   - [04_dim_Provider.sql](./scripts/04_dim_Provider.sql)
+   - [01_dim_Year.sql](./scripts/01_cms_provider_dim_year.sql)
+   - [02_dim_Drug.sql](./scripts/02_cms_provider_dim_drug.sql)
+   - [03_dim_Geography.sql](./scripts/03_cms_provider_dim_geography.sql)
+   - [04_dim_Provider.sql](./scripts/04_cms_provider_dim_provider.sql)
    - [05_cms_provider_no_null_key.sql](./scripts/05_cms_provider_fact_no_null_key.sql)
-   - [06_cms_provider_fact_star.sql](./scripts/06_cms_provider_fact_star.sql)
+   - [06_cms_provider_fact_star.sql](./scripts/06_cms_provider_drug_costs_star.sql)
 
 Your Fabric Warehouse should now contain SQL views that will be used to populate a Lakehouse for a Direct Lake dataset:
 ![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
