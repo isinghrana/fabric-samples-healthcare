@@ -5,7 +5,7 @@
 The Fabric Direct Lake connector is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 220M+ rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug 
 
 ## Scope
-This demo is intended to provide experience with data engineering tasks using Fabric Spark and/or Data Pipelines to build out Delta Parquet tables and then use the Direct Lake connector in Power BI to query large volumes of real data. The medallion lakehouse architecture is followed in this sample where raw CSV files are loaded to Bronze Layer, then Silver Layer flat table built using Delta Parquet format and lastly Gold Layer tables use star schema model. 
+This demo is intended to provide experience with data engineering tasks using Fabric Spark and/or Data Pipelines to build out Delta Parquet tables and then use the Direct Lake connector in Power BI to query large volumes of real data. The medallion lakehouse architecture is followed in this sample where raw CSV files are loaded to Bronze Layer, then Silver Layer flat table built using Delta Parquet format and lastly Gold Layer tables serve up the star schema model for a Direct Lake Power BI dataset. 
 
 ![analytics-bi-directlake](./Images/ArchitectureDiagram.png) 
 
@@ -32,7 +32,7 @@ If you want to manually upload the files to the Fabric Lakehouse before running 
 ***
 
 ### Step 2: Create Gold Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tabes (Gold Layer) to be used for reporting. 
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tables (Gold Layer) to be used for reporting. 
 
 **2a. Spark Notebook** - Use this method if you prefer code based implementations
 1. Download [Load Star Schema Tables](./02%20Load%20StarSchema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
@@ -117,16 +117,16 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | Prscrbr_City | Prescriber City | No |
  | cms_provider_dim_geography | Prscrbr_City_State | Prescriber City State | No | 
  | cms_provider_dim_geography | Prscrbr_State_Abrvtn | Prescriber State | No | 
- | cms_provider_dim_geography | Prscrbr_State_FIPS | Prescriber State FIPS | No | 
+ | cms_provider_dim_geography | Prscrbr_State_FIPS | Prescriber State FIPS | Yes | 
  | cms_provider_dim_geography | Max_Year | Max_Year_geo | Yes | 
  | cms_provider_dim_geography | Min_Year | Min_Year_geo | Yes | 
  | cms_provider_dim_geography | geo_key | geo_key | Yes | 
- | cms_provider_dim_provider | Prscrbr_First_Name | Prescriber First Name | No | 
+ | cms_provider_dim_provider | Prscrbr_First_Name | Prescriber First Name | Yes | 
  | cms_provider_dim_provider | Prscrbr_Full_Name | Prescriber Full Name | No | 
- | cms_provider_dim_provider | Prscrbr_Last_Org_Name | Prescriber Last Name | No |
+ | cms_provider_dim_provider | Prscrbr_Last_Org_Name | Prescriber Last Name | Yes |
  | cms_provider_dim_provider | Prscrbr_NPI | Prescriber NPI | No |
  | cms_provider_dim_provider | Prscrbr_Type | Prescriber Type | No |
- | cms_provider_dim_provider | Prscrbr_Type_Src | Prescriber Type Source | No |
+ | cms_provider_dim_provider | Prscrbr_Type_Src | Prescriber Type Source | Yes |
  | cms_provider_dim_provider | Max_Year | Max_Year_provider | Yes | 
  | cms_provider_dim_provider | Min_Year | Min_Year_provider | Yes | 
  | cms_provider_dim_provider | provider_key | provider_key | Yes | 
@@ -171,9 +171,14 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
  | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
-6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Or, you can click "New report" and move to the next step.
-
-7. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
+6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Now you can adjust some settings for the dataset to potentially enable better performance:
+  - From the Workspace, click on the ellipse next to the dataset name.
+  - Choose **Settings**
+  - Seelct **Query caching** > **On** to cache reporting results and improve perofmance for end users
+  - Turn on **Q&A** for natural language queries in the Power BI report
+  - Turn on **Large dataset storage format** which may help with the large data volumes in the fact table
+  
+8. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 ***
 
