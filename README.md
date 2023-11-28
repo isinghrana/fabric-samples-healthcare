@@ -15,7 +15,6 @@ The purpose of this repository is to share some end to end tutorials similar to 
 
 
 * [Data Science - Diabetes Prediction Sample](./datascience-diabetes-prediction/Readme.md)
-* [Analytics - BI with Direct Lake](./analytics-bi-directlake/Readme.md)
 * [Analytics - BI with Direct Lake Star Schema](./analytics-bi-directlake-starschema/Readme.md)
 
 <hr/>
