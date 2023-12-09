@@ -1,0 +1,53 @@
+Generate code to Load pyspark dataframe from "Files/cmsdrugprescriptions/" folder:
+
+- Spark session is already available using spark variable
+- Use relative file path as given
+- Add column for Year with integer data type by inferring the year from data file name, if file name is data_2021.csv then year is 2021
+- Print schema for dataframe
+- Show dataframe using display function
+
+Add import statements for any needed functions
+
+****
+Generate code to convert the following dataframe columns to decimal type with 10 max digits and up to 2 digits after decimal:
+- Tot_Drug_Cst
+- Tot_30day_Fills
+- GE65_Tot_30day_Fills
+- GE65_Tot_Drug_Cst
+
+Add import statements for any needed functions
+Add statements to print schema 
+Add statement to show dataframe using display function
+
+****
+
+Generate code to transform following dataframe columns to long type:
+- Tot_Clms
+- Tot_Day_Suply
+- Tot_Benes
+- GE65_Tot_Clms
+- GE65_Tot_Benes
+- GE65_Tot_Day_Suply
+
+Also add statements as per the instruction:
+- Import statements for any needed functions
+- Print schema 
+- Show dataframe using display function
+
+****
+
+Generate code to add columns to spark dataframe by combining existing columns as instructed below:
+- Add column Prscrbr_City_State by combining Prscrbr_City and Prscrbr_State_Abrvtn columns separated by a comma and space
+- Add column Prscrbr_Full_Name by combining Prscrbr_Last_Org_Name and Prscrbr_First_Name columns separated by a comma and space
+
+Add import statements for any needed functions
+Also display the updated dataframe
+
+****
+
+Generate code to save dataframe as delta format table with name cms_provider_drug_costs2
+
+
+****
+Automatic Suggestions
+- What are the top 10 drugs with the highest costs in the dataset?
