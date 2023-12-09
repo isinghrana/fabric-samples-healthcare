@@ -30,8 +30,10 @@ A video walking you through all of these steps can be found [by clicking here](h
 If you want to manually upload the files to the Fabric Lakehouse before running the Notebook, so that you only use the tools in Fabric, a video of that process can be found at [this link](https://youtu.be/Ln4mpuknuco).
 
 **Copilot Update** 
-A video walk through of how to use Fabric Copilot to generate a Notebook equivalent to the one provided in Step 6 above can be found here(TODO: Video Link).
-The prompts used in the video are shared in [Copilot-Prompts-LoadCMSMedicarePartD-DAta.txt](./Copilot-Prompts-LoadCMSMedicarePartD-Data.txt) file. Please do note that you might not have access to Copilot features as it is in Preview and in process of being rolled out.
+
+A video walk through of how to use Fabric Copilot to generate a Notebook equivalent to the one provided in Step 6 above can be found here (TODO: Video Link).
+
+The prompts used in the video are shared in [Copilot-Prompts-LoadCMSMedicarePartD-DAta.txt](./Copilot-Prompts-LoadCMSMedicarePartD-Data.txt) file. Please do note that you might not have access to the Copilot features as they are in Preview and in process of being rolled out.
 
 ***
 
