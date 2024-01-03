@@ -196,7 +196,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
 3. A video walking you through these steps can be found here: Click Here
 
 ### Step 5: Connect the Power BI Report to your Lakehouse
-1.  Download a copy of the Power BI Report template form this repo at [analytics-bi-directlake-warehouse-starschema](/CMS Medicare Part D Star Schema Template.pbix)
+1.  Download a copy of the Power BI Report template form this repo at [analytics-bi-directlake-warehouse-starschema](./CMS%20Medicare%20Part%20D%20Star%20Schema%20Template.pbix)
 2.  Open the file using Power BI Desktop
 3.  Connect to your Fabric Lakehouse
 4.  Publish the Power BI report to your Fabric Workspace
