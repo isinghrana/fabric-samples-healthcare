@@ -194,3 +194,9 @@ At the time of writing this documentation, it is not posible to upload or paste 
 1. You can create a new Power BI report in Fabric by either clicking "New report" in the Data model view, clicking "Create report" from the ellipse in the Workspace view of the dataset, or by connecting to the Fabric Lakehouse using Power BI Desktop.
 2. You can also use "Analyze in Excel" from the ellipse next to the dataset in the Fabric Workspace.
 3. A video walking you through these steps can be found here: Click Here
+
+###Step 5: Connect the Power BI Report to your Lakehouse
+1.  Download a copy of the Power BI Report template at this link: analytics-bi-directlake-starschema/CMS Medicare Part D Star Schema Template.pbix
+2.  Open the file using Power BI Desktop
+3.  Connect to your Fabric Lakehouse
+4.  Publish the Power BI report to your Fabric Workspace
