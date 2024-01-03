@@ -15,7 +15,7 @@ SELECT [Prscrbr_First_Name]
 ,[Prscrbr_Type_Src]
 ,MAX([Year]) AS [Max_Year]
 ,MIN([Year]) AS [Min_Year]
-,row_number() OVER (ORDER BY [Prscrbr_NPI] ASC) AS [provider_key]
+,row_number() OVER (ORDER BY [Prscrbr_Full_Name],[Prscrbr_NPI],[Prscrbr_Type],[Prscrbr_Type_Src] ASC) AS [provider_key]
 FROM [CMS_Lakehouse].[dbo].[cms_provider_drug_costs]
 GROUP BY [Prscrbr_First_Name],[Prscrbr_Full_Name],[Prscrbr_Last_Org_Name],[Prscrbr_NPI],[Prscrbr_Type],[Prscrbr_Type_Src]
 )
