@@ -50,8 +50,6 @@ Skip to Step 3 if Step 2a was chosen and successfully executed to create star sc
 
 **2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
 
-A video that walks you through the steps below can be accessed at this link.
-
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
 3. Click the **+ Warehouses** button and select the Lakehouse containing the flattened table of CMS data. Examples in this repo refer to the name **CMS_Lakehouse**
