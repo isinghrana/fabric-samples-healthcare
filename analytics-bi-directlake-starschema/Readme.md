@@ -64,7 +64,7 @@ Your Fabric Warehouse should now contain SQL views that will be used to populate
 ![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
 
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
-A video that walks you through the steps below can be accessed at this link. **2/29/2024 Update** - The Pipeline was split into two to improve query runtime performance.
+**2/29/2024 Update** - The Pipeline was split into two to improve query runtime performance.
 
 At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace these manual steps in this repo.
 
