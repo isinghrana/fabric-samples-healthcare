@@ -67,7 +67,7 @@ Your Fabric Warehouse should now contain SQL views that will be used to populate
 ![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
 
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
-A video that walks you through the steps below can be accessed at this link.
+A video that walks you through the steps below can be accessed at this link. **2/29/2024 Update** - The Pipeline was split into two to improve query runtime performance.
 
 At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace these manual steps in this repo.
 
@@ -85,9 +85,10 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_geography | 
  | Write Provider Dim | dbo.cms_provider_dim_provider | cms_provider_dim_provider | 
  | Write Drug Dim | dbo.cms_provider_dim_drug | cms_provider_dim_drug | 
+ | Write No Nulls Staging Table | dbo.cms_provider_fact_no_null_key | cms_provider_fact_no_null_key | 
  | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
 
-8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
+8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS Provider Fact**
 9. Your Fabric pipeline should look as follows:
 ![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View.png)
 10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
