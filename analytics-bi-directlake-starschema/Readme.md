@@ -89,7 +89,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
  
 8. For each of the activities that are for dimensions having "Dim" in the name, drag the **On success** green check and drop on the activity for **Write No-Nulls Staging Fact Table** which will write the SQL View for cms_provider_fact_no_null_key. This staging query accounts for blank values in key columns.
 9. Your Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View1.png)
+![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_1.png)
 10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 11. Repeat **Step 7** above to create a second new Pipeline that will write the cms_provider_drug_costs_star table to the Lakehouse. this second Pipeline was split off from the first on 2/29/2024 to improve upon query performance. **Do not create this second Pipeline until after the first one has completed running**, since it will reference the other tables in the Lakehouse. Here's a chart to match **Step 7** above:
     
@@ -98,7 +98,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
  
 12. Your second Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View2.png)
+![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_2.png)
 13. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 
 ***
