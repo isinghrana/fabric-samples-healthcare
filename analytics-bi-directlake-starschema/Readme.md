@@ -50,24 +50,21 @@ Skip to Step 3 if Step 2a was chosen and successfully executed to create star sc
 
 **2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
 
-A video that walks you through the steps below can be accessed at this link.
-
 1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
 2. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
 3. Click the **+ Warehouses** button and select the Lakehouse containing the flattened table of CMS data. Examples in this repo refer to the name **CMS_Lakehouse**
-4. Create a new SQL view for each of the scripts linked below in this repo. Follow the numeric order in the titles of the scripts:
+4. Create a new SQL view for each of the scripts linked below in this repo except script #6 which will be added in **Step 11**. Follow the numeric order in the titles of the scripts:
    - [01_cms_provider_dim_year.sql](./scripts/01_cms_provider_dim_year.sql)
    - [02_cms_provider_dim_drug.sql](./scripts/02_cms_provider_dim_drug.sql)
    - [03_cms_provider_dim_geography.sql](./scripts/03_cms_provider_dim_geography.sql)
    - [04_cms_provider_dim_provider.sql](./scripts/04_cms_provider_dim_provider.sql)
    - [05_cms_provider_no_null_key.sql](./scripts/05_cms_provider_fact_no_null_key.sql)
-   - [06_cms_provider_drug_costs_star.sql](./scripts/06_cms_provider_drug_costs_star.sql)
-
+   
 Your Fabric Warehouse should now contain SQL views that will be used to populate a Lakehouse for a Direct Lake dataset:
 ![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
 
 ### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
-A video that walks you through the steps below can be accessed at this link.
+**2/29/2024 Update** - The Pipeline was split into two to improve query runtime performance.
 
 At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace these manual steps in this repo.
 
@@ -77,7 +74,7 @@ At the time of writing this documentation, it is not posible to upload or paste 
 4. Change the source to the Workspace's Fabric Warehouse table **dbo.cms_dim_year**
 5. Change the destination to the Workspace's Fabric Lakehouse Tables and name it **cms_provider_dim_year**
 6. Import and validate the schema for the Mapping
-7. Select **Add** > **Copy data** and begin the process in steps 3-6 above of adding separate activities for all of the SQL views you created in the Warehouse:
+7. Select **Add** > **Copy data** and begin the process in steps 3-6 above of adding separate activities for all of the SQL views you created in the Warehouse except the one for **cms_provider_drug_costs_star** which will be created and added in **Step 11**:
  
  | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
  | ------------- | --------------------------------- | ------------------------------------------- | 
@@ -85,19 +82,29 @@ At the time of writing this documentation, it is not posible to upload or paste 
  | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_geography | 
  | Write Provider Dim | dbo.cms_provider_dim_provider | cms_provider_dim_provider | 
  | Write Drug Dim | dbo.cms_provider_dim_drug | cms_provider_dim_drug | 
- | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
-
-8. For each of the activities that are for dimensions, drag the **On success** green check and drop on the activity for **Write CMS PRovider Fact**
+ | Write No Nulls Staging Table | dbo.cms_provider_fact_no_null_key | cms_provider_fact_no_null_key | 
+ 
+8. For each of the activities that are for dimensions having "Dim" in the name, drag the **On success** green check and drop on the activity for **Write No-Nulls Staging Fact Table** which will write the SQL View for cms_provider_fact_no_null_key. This staging query accounts for blank values in key columns.
 9. Your Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View.png)
-10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
+![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_1.png)
+10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
+11. Repeat **Step 4** above to add the script [06_cms_provider_drug_costs_star.sql](./scripts/06_cms_provider_drug_costs_star.sql) to the Warehouse as a new view. This script is added later since it references the Lakehouse tables added in **Step 10**.
+12. Repeat **Step 7** above to create a second new Pipeline that will write the cms_provider_drug_costs_star table to the Lakehouse. this second Pipeline was split off from the first on 2/29/2024 to improve upon query performance. **Do not create this second Pipeline until after the first one has completed running**, since it will reference the other tables in the Lakehouse. Here's a chart to match **Step 7** above:
+    
+ | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
+ | ------------- | --------------------------------- | ------------------------------------------- | 
+ | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
+ 
+12. Your second Fabric pipeline should look as follows:
+![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_2.png)
+13. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 
 ***
 
 ### Step 3: Create the Direct Lake Power BI Star Schema Dataset with DAX expressions and metadata
 **Right now the easiest option for Git users is to manually create the Power BI Dataset. An automated option will be added when it becomes available in a way that is simple for end users.**
 1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
-2. Create relationships between the dimension tables and the fact table:
+2. Create relationships between the dimension tables and the fact table **cms_provider_drug_costs_star**:
 
  | Lakehouse Table Name | Dim Table Primary Key | Fact Table Foreign Key | Cardinality | Cross Filter Direction |
  | -------------------- | --------------------- | ---------------------- | ----------- | ---------------------- | 
