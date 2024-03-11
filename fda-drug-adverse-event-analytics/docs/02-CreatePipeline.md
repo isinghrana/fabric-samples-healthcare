@@ -1,5 +1,4 @@
 ## Create Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables
-[Prevous](./01-CreateLakehouse-SetupNotebooks.md) | [Next](./03-RunPipeline.md)
 
 In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks
 
@@ -32,5 +31,7 @@ In this step you will create a Data Pipeline to execute the previously imported 
 12. Make sure to save changes to the Pipeline
 
 ![Save Pipeline Changes](../images/DataPipelineCreate6.jpg)
+
+***
 
 [Prevous](./01-CreateLakehouse-SetupNotebooks.md) | [Next](./03-RunPipeline.md)
