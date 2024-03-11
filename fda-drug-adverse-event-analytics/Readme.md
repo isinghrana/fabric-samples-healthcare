@@ -8,8 +8,14 @@ As part of the openFDA project FDA makes a variety of real world datasets public
 
 ![Drug Event Dataset](./images/DrugAdverseEventDataset.jpg)
 
-## Scope
-[TODO: Scope including Architecture Diagram]
+## Overview
+[TODO: Overview including Architecture Diagram]
+
+The Human Drug Adverse Event Dataset consists of 1400+ files representing data from over 20 years. The data in files has complex nested JSON structure which is flattened into relational tables using Spark Notebooks. The following screenshot shows one of the source files as an example and subsequent screenshot shows the flattened tables generated in Silver Layer of the Medallion architecture to be used for building out the Gold Layer for reporting. 
+
+![Raw JSON](./images/RawJSON.jpg)
+
+![Flattened RelationalTables](./images/Lakehouse-PipelineJobComplete.jpg)
 
 ### Pre-Requisites
 Fabric enabled Workspace is the pre-requisite to be able to setup an end to end demonstration in your own environment.
