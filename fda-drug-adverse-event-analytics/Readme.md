@@ -15,11 +15,11 @@ As part of the openFDA project FDA makes a variety of real world datasets public
 
 The Human Drug Adverse Event Dataset consists of 1400+ files and 400+GB representing data from over 20 years. The data in files has complex nested JSON structure which is flattened into relational tables using Spark Notebooks. 
 
-The following screenshot shows one of the source files as an example source file which is the input transformed into relational flattened tables by Spark Notebook.
+The following screenshot shows one of the source files as an example source file which is the input data to be transformed into relational flattened tables by Spark Notebook.
 
 ![Raw JSON](./images/RawJSON.jpg)
 
-The following screenshot gives a glimpse of the output in the Lakehouse after the first three steps are successfully completed to download and flatten the data into relational tables in Silver Layer of Medallion Architecture.
+The following screenshot gives a glimpse of the output in the Lakehouse after the first three steps (listed below) are successfully completed to download and flatten the data into relational tables in Silver Layer of Medallion Architecture.
 
 ![Flattened RelationalTables](./images/Lakehouse-PipelineJobComplete.jpg)
 
