@@ -23,6 +23,8 @@ The following screenshot gives a glimpse of the output in the Lakehouse after th
 
 ![Flattened RelationalTables](./images/Lakehouse-PipelineJobComplete.jpg)
 
+
+
 ## Pre-Requisites
 Fabric enabled Workspace is the pre-requisite to be able to setup an end to end demonstration in your own environment.
 
