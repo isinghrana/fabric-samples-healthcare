@@ -41,6 +41,8 @@ In this step you will setup Lakehouse and Notebooks for downloading dataset to F
 
 Both Notebooks have markdown cells as well as inline comments to describe the code for better understanding of the solution. At this point you are ready to move onto the next step of creation of Data Pipeline to run these Notebooks as a non-interactive job.
 
+***
+
 ### Step 2: Build Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables
 
 In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks
@@ -70,6 +72,13 @@ In this step you will create a Data Pipeline to execute the previously imported 
    
     ![Connect Notebook Activities](./images/DataPipelineCreate5.jpg)
 
+12. Make sure to save changes to the Pipeline
+
+![Save Pipeline Changes](./images/DataPipelineCreate6.jpg)
+
+***
+
+### Step 3: Execute Pipeline
 
 [TODO: ] - AT this point, you have the Data Pipeline Defined. Run the Pipeline, it will take a few hours and once the pipeline exsecution is complete you will see the following three tables created in the Lakehouse
 
