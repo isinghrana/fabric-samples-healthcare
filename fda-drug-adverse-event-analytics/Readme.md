@@ -4,13 +4,12 @@
 As part of the openFDA project FDA makes a variety of real world datasets publicly available. The goal of openFDA project as stated on [openFDA](https://open.fda.gov/about/) website is to "create easy access to public data, to create a new level of openness and accountability, to ensure the privacy and security of public FDA data, and ultimately to educate the public and save lives". In this module we will demonstrate Microsoft Fabric capabilities to ingest, transform and report on this relatively large and complex real world health care dataset. The idea is to showcase how Microsoft Fabric provides an end to end analytics platform that has been built with ease of use in mind to draw value out of data faster without solving technical component integration challenges. The dataset consists of 1400+ JSON files which amounts to 400+ GB raw data on disk and complex nested JSON structure not very conducive for anlaytics and reporting.
 
 
-The downloadings of dataset is automated as part of the solution presented here so you don't need to download the dataset manually but showing the location of dataset on openFDA webiste for reference - https://open.fda.gov/data/downloads/ 
+**Note**: Downloading of dataset is automated as part of the solution presented here so you don't need to download the dataset manually but showing the location of dataset on openFDA webiste for reference - https://open.fda.gov/data/downloads/ 
 
 ![Drug Event Dataset](./images/DrugAdverseEventDataset.jpg)
 
 ## Scope
-[TODO:]
-[TODO: Architecture Diagram]
+[TODO: Scope including Architecture Diagram]
 
 ### Pre-Requisites
 Fabric enabled Workspace is the pre-requisite to be able to setup an end to end demonstration in your own environment.
@@ -31,20 +30,20 @@ In this step you will setup Lakehouse and Notebooks for downloading dataset to F
 5. Open **01-FDA-Download-DrugEvent-Dataset** Notebook, once the import is successful **update the Lakehouse association of the Notebook**
     
     ![Notebook Lakehouse Association](./images/NotebookLakehouseAssociation.jpg)
-    
+
 6. Repeat Step 5 for **02-FDA-DrugEvent-CreateSilverTables** Notebook
 
-**Notes**
+**Note**:
 
 **01-FDA-Download-DrugEvent-Dataset** Spark Notebook has the code to download and unzip all 1400+ dataset files which zipped JSON files 
 
 **02-FDA-DrugEvent-CreateSilverTables** Spark Notebook uses raw JSON files (downloaded using the first Spark Notebook) as source and creates flattened tables more conducive to reporting and analytics.
 
-Both Notebooks have Markdown cells as well as inline comments to describe the code for better understanding of the solution. At this point you are ready to move onto the next step of creation of Data Pipeline to run these Notebooks as a non-interactive job.
+Both Notebooks have markdown cells as well as inline comments to describe the code for better understanding of the solution. At this point you are ready to move onto the next step of creation of Data Pipeline to run these Notebooks as a non-interactive job.
 
-### Step 2: Build and Execute Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables
+### Step 2: Build Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables
 
-In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks. 
+In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks
 1. Open **01-FDA-Download-DrugEvent-Dataset** Notebook
 2. Open the *Run* options by clicking **Run** button in the toolbar 
 3. Clck **Add to Pipeline** button and select **New Pipeline** option
@@ -59,19 +58,20 @@ In this step you will create a Data Pipeline to execute the previously imported 
 6. Open the *Activity* menu by clicking **Activity** button in the Toolbar
 7. Click **Notebook** button which will add a new Notebook activity on the canvas
    
-    ![Add Notebook Activity](./images/DataPipelineCreate2b.jpg)
+    ![Add Notebook Activity](./images/DataPipelineCreate3.jpg)
     
 8. Select the new Notebook Activity on the canvas and open Settings section
    
-   ![Configure Second Notebook Activity](./images/DataPipelineCreate3.jpg)
+   ![Configure Second Notebook Activity](./images/DataPipelineCreate4.jpg)
 
 9.  Set the Workspace value to the current Workspace
 10. Set the Notebook value to **02-FDA-DrugEvent-CreateSilverTables**
 11. Connect the two Activities by dragging from the Download Activity On Success icon to the Transform Activity added for second Notebook
    
-    ![Connect Notebook Activities](./images/DataPipelineCreate4.jpg)
+    ![Connect Notebook Activities](./images/DataPipelineCreate5.jpg)
 
 
+[TODO: ] - AT this point, you have the Data Pipeline Defined. Run the Pipeline, it will take a few hours and once the pipeline exsecution is complete you will see the following three tables created in the Lakehouse
 
 
 
