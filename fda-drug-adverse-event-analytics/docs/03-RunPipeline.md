@@ -1,6 +1,6 @@
 ## Run Pipeline to generate flattened relation tables in Silver Layer of Medallion Architecture
 
-In this step you will run the Pipeline created in Step 2. The Pipeline job can take a few hours to execute so you can kick off the Pipeline execution and check back after hours to see the execution status, it will execute in the background and there is no need to keep your Microsoft Fabric session open.
+In this step you will run the Pipeline created in Step 2. The Pipeline job can take a few hours to execute so you can kick off the Pipeline execution and check back after a few hours to see the execution status. Pipeline will execute in the background and there is no need to keep your Microsoft Fabric session open.
 
 1. Make sure you have saved Pipeline changes and then click the **Run** button from Home menu as shown in the screenshot below
 

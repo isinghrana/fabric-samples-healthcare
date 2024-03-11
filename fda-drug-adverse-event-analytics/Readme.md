@@ -23,8 +23,6 @@ The following screenshot gives a glimpse of the output in the Lakehouse after th
 
 ![Flattened RelationalTables](./images/Lakehouse-PipelineJobComplete.jpg)
 
-
-
 ## Pre-Requisites
 Fabric enabled Workspace is the pre-requisite to be able to setup an end to end demonstration in your own environment.
 
@@ -38,5 +36,5 @@ This section lists the links to pages with step by step by instructions, Step 1 
 2. [Create Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables](./docs/02-CreatePipeline.md)
 3. [Run Pipeline to generate flattened relation tables in Silver Layer of Medallion Architecture](./docs/03-RunPipeline.md)
 
-
+***
 
