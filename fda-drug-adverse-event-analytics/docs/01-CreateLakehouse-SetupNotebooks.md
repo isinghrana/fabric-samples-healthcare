@@ -32,4 +32,4 @@ Both Notebooks have markdown cells as well as inline comments to describe the co
 
 ***
 
-Prevous | [Next](./02-CreatePipeline.md)
+[Home](../Readme.md) | Prevous | [Next](./02-CreatePipeline.md)

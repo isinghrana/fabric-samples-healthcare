@@ -34,4 +34,4 @@ In this step you will create a Data Pipeline to execute the previously imported 
 
 ***
 
-[Prevous](./01-CreateLakehouse-SetupNotebooks.md) | [Next](./03-RunPipeline.md)
+[Home](../Readme.md) | [Prevous](./01-CreateLakehouse-SetupNotebooks.md) | [Next](./03-RunPipeline.md)
