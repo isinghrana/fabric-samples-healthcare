@@ -11,7 +11,7 @@ As part of the openFDA project the FDA makes a variety of real world datasets pu
 ***
 
 ## Solution Overview
-[TODO: Overview including Architecture Diagram]
+![Drug Event Dataset](./images/SourceToTarget.png)
 
 The Human Drug Adverse Event Dataset consists of 1400+ files and 400+GB representing data from over 20 years. The data in files has complex nested JSON structure which is flattened into relational tables using Spark Notebooks. 
 
