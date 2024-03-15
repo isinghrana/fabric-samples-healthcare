@@ -35,6 +35,8 @@ This section lists the links to pages with step by step by instructions, Step 1 
 1. [Create Lakehouse, import Spark Notebooks and setup the Lakehouse association for Spark Notebooks](./docs/01-CreateLakehouse-SetupNotebooks.md)
 2. [Create Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables](./docs/02-CreatePipeline.md)
 3. [Run Pipeline to generate flattened relation tables in Silver Layer of Medallion Architecture](./docs/03-RunPipeline.md)
+4. [Create Fabric Warehouse as a Gold layer that functions as a Data Mart for users with SQL skills](./docs/04-CreateWarehouse.md)
+5. [Create a Fabric Direct Lake Semantic Model to build Power BI reports over your Warehouse](./docs/05-CreateDirectLake.md)
 
 ***
 
