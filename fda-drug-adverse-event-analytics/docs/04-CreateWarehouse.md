@@ -1,6 +1,6 @@
 ## Create Fabric Warehouse to serve as a Gold layer data mart
 
-Now you will create a Fabric Warehouse that will serve as a Gold layer for reporting. The premise for this Gold layer is that an analysts with SQL and Power BI skills was asked to report on the frequency of reports containing the reactions 'Fatigue' or 'Insomnia.' This use case is very simple, and only serves to provide you with a framework for developing your on unique use cases and data marts.
+Now you will create a Fabric Warehouse that will serve as a Gold layer for reporting. The premise for this Gold layer is that an analysts with SQL and Power BI skills was asked to report on the frequency of reports containing the reactions 'Fatigue' or 'Insomnia.' This use case is very simple, and only serves to provide you with a framework for developing your own unique use cases and data marts.
 
 1. From your Fabric Workspace select **New** > **More options** > Warehouse as seen in the screenshot below:
 
