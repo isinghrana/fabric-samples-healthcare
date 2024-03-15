@@ -6,11 +6,15 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Run Pipeline Job](../images/Warehouse1.png)
 
-2. Name the Warehouse as you choose, for the screenshots I chose **FDA_Fatigue_Insomnia**. Select **+Warehouses** as seen below:
+2. Name the Warehouse as you choose, and select **+Warehouses** as seen below:
 
 ![Monitor Pipeline Job](../images/Warehouse2.png)
 
 3. Select your Lakehouse and press **Confirm**.
+4. From the top ribbon of the Warehouse, select **New SQL query** > **New SQL query**.
+5. Paste in the SQL query linked here: . Make sure you replace the names of your Lakehouse where the query specifies **YOURLAKEHOUSENAME**
+6. Select **Run**, and the query shouldn't take long to complete.
+7. 
 
 ![Monitor Pipeline Job](../images/PipelineComplete.jpg)
 
