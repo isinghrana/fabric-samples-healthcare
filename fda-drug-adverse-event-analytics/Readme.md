@@ -30,7 +30,7 @@ Fabric enabled Workspace is the pre-requisite to be able to setup an end to end 
 
 ## Steps to setup demo in your own environment
 
-This section lists the links to pages with step by step by instructions, Step 1 to Step 3 shouldn't take more than 10 to 15 minutes to setup but have been broken into distinct steps for clarity.
+This section lists the links to pages with step by step by instructions, Step 1 to Step 5 shouldn't take more than 15 to 20 minutes to setup but have been broken into distinct steps for clarity. Steps 1-3 are reviewed and discussed in this video: https://youtu.be/KSHwJUoPVQY 
 
 1. [Create Lakehouse, import Spark Notebooks and setup the Lakehouse association for Spark Notebooks](./docs/01-CreateLakehouse-SetupNotebooks.md)
 2. [Create Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables](./docs/02-CreatePipeline.md)
