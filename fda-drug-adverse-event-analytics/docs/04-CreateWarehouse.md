@@ -27,25 +27,15 @@ Now you will add a Date table to the Warehouse. The Date table will simplify agg
 
 1. From your Fabric Workspace select **New** > **More options** > **Dataflows Gen 2**
 2. Select **Get Data** > **Blank query**
-3. Copy the code from this repo at this link: 
+3. Copy the code from this repo at this link and paste it: [DateTable.m](./scripts/DateTable.m). Click **Next**
+4. Change the name of the query to **Date** and change the Data Destination to your Warehouse per the screenshot below:
 
+![Monitor Pipeline Job](../images/Warehouse5.png)
 
-***
+5. Select **Publish** and the Date table will write to your Warehouse. You should now have a Gold layer Warehouse ready for SQL queries or to build a Direct Lake Semantic Model that can be used with Power BI!:
 
-Once the Job completes successfully you can browse to the Lakehouse to see the three tables as well as two folders in the files section of Lakehouse for zipped and unzipped raw files as shown in the screenshot below.
+![Monitor Pipeline Job](../images/Warehouse6.png)
 
-![Lakehouse with Tables and Raw files](../images/Lakehouse-PipelineJobComplete.jpg)
-
-**Dataset Size Information**
-
-* Raw Unzipped JSON File size on disk: 400+ GB, 1400+ Files
-* Total Flattened Table size on disk (delta parquet are significantly compressed by their nature): 15-20 GB
-* Three Delta Tables 
-    * fda_drug_event Table - 17 Million+ Rows; Size 750 MB
-    * fda_drug_event_patient_reaction Table - 50 Million+ Rows; Size 17 GB+ (1 to many from Drug Event table) 
-    * Fda_drug_event_patient_drug Table - 62 Million+ Rows; Size 250 MB (1 to many from Drug Event table)
-
-***
 
 [Home](../Readme.md) | [Prevous](./03-RunPipeline.md) | Next
 
