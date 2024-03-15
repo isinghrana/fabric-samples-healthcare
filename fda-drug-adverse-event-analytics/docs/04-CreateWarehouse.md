@@ -12,7 +12,7 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 3. Select your Lakehouse and press **Confirm**.
 4. From the top ribbon of the Warehouse, select **New SQL query** > **New SQL query**.
-5. Paste in the SQL query linked here: . Make sure you replace the names of your Lakehouse where the query specifies **YOURLAKEHOUSENAME**
+5. Paste in the SQL query linked here: [03-SQL-CreateWarehouseTable.sql](./scripts/03-SQL-CreateWarehouseTable.sql). Notice that the script accounts for discrepencies in capitalization. Make sure you replace the names of your Lakehouse where the query specifies **YOURLAKEHOUSENAME**
 6. Select **Run**, and the query shouldn't take long to complete.
 7. 
 
