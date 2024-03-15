@@ -2,7 +2,7 @@
 
 Now you will create a Fabric Warehouse that will serve as a Gold layer for reporting. The premise for this Gold layer is that an analysts with SQL and Power BI skills was asked to report on the frequency of reports containing the reactions 'Fatigue' or 'Insomnia.' This use case is very simple, and only serves to provide you with a framework for developing your own unique use cases and data marts.
 
-1. From your Fabric Workspace select **New** > **More options** > Warehouse as seen in the screenshot below:
+1. From your Fabric Workspace select **New** > **More options** > **Warehouse** as seen in the screenshot below:
 
 ![Run Pipeline Job](../images/Warehouse1.png)
 
@@ -21,8 +21,12 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Monitor Pipeline Job](../images/Warehouse4.png)
 
-8. Once the 
-9. Now you will add a Date table to the Warehouse. The Date table will simplify aggegating by week, month, quarter, and year at the reporting level. Dataflows Generation 2 will be used to create a simple Date table in the Warehouse:
+8. Hit **OK** to process the table and write it to the Warehouse. 
+
+Now you will add a Date table to the Warehouse. The Date table will simplify aggegating by week, month, quarter, and year at the reporting level. Dataflows Generation 2 will be used to create a simple Date table in the Warehouse:
+
+1. From your Fabric Workspace select **New** > **More options** > **Dataflows Gen 2**
+2. Copy the code from this repo at this link: 
 
 
 ***
