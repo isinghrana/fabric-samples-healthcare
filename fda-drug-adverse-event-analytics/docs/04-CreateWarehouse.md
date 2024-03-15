@@ -39,7 +39,7 @@ Now you will add a Date table to the Warehouse. The Date table will simplify agg
 6. Now you can explore the OpenFDA data using SQL in the Warehouse. New specialized scripts from the Lakehouse can be materialized in the Warehouse for specialized analysis. You can also create views, or bring in new data from other sources to enrich your analytics.
 
 
-[Home](../Readme.md) | [Prevous](./03-RunPipeline.md) | Next
+[Home](../Readme.md) | [Prevous](./03-RunPipeline.md) | [Next](./05-CreateDirectLake.md)
 
 
 
