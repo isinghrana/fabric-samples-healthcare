@@ -26,7 +26,8 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 Now you will add a Date table to the Warehouse. The Date table will simplify aggegating by week, month, quarter, and year at the reporting level. Dataflows Generation 2 will be used to create a simple Date table in the Warehouse:
 
 1. From your Fabric Workspace select **New** > **More options** > **Dataflows Gen 2**
-2. Copy the code from this repo at this link: 
+2. Select **Get Data** > **Blank query**
+3. Copy the code from this repo at this link: 
 
 
 ***
