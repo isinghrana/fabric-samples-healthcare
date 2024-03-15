@@ -6,7 +6,7 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Run Pipeline Job](../images/Warehouse1.png)
 
-2. It will take the Pipeline Job a few hours to run and you can monitor execution status of the job from Monitoring Hub, screenshot below shows successful run of the Pipline Job
+2. Name the Warehouse as you choose, for the screenshots I chose **FDA_Fatigue_Insomnia**
 
 ![Monitor Pipeline Job](../images/PipelineComplete.jpg)
 
