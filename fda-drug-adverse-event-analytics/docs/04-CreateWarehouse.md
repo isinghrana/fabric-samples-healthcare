@@ -6,7 +6,11 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Run Pipeline Job](../images/Warehouse1.png)
 
-2. Name the Warehouse as you choose, for the screenshots I chose **FDA_Fatigue_Insomnia**
+2. Name the Warehouse as you choose, for the screenshots I chose **FDA_Fatigue_Insomnia**. Select **+Warehouses* as seen below:
+
+![Monitor Pipeline Job](../images/Warehouse2.png)
+
+3. Select your Lakehouse and press **Confirm**.
 
 ![Monitor Pipeline Job](../images/PipelineComplete.jpg)
 
