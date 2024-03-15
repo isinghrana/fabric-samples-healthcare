@@ -23,4 +23,4 @@ Now you will create a Semantic Model that enables a custom Direct Lake connectio
 Moving forward, you can add new tables, update the Semantic Model, and then build reports in Power BI! If you'd like to see more detailed examples for this level of the solution, please pass along suggestions.
 
 
-[Home](../Readme.md) | [Prevous](./03-RunPipeline.md) | Next
+[Home](../Readme.md) | [Prevous](./04-CreateWarehouse.md) | Next
