@@ -6,17 +6,21 @@ In this step you will setup Lakehouse and Notebooks for downloading dataset to F
    
     ![Fabric Data Engineering Persona](../images/FabricDataEngineeringPersona.jpg)    
 
-2. Create a new Lakehouse if not using an existing Lakehouse
+2. Create a new Lakehouse with an appropriate name (example *fda_drugadverse_events_lh*) if not using an existing Lakehouse
 
-3. Download [01-FDA-Download-DrugEvent-Dataset](../01-FDA-Download-DrugEvent-Dataset.ipynb) and [02-FDA-DrugEvent-CreateSilverTables](../02-FDA-DrugEvent-CreateSilverTables.ipynb) Spark Notebooks from Github Repo to your local machine
+3. Open [01-FDA-Download-DrugEvent-Dataset](../01-FDA-Download-DrugEvent-Dataset.ipynb) Spark Notebook and download to local machine using the *Download Raw File* button on the top right corner as shown in the screenshot below
 
-4. Import the two downloaded Notebooks into Fabric Workspace
+    ![Downlaod Notebook](../images/DownloadNotebook.jpg)
 
-5. Open **01-FDA-Download-DrugEvent-Dataset** Notebook, once the import is successful **update the Lakehouse association of the Notebook**
+4. Repeat download step for [02-FDA-DrugEvent-CreateSilverTables](../02-FDA-DrugEvent-CreateSilverTables.ipynb) Spark Notebook
+
+5. Import the two downloaded Notebooks into Fabric Workspace (screenshot in Step 1 for *Import Notebook* button)
+
+6. Open **01-FDA-Download-DrugEvent-Dataset** Notebook, once the import is successful **fix the Lakehouse association of the Notebook** by first clicking **Remove All Lakehouses** button then adding the Lakehouse created in Step 2 using **Add Lakehouse** button
     
     ![Notebook Lakehouse Association](../images/NotebookLakehouseAssociation.jpg)
 
-6. Repeat Step 5 for **02-FDA-DrugEvent-CreateSilverTables** Notebook
+7. Repeat Step 5 for **02-FDA-DrugEvent-CreateSilverTables** Notebook
 
 ***
 
