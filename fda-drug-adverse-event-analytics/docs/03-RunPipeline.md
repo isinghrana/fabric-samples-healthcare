@@ -27,7 +27,7 @@ Once the Job completes successfully you can browse to the Lakehouse to see the t
 
 ***
 
-[Home](../Readme.md) | [Prevous](./02-CreatePipeline.md) | Next
+[Home](../Readme.md) | [Prevous](./02-CreatePipeline.md) | [Next](./04-CreateWarehouse.md)
 
 
 
