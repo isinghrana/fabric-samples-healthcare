@@ -17,6 +17,12 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Monitor Pipeline Job](../images/Warehouse3.png)
 
+7. Give the new Warehouse table a name, I used **fda_drug_event_fatiue_insomnia** as seen below:
+
+![Monitor Pipeline Job](../images/Warehouse4.png)
+
+
+
 ***
 
 Once the Job completes successfully you can browse to the Lakehouse to see the three tables as well as two folders in the files section of Lakehouse for zipped and unzipped raw files as shown in the screenshot below.
