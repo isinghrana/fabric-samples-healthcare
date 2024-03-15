@@ -21,6 +21,8 @@ Now you will create a Fabric Warehouse that will serve as a Gold layer for repor
 
 ![Monitor Pipeline Job](../images/Warehouse4.png)
 
+8. Once the 
+9. Now you will add a Date table to the Warehouse. The Date table will simplify aggegating by week, month, quarter, and year at the reporting level. Dataflows Generation 2 will be used to create a simple Date table in the Warehouse:
 
 
 ***
