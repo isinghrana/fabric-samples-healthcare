@@ -36,4 +36,4 @@ You will create a Fabric Data Factory Pipeline which will first run SQL scripts 
 
 ***
 
-[Back to main Readme](../Readme.md) 
+[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting)
