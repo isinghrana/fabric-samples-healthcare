@@ -42,67 +42,18 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
 
 ***
 
-### Step 2: Create Gold Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the chocie here demonstrates the verstaility of platform. In this step flat table created in Step 1 is the input (Silver Layer) and the output is star schema tables (Gold Layer) to be used for reporting. 
+### Step 2: Download Raw Files and build out Silver and Gold Layer Tables (Star Schema) to be used for Reporting
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the choice here demonstrates the verstaility of platform. In this step Bronze, Silver and Gold Layers of Medallion architecture are built using slightly different method, the biggest difference is whether Lakehouse or Warehouse is used for Gold Layer (star schema tables) to be used for reporting. 
 
-**2a. Spark Notebook** - Use this method if you prefer code based implementations
-1. Download [Load Star Schema Tables](./Load%20CMS%20Star%20Schema%20Tables.ipynb) Spark Notebook from Github Repo to your local machine
-2. Import the downloaded Notebook into Fabric Workspace 
-3. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-4. Run the Notebook to create Star Schema Tables populated from the flat Delta Lake Table (Notebook takes about 8-10 minutes to run with default setttings on F64 or P1 Workspace)
+**2a. Gold Layer in Fabric Lakehouse** - This method uses Spark Notebooks for building out Bronze, Silver and Gold Layers using Spark Notebooks and persists the Gold Layer in a Fabric Lakehouse
+
+[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)
 
 Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
 
-**2b. Fabric Data Factory Pipeline and Warehouse** - Use this method if you prefer no-code and T-SQL only implementation
+**2b. Gold Layer in Fabric Warehouse** - This method uses Spark Notebooks for building Bronze and Silver Layers but using T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse 
 
-1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
-2. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
-3. Click the **+ Warehouses** button and select the Lakehouse containing the flattened table of CMS data. Examples in this repo refer to the name **CMS_Lakehouse**
-4. Create a new SQL view for each of the scripts linked below in this repo except script #6 which will be added in **Step 11**. Follow the numeric order in the titles of the scripts:
-   - [01_cms_provider_dim_year.sql](./scripts/01_cms_provider_dim_year.sql)
-   - [02_cms_provider_dim_drug.sql](./scripts/02_cms_provider_dim_drug.sql)
-   - [03_cms_provider_dim_geography.sql](./scripts/03_cms_provider_dim_geography.sql)
-   - [04_cms_provider_dim_provider.sql](./scripts/04_cms_provider_dim_provider.sql)
-   - [05_cms_provider_no_null_key.sql](./scripts/05_cms_provider_fact_no_null_key.sql)
-   
-Your Fabric Warehouse should now contain SQL views that will be used to populate a Lakehouse for a Direct Lake dataset:
-![analytics-bi-directlake-warehouse-starschema](./Images/Warehouse.png)
-
-### Create Pipeline and set up Warehouse SQL views to populate Lakehouse tables
-**2/29/2024 Update** - The Pipeline was split into two to improve query runtime performance.
-
-At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace these manual steps in this repo.
-
-1. From the Workspace select **+New** > **Show all** > **Data pipeline**
-2. Name the pipeline and select **Add** > **Copy data**
-3. Rename the **Copy data** activity to **Write Year Dim**
-4. Change the source to the Workspace's Fabric Warehouse table **dbo.cms_dim_year**
-5. Change the destination to the Workspace's Fabric Lakehouse Tables and name it **cms_provider_dim_year**
-6. Import and validate the schema for the Mapping
-7. Select **Add** > **Copy data** and begin the process in steps 3-6 above of adding separate activities for all of the SQL views you created in the Warehouse except the one for **cms_provider_drug_costs_star** which will be created and added in **Step 11**:
- 
- | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
- | ------------- | --------------------------------- | ------------------------------------------- | 
- | Write Year Dim | dbo.cms_dim_year | cms_provider_dim_year | 
- | Write Geo Dim | dbo.cms_provider_dim_geography | cms_provider_dim_geography | 
- | Write Provider Dim | dbo.cms_provider_dim_provider | cms_provider_dim_provider | 
- | Write Drug Dim | dbo.cms_provider_dim_drug | cms_provider_dim_drug | 
- | Write No Nulls Staging Table | dbo.cms_provider_fact_no_null_key | cms_provider_fact_no_null_key | 
- 
-8. For each of the activities that are for dimensions having "Dim" in the name, drag the **On success** green check and drop on the activity for **Write No-Nulls Staging Fact Table** which will write the SQL View for cms_provider_fact_no_null_key. This staging query accounts for blank values in key columns.
-9. Your Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_1.png)
-10. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
-11. Repeat **Step 4** above to add the script [06_cms_provider_drug_costs_star.sql](./scripts/06_cms_provider_drug_costs_star.sql) to the Warehouse as a new view. This script is added later since it references the Lakehouse tables added in **Step 10**.
-12. Repeat **Step 7** above to create a second new Pipeline that will write the cms_provider_drug_costs_star table to the Lakehouse. this second Pipeline was split off from the first on 2/29/2024 to improve upon query performance. **Do not create this second Pipeline until after the first one has completed running**, since it will reference the other tables in the Lakehouse. Here's a chart to match **Step 7** above:
-    
- | Activity name | Warehouse Source table (SQL view) | Lakehouse Destination table (delta parquet) | 
- | ------------- | --------------------------------- | ------------------------------------------- | 
- | Write CMS Provider Fact | dbo.cms_provider_drug_costs_star | cms_provider_drug_costs_star | 
- 
-12. Your second Fabric pipeline should look as follows:
-![analytics-bi-directlake-warehouse-starschema](./Images/Pipeline_View_2.png)
-13. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Lakehouse with the fact table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
+[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
 
 ***
 
@@ -205,7 +156,9 @@ At the time of writing this documentation, it is not posible to upload or paste 
 
 1. You can create a new Power BI report in Fabric by either clicking "New report" in the Data model view, clicking "Create report" from the ellipse in the Workspace view of the dataset, or by connecting to the Fabric Lakehouse using Power BI Desktop.
 2. You can also use "Analyze in Excel" from the ellipse next to the dataset in the Fabric Workspace.
-3. You can use the existing report template by downloading a copy of the Power BI Report template fr0m the file in this repo at [analytics-bi-directlake-warehouse-starschema](./CMS%20Medicare%20Part%20D%20Star%20Schema%20Template.pbix)
-4.   Open the file using Power BI Desktop
-5.  Connect to your Fabric Lakehouse
-6.  Publish the Power BI report to your Fabric Workspace
+3. You can use the existing report template by downloading a copy of the Power BI Report template from the file in this repo at [analytics-bi-directlake-warehouse-starschema](./CMS%20Medicare%20Part%20D%20Star%20Schema%20Template.pbix)
+  - Open the file using Power BI Desktop
+  - Connect to your Fabric Lakehouse
+  - Publish the Power BI report to your Fabric Workspace
+The Power BI Report that connects to the Direct Lake Semantic Model shoul look like this, and be ready for use with Power BI Copilot:
+![analytics-bi-directlake](./Images/ReportExample.png) 
