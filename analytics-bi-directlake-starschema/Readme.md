@@ -53,7 +53,7 @@ Skip to Step 3 if Step 2a was chosen and successfully executed to create star sc
 
 **2b. Gold Layer in Fabric Warehouse** - This method uses Spark Notebooks for building Bronze and Silver Layers but using T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse 
 
-[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
+[Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
 
 ***
 
