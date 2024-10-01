@@ -1,4 +1,4 @@
-## Create Pipeline to ingest and transform Drug Adverse Event Dataset into flattened Relational Tables
+## Create Pipeline to ingest and build transform Drug Adverse Event Dataset into flattened Relational Tables
 
 In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks
 
