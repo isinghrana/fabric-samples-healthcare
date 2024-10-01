@@ -14,26 +14,31 @@ Fabric enabled Workspace is the pre-requisite to be able to setup and end to end
 
 ***
 
-### Step 1: Create Lakehouse, upload data to Lakehouse and create Delta Parquet Table using Fabric Spark
+### Step 1: Create Lakehouse and setup Spark Notebooks
 
-In this step we will upload raw files 
+In this step you will create Lakehouse and setup Spark Notebooks to be used for downloading csv files and creation of Lakehouse Tables (Delta Parquet) from those files 
 
-1. Open up your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner
-2. Create a new Lakehouse or use an existing one
-3. Download [Load CMS Medicare PartD Data](./Load%20CMS%20Medicare%20Part%20D%20Data.ipynb) Spark Notebook from Github Repo to your local machine
-4. Import the downloaded Notebook into Fabric Workspace
-5. Open the Notebook once the import is successful, you might need to update the Lakehouse association of the Notebook
-6. Spark Notebook has the subsequent instructions to download data files from [CMS Website](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), then upload data files to Lakeshouse and then run Spark Notebook to create single flat Delta Parquet table with some minor modifications like data type changes, new columns based on existing columns, etc.
+1. Open your Fabric Workspace and switch to Data Engineering persona using the menu on bottom left corner (the screenshot below shows the buttons for Lakehouse creation and Notebook Import) 
+   
+    ![Fabric Data Engineering Persona](./images/FabricDataEngineeringHome.jpg)    
 
-A video walking you through all of these steps can be found [by clicking here](https://youtu.be/yblKEdmf1KE). 
+2. Create a new Lakehouse with an appropriate name (example *cms_lakehouse*) if not using an existing Lakehouse
 
-If you want to manually upload the files to the Fabric Lakehouse before running the Notebook, so that you only use the tools in Fabric, a video of that process can be found at [this link](https://youtu.be/Ln4mpuknuco).
+3. In the GitHub Repo open [01-DownloadCMSDataCsvFiles](./01-DownloadCMSDataCsvFiles.ipynb) Spark Notebook and download to local machine using the *Download Raw File* button on top right corner as shown in the screenshot below
 
-**Copilot Update** 
+    ![Downlaod Notebook](../images/DownloadNotebook.jpg)
 
-A video walk through of how to use Fabric Copilot to generate a Notebook equivalent to the one provided in Step 6 above can be found at [this link](https://www.youtube.com/watch?v=__2KX9XXg4g).
+4. Repeat download step for [02-CreateCMSDataTable](./02-CreateCMSDataTable.ipynb) and [03-CreateCMSStarSchemaTables](./03-CreateCMSStarSchemaTables.ipynb) Spark Notebooks
+   
+5. Import the three downloaded Notebooks into Fabric Workspace (screenshot in Step 1 for *Import Notebook* button)
 
-The prompts used in the video are shared in [Copilot-Prompts-LoadCMSMedicarePartD-DAta.txt](./Copilot-Prompts-LoadCMSMedicarePartD-Data.txt) file. Please do note that you might not have access to the Copilot features as they are in Preview and in process of being rolled out.
+6. Once the import is successful Open **01-DownloadCMSDataCsvFiles** Notebook, you will need to select Lakehouse option and then **fix the Lakehouse association of the Notebook** by first clicking **Remove All Lakehouses** button then adding the Lakehouse created in Step 2 using **Add Lakehouse** button
+    
+    ![Open Notebook and select Lakehouse ooptino](./Images/FabricSparkNotebookLakehouseAssociation1.jpg)
+
+    ![Fix Lakehouse Association](./Images/FabricSparkNotebookLakehouseAssociation2.jpg)
+
+7. Repeat Step 6 for **02-CreateCMSDataTable** and **03-CreateCMSStarSchemaTables** Notebooks
 
 ***
 

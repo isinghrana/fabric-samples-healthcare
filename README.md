@@ -14,7 +14,6 @@ Micrisoft Fabric is an end to end analyics platform that brings together all the
 The purpose of this repository is to share some end to end tutorials similar to the public documentation but using **Healthcare** public datasets. These assets can be used in a workshop fashion for learning the tooling as well as to setup an environment to demonstrate the product, when you are working in the Healthcare industry it is helpful to have relevant samples available.
 
 
-* [Data Science - Diabetes Prediction Sample](./datascience-diabetes-prediction/Readme.md)
 * [Analytics - BI with Direct Lake Star Schema](./analytics-bi-directlake-starschema/Readme.md)
 * [Analytics - BI over Large Complex JSON Dataset](./analytics-bi-largecomplex-jsondataset/Readme.md)
 
