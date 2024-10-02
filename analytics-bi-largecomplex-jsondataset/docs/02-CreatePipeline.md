@@ -1,4 +1,4 @@
-## Create Pipeline to ingest and build transform Drug Adverse Event Dataset into flattened Relational Tables
+## Create Pipeline to ingest and build Drug Adverse Event Dataset into flattened Relational Tables
 
 In this step you will create a Data Pipeline to execute the previously imported Spark Notebooks
 
@@ -9,7 +9,7 @@ In this step you will create a Data Pipeline to execute the previously imported 
     ![Create New Pipeilne](../images/DataPipelineCreate1.jpg)
 
 4. Specify appropriate name for the Pipeline example *fda_ds_silver_pipeline* and click Create button to open Data Pipeline canvas
-5. Select the Notebook Activity on canvas to give appropriate name like *DownloadFDADataset* to the Activity as shown in the screenshot below but besides that review the Settings table for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
+5. Select the Notebook Activity on canvas to give appropriate name like *DownloadFDADataset* to the Activity as shown in the screenshot below, also review the Settings Tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
    
     ![Download Dataset Activity](../images/DataPipelineCreate2.jpg)
 

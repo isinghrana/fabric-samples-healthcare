@@ -7,7 +7,7 @@ The Fabric Direct Lake connector is a new technology for querying delta parquet 
 ## Scope
 This demo is intended to provide experience with data engineering tasks using Fabric Spark and/or Data Pipelines to build out Delta Parquet tables and then use the Direct Lake connector in Power BI to query large volumes of real data. The medallion lakehouse architecture is followed in this sample where raw CSV files are loaded to Bronze Layer, then Silver Layer flat table built using Delta Parquet format and lastly Gold Layer tables serve up the star schema model for a Direct Lake Power BI dataset. 
 
-![analytics-bi-directlake](./Images/ArchitectureDiagram.png) 
+![analytics-bi-directlake](./Images/Logical_Diagram_Star_new.png)
 
 ### Pre-Requisite
 Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instructions below are combination of Spark Notebook and a few manual steps to create Power BI Dataset and corresponding report.
