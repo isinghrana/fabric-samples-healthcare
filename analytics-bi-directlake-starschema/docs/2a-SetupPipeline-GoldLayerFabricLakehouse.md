@@ -9,7 +9,7 @@ In this step you will create a Fabric Data Factory Pipeline to execute the previ
     ![Create New Pipeilne](../Images/LakehousePipelineCreate.jpg)
 
 4. Specify appropriate name for the Pipeline example **cms_data_pipeline** and click **Create** button to open Data Pipeline canvas
-5. Select the Notebook Activity on canvas to give appropriate name like *DownloadCMSData* as shown in the screenshot below, also review the Settings tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
+5. Select the **Notebook** Activity on canvas to give appropriate name like **DownloadCMSData** as shown in the screenshot below, also review the Settings tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
    
     ![Download Dataset Activity](../Images/LakehousePipelineDownloadDataActivity.jpg)
 
