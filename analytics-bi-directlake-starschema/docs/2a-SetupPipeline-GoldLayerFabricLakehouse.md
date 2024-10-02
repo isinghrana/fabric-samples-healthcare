@@ -8,7 +8,7 @@ In this step you will create a Fabric Data Factory Pipeline to execute the previ
    
     ![Create New Pipeilne](../Images/LakehousePipelineCreate.jpg)
 
-4. Specify appropriate name for the Pipeline example *cms_data_pipeline* and click Create button to open Data Pipeline canvas
+4. Specify appropriate name for the Pipeline example **cms_data_pipeline** and click **Create** button to open Data Pipeline canvas
 5. Select the Notebook Activity on canvas to give appropriate name like *DownloadCMSData* as shown in the screenshot below, also review the Settings tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
    
     ![Download Dataset Activity](../Images/LakehousePipelineDownloadDataActivity.jpg)
@@ -22,15 +22,15 @@ In this step you will create a Fabric Data Factory Pipeline to execute the previ
    
    ![Configure CreateCMSDataTable Notebook Activity Name](../Images/LakehousePipelineCreateCMSDataTableActivity1.jpg)
 
-9.  With CreateCMSDataTable Notebook Activity selected, switch to the Settings Tab and select *02-CreateCMSDataTable* Notebook.
+9.  With CreateCMSDataTable Notebook Activity selected, switch to the Settings Tab and select **02-CreateCMSDataTable** Notebook.
 
    ![Configure CreateCMSDataTable Notebook Activity Notebook](../Images/LakehousePipelineCreateCMSDataTableActivity2.jpg)
 
-10. Now, repeat Steps 7 to 9 to add another Notebook Activity for *03-CreateCMSStarSchemaTables* Notebook so that Data Pipeline canvas looks like as the screenshot show below.
+10. Now, repeat Steps 7 to 9 to add another Notebook Activity for **03-CreateCMSStarSchemaTables** Notebook so that Data Pipeline canvas looks like the screenshot below.
 
     ![Configure CreateCMSStarSchemaTables Notebook Activity](../Images/LakehousePipelineCreateCMSStarSchemaTablesActivity.jpg)
     
-11. Connect three Activities by dragging On Success from DownlaodCMSDAta Activity to CreateCMSDataTable Activity and from CreateCMSDatable Activity to CreateCMSSTarSchemaTables as show in the screenshot below.
+11. Connect three Activities by dragging **On Success** link from **DownlaodCMSDAta** Activity to **CreateCMSDataTable** Activity and from **CreateCMSDatable** Activity to **CreateCMSSTarSchemaTables** as show in the screenshot below.
    
     ![Connect Notebook Activities](../Images/LakehousePipelineConnectActivities.jpg)
 
