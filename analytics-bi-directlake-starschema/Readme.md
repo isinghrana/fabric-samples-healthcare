@@ -22,7 +22,7 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
    
     ![Fabric Data Engineering Persona](./Images/FabricDataEngineeringHome.jpg)
 
-2. Create a new Lakehouse with an appropriate name (example *cms_lakehouse*) if not using an existing Lakehouse
+2. Create a new Lakehouse with name **cms_lakehouse** if not using an existing Lakehouse.
 
 3. In the GitHub Repo open [01-DownloadCMSDataCsvFiles](./01-DownloadCMSDataCsvFiles.ipynb) Spark Notebook and download to local machine using the *Download Raw File* button on top right corner as shown in the screenshot below
 
@@ -45,13 +45,18 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
 ### Step 2: Download Raw Files and build out Silver and Gold Layer Tables (Star Schema) to be used for Reporting
 **Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence choice here demonstrates verstaility of the platform. In this step Bronze, Silver and Gold Layers of Medallion architecture are built using slightly different methods, the biggest difference is whether Gold Layer Star Schema Tables to be used for reporting are created in a Lakehouse or a Warehouse. 
 
+**Note**: Fabric Data Factory Pipeline implementation steps are manual for now but we will look into making it easier using automation in future. **Both options 2a and 2b are manual but Step 2a is going to be a little less effort to setup because it uses Spark Notebooks which can be easily imported for use in your Fabric workspace. Step 2b will require little extra effort to setup Pipeline activities for T-SQL execution**
+
+
 **2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse.
 
 [Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)
 
 Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
 
-**2b. Gold Layer in Fabric Warehouse** - This method uses Spark Notebooks for building Bronze and Silver Layers but using T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse.
+**2b. Gold Layer in Fabric Warehouse** - Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building Bronze and Silver Layers in a Lakehouse but T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse.
+
+You will need the Lakehouse name from Step 1 and if you used the suggested name **cms_lakehouse** it will be easier otherwise few edits in T-SQL scripts will be required.
 
 [Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
 

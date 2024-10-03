@@ -1,12 +1,12 @@
 ## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Lakehouse**
 
-In this step you will create a Fabric Data Factory Pipeline to execute the previously imported Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture Layers created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
+In this step you will create a Fabric Data Factory Pipeline to execute the previously imported three Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture Layers created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
 
-1. Open **01-DownloadCMSDataCsvFiles** Notebook
+1. Open **01-DownloadCMSDataCsvFiles** Notebook from your workspace
 2. Open the *Run* options tab by clicking **Run** button in the toolbar 
 3. Clck **Add to Pipeline** button and select **New Pipeline** option
    
-![Create New Pipeilne](../Images/LakehousePipelineCreate.jpg)
+![Create New Pipeline](../Images/LakehousePipelineCreate.jpg)
 
 4. Specify appropriate name for the Pipeline example **cms_data_pipeline** and click **Create** button to open Data Pipeline canvas
 5. Select the **Notebook** Activity on canvas to give appropriate name like **DownloadCMSData** as shown in the screenshot below, also review the Settings tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
@@ -30,7 +30,7 @@ In this step you will create a Fabric Data Factory Pipeline to execute the previ
 
 ![Configure CreateCMSStarSchemaTables Notebook Activity](../Images/LakehousePipelineCreateCMSStarSchemaTablesActivity.jpg)
     
-11. Connect three Activities by dragging **On Success** link from **DownlaodCMSDAta** Activity to **CreateCMSDataTable** Activity and from **CreateCMSDatable** Activity to **CreateCMSSTarSchemaTables** as show in the screenshot below.
+11. Connect three Activities by dragging **On Success** link from **DownlaodCMSData** Activity to **CreateCMSDataTable** Activity and from **CreateCMSDatable** Activity to **CreateCMSSTarSchemaTables** as show in the screenshot below.
    
 ![Connect Notebook Activities](../Images/LakehousePipelineConnectActivities.jpg)
 
@@ -50,9 +50,14 @@ Once the Pipeline Job is complete click the Pipeline Job Name link on the Monito
 
 ![Pipeline Job Complete](../Images/LakehousePipelineJobComplete.jpg)   
 
-Screenshot below shows the details for a successful run in about 20 minutes on a F64 SKU
+Screenshot below shows the details for a successful run in about 20 minutes on a F64 SKU (on a F2 SKU about 40 minutes execution time was observed)
 
 ![Pipeline Job Execution Details](../Images/LakehousePipelineJobExecutionDetails.jpg)
+
+If you browse to your Lakehouse you will see Lakehouse Files and Tables populated with data
+![Lakehouse](../Images/LakehouseData.jpg)
+
+**cms_provider_drug_costs** is the flat table with 250 million rows used as source for creating Gold Layer Star Schema Tables
 
 ***
 
