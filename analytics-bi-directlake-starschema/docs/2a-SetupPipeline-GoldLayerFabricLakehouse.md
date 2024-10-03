@@ -1,6 +1,6 @@
 ## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Lakehouse**
 
-In this step you will create a Fabric Data Factory Pipeline to execute the previously imported three Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture Layers created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
+In this step you will create a Fabric Data Factory Pipeline to execute the previously imported three Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
 
 1. Open **01-DownloadCMSDataCsvFiles** Notebook from your workspace
 2. Open the *Run* options tab by clicking **Run** button in the toolbar 
@@ -57,7 +57,10 @@ Screenshot below shows the details for a successful run in about 20 minutes on a
 If you browse to your Lakehouse you will see Lakehouse Files and Tables populated with data
 ![Lakehouse](../Images/LakehouseData.jpg)
 
-**cms_provider_drug_costs** is the flat table with 250 million rows used as source for creating Gold Layer Star Schema Tables
+- Bronze Layer - **cms_raw** folder in the Files section is the Bronze Layer and has raw CSV files downloaded from CMS Website
+- Silver Layer - **cms_provider_drug_costs** is the flat table with 250 million rows used as source for creating Gold Layer Star Schema Tables
+- Gold Layer **cms_provider_dim_drug**, **cms_provider_dim_geography**, **cms_provider_dim_provider** **cms_provider_dim_year** are the Dimension Tables, **cms_provider_drug_costs_star** is the fact table
+
 
 ***
 
