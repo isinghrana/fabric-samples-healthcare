@@ -1,4 +1,11 @@
-# Fabric Power BI Direct Lake Connector with 220M+ Rows
+
+## Updates October 2024
+- Automated the ingestion of CMS Data files directly from CMS Website using metadata json file so no need to download/uplodate data manually and also it includes 2022 data files to make the total row count to be 250 million rows.
+- Added an alternate path of using Fabric Warehouse for Gold Layer for the teams who prefer T-SQL skillset for the consumption layer, original version only used Fabric Lakehouse because Power BI Direct Lake Mode was not support at that time but now Fabric Warehouse support Power BI Direct lake mode.
+- Both methods use Fabric Data Factory Pipelines to build out the gold layer ready for report build, once the pipeline is implemented executed can be kicked off to run non-iteractively and make data available in 20 to 45 minutes.
+
+
+# Fabric Power BI Direct Lake Connector with 250M Rows
 
 ## Scenario
 The Fabric Direct Lake connector is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 250 million rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug . An end-to-end demo of this solution module can be viewed at this link: https://youtu.be/2tLIGVZ4c8E 
@@ -39,9 +46,9 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ***
 
-### Step 3: [Create the Direct Lake Power BI Star Schema Semantic Model with DAX expressions and metadata](./docs/3-CreatePBISemanticModel.md) - ** Steps are manual at this time but in future plan to automate for quick setup**
+### Step 3: [Create the Direct Lake Power BI Star Schema Semantic Model with DAX expressions and metadata](./docs/3-CreatePBISemanticModel.md) - Steps are manual at this time but in future plan to automate for quick setup
 
 ***
 
-### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - ** Steps are manual at this time but in future plan to automate for quick setup **
+### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - Steps are manual at this time but in future plan to automate for quick setup
 
