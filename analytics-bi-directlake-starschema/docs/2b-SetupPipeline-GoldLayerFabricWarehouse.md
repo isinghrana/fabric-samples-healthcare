@@ -1,7 +1,6 @@
 
 ## Create Pipeline to ingest raw data and build silver layer flat table in **Fabric Lakehouse** and then create second pipeline to build gold layer star schema tables in **Fabric Warehouse**
 
-
 In this section you will creating two Fabric Data Factory Pipelines:
 * First Pipeline will have two steps to run Spark Notebooks to ingest raw data CSV files and create flat table in **Fabric Lakehouse** hence will setup Bronze and Silver Layer.
 * Second Pipeline will use Silver Layer from the first pipeline as source with SQL scripts to create the Dimension tables, Staging table that accounts for missing key values and lastly Fact table in a **Fabric Warehouse** (there may be more efficient ways to create the fact table but this method runs quickly with 250M rows) which will serve as Gold Layer.
@@ -39,7 +38,23 @@ In this section you will creating two Fabric Data Factory Pipelines:
 
 ![Save Pipeline Changes](../Images/warehousepipeline1run.jpg)
 
-Pipeline Execution Status can be checked from the Monitoring Hub and once the pipeline is complete review the Lakehouse Tables and continue with implementation of second pipeline.
+12. Pipeline Job execution can be monitored from Monitoring Hub as shown in the screenshot below
+
+![Monitor Pipeline Job](../Images/WarehousePiplineMonitor.jpg)
+
+Once the Pipeline Job is complete click the Pipeline Job Name link on the Monitoring Hub to see the execution details
+
+![Pipeline Job Complete](../Images/WarehousePipelineJobComplete.jpg)   
+
+Screenshot below shows the details for a successful run in about 11 minutes on a F64 SKU
+
+![Pipeline Job Execution Details](../Images/WarehousePipelineJobExecutionDetails.jpg)
+
+If you browse to your Lakehouse you will see Lakehouse Files and Tables populated with data.
+**cms_provider_drug_costs** is the flat table with 250 million rows used as source for creating Gold Layer Star Schema Tables in the section
+**cms_raw** folder in the Files section has the raw CSV files downloaded from CMS Website
+
+![Lakehouse](../Images/LakehouseData2.jpg)
 
 ### Create Pipeline for Gold Layer in Warehouse
 1. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
