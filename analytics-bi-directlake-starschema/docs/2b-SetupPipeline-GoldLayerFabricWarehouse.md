@@ -1,5 +1,5 @@
 
-## Setup Pipeline buld Gold Layer in Fabric Warehouse
+## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Warehouse**
 
 
 At the time of writing this documentation, it is not posible to upload or paste the JSON from a Pipeline into Fabric to create a new Pipeline. Once that capabilitiy is added, sample code will replace manual steps in this repo.

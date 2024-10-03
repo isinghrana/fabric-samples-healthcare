@@ -1,4 +1,4 @@
-## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in Fabric Lakehouse
+## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Lakehouse**
 
 In this step you will create a Fabric Data Factory Pipeline to execute the previously imported Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture Layers created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
 
@@ -37,6 +37,22 @@ In this step you will create a Fabric Data Factory Pipeline to execute the previ
 12. Make sure to save changes to the Pipeline
 
 ![Save Pipeline Changes](../Images/LakehousePipelineSaveChanges.jpg)
+
+13. Click **Run** button from Home menu to start execution of the pipeline, the pipeline job execution can take anywhere between 20 to 40 minutes but it runs non-iteractive so you can close the browser and walk away to check back later.
+
+    ![Run Pipeline Job](../Images/LakehousePipelineRun.jpg)
+
+14. Pipeline Job execution can be monitored from Monitoring Hub as shown in the screenshot below
+
+    ![Monitor Pipeline Job](../Images/LakehousePipelineMonitor.jpg)
+
+Once the Pipeline Job is complete click the Pipeline Job Name link on the Monitoring Hub to see the execution details
+
+    ![Pipeline Job Complete](../Images/LakehousePipelineJobComplete.jpg)    
+
+Screenshot below shows the details for a successful run in about 20 minutes on a F64 SKU
+
+    ![Pipeline Job Execution Details](../Images/LakehousePipelineJobExecutionDetails.jpg)
 
 ***
 

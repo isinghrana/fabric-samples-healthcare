@@ -43,15 +43,15 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
 ***
 
 ### Step 2: Download Raw Files and build out Silver and Gold Layer Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence the choice here demonstrates the verstaility of platform. In this step Bronze, Silver and Gold Layers of Medallion architecture are built using slightly different method, the biggest difference is whether Lakehouse or Warehouse is used for Gold Layer (star schema tables) to be used for reporting. 
+**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence choice here demonstrates verstaility of the platform. In this step Bronze, Silver and Gold Layers of Medallion architecture are built using slightly different methods, the biggest difference is whether Gold Layer Star Schema Tables to be used for reporting are created in a Lakehouse or a Warehouse. 
 
-**2a. Gold Layer in Fabric Lakehouse** - This method uses Spark Notebooks for building out Bronze, Silver and Gold Layers using Spark Notebooks and persists the Gold Layer in a Fabric Lakehouse
+**2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse.
 
 [Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)
 
 Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
 
-**2b. Gold Layer in Fabric Warehouse** - This method uses Spark Notebooks for building Bronze and Silver Layers but using T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse 
+**2b. Gold Layer in Fabric Warehouse** - This method uses Spark Notebooks for building Bronze and Silver Layers but using T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse.
 
 [Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
 
