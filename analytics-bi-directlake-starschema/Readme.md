@@ -27,7 +27,7 @@ Fabric enabled Workspace is the pre-requisite to be able to setup and end to end
 
 **2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse.
 
-[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)
+**[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)**
 
 Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
 
@@ -35,7 +35,7 @@ Skip to Step 3 if Step 2a was chosen and successfully executed to create star sc
 
 You will need the Lakehouse name from Step 1 and if you used the suggested name **cms_lakehouse** it will be easier otherwise few edits in T-SQL scripts will be required.
 
-[Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)
+**[Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)**
 
 ***
 
@@ -43,5 +43,5 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ***
 
-### Step 4: [Create Reports using Power BI or Connect using Excel] - ** Steps are manual at this time but in future plan to automate for quick setup **
+### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - ** Steps are manual at this time but in future plan to automate for quick setup **
 
