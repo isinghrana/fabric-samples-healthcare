@@ -39,7 +39,7 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ***
 
-### Step 3: [Create the Direct Lake Power BI Star Schema Semantic Model Dataset with DAX expressions and metadata](./docs/3-CreatePBISemanticModel.md) - ** Steps are manual at this time but in future plan to automate for quick setup**
+### Step 3: [Create the Direct Lake Power BI Star Schema Semantic Model with DAX expressions and metadata](./docs/3-CreatePBISemanticModel.md) - ** Steps are manual at this time but in future plan to automate for quick setup**
 
 ***
 

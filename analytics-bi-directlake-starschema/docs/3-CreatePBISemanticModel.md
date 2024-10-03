@@ -1,4 +1,7 @@
-1. From the Fabric Lakehouse web interface, click "New Power BI dataset" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
+## Create the Direct Lake Power BI Star Schema Semantic Model with DAX expressions and metadata
+
+
+1. From the Fabric Lakehouse web interface, click "New Power BI Semantic Model" per the instructions at this link: [Click Here](https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#to-create-a-basic-direct-lake-dataset-for-your-lakehouse)
 2. Create relationships between the dimension tables and the fact table **cms_provider_drug_costs_star**:
 
  | Lakehouse Table Name | Dim Table Primary Key | Fact Table Foreign Key | Cardinality | Cross Filter Direction |
@@ -87,3 +90,6 @@
   - Turn on **Large dataset storage format** which may help with the large data volumes in the fact table
   
 8. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
+
+
+[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./4-CreatePBIReport.md)

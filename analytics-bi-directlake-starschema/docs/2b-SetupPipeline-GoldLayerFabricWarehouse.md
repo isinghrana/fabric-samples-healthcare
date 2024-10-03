@@ -85,9 +85,5 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 13. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Warehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 
 ***
-
-<<<<<<< HEAD
-[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./3-CreatePBISemanticModel.md)
-=======
 [Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting)
->>>>>>> 0604a082e7d161412d05a648072e6d6c2efc0101
+
