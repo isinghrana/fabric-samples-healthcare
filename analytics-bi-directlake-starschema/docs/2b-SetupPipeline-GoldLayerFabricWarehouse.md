@@ -86,4 +86,8 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 
 ***
 
+<<<<<<< HEAD
 [Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./3-CreatePBISemanticModel.md)
+=======
+[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting)
+>>>>>>> 0604a082e7d161412d05a648072e6d6c2efc0101
