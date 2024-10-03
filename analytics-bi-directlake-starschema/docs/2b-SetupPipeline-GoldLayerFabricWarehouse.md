@@ -13,7 +13,7 @@ In this section you will creating two Fabric Data Factory Pipelines:
    
 ![Create New Pipeline](../Images/LakehousePipelineCreate.jpg)
 
-4. Specify appropriate name for the Pipeline example **WH_Star_Schema** and click **Create** button to open Data Pipeline canvas
+4. Specify appropriate name for the Pipeline example **PopulateCMSLakehouse_Pipeline** and click **Create** button to open Data Pipeline canvas
 5. Select the **Notebook** Activity on canvas to give appropriate name like **DownloadCMSData** as shown in the screenshot below, also review the Settings tab for activity (Workspace and Notebook settings are automatically set appropriately because Pipeline was created from Notebook)
    
 ![Download Dataset Activity](../Images/WarehousePipelineDownloadDataActivity.jpg)
@@ -35,10 +35,11 @@ In this section you will creating two Fabric Data Factory Pipelines:
    
 ![Connect Notebook Activities](../Images/WarehousePipelineConnectNotebookActivities.jpg)
 
-11. Run the Pipeline 
+11. Make sure to save changes to the Pipeline and then click **Run** button from Home menu to start execution of the pipeline, the pipeline job runs non-iteractively so you can close the browser and walk away to check back later.
 
-12. Once the Pipeline Execution is complete review the Lakehouse Tables and then move onto creation of Second Pipeline
+![Save Pipeline Changes](../Images/warehousepipeline1run.jpg)
 
+Pipeline Execution Status can be checked from the Monitoring Hub and once the pipeline is complete review the Lakehouse Tables and continue with implementation of second pipeline.
 
 ### Create Pipeline for Gold Layer in Warehouse
 1. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
