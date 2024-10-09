@@ -40,7 +40,7 @@ Skip to Step 3 if Step 2a was chosen and successfully executed to create star sc
 
 **2b. Gold Layer in Fabric Warehouse** - Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building Bronze and Silver Layers in a Lakehouse but T-SQL scripts for building out the final Gold Layer persisted in Fabric Warehouse.
 
-You will need the Lakehouse name from Step 1 and if you used the suggested name **cms_lakehouse** it will be easier otherwise few edits in T-SQL scripts will be required.
+You will need the Lakehouse name from Step 1 and if you used the suggested name **cms_lakehouse** it will be easier otherwise a few edits in T-SQL scripts will be required.
 
 **[Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)**
 
