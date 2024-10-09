@@ -3,7 +3,7 @@
 
 In this section you will creating two Fabric Data Factory Pipelines:
 * First Pipeline will have two steps to run Spark Notebooks to ingest raw data CSV files and create flat table in **Fabric Lakehouse** hence will setup Bronze and Silver Layer.
-* Second Pipeline will use Silver Layer from the first pipeline as source with SQL scripts to create the Dimension tables, Staging table that accounts for missing key values and lastly Fact table in a **Fabric Warehouse** (there may be more efficient ways to create the fact table but this method runs quickly with 250M rows) which will serve as Gold Layer.
+* Second Pipeline will use Silver Layer from the first pipeline as source with SQL Stored Procedures (SPROCs) to create the Dimension tables and a Fact table in a **Fabric Warehouse** which will serve as the Gold Layer.
 
 ### Create Pipeline for Bronze and Silver Layers in Lakehouse
 1. Open **01-DownloadCMSDataCsvFiles** Notebook from your workspace
