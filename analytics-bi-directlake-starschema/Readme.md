@@ -2,7 +2,7 @@
 ## Updates October 2024
 - Automated the ingestion of CMS Data files directly from CMS Website using metadata json file so no need to download/uplodate data manually. Also now includes the year 2022 data files to increase the total row count to 250 million rows.
 - Added an alternate path of using Fabric Warehouse for Gold Layer for the teams who prefer T-SQL skillset for the consumption layer, original version only used Fabric Lakehouse because Power BI Direct Lake Mode was not support at that time but now Fabric Warehouse supports Power BI Direct lake mode.
-- Both methods use Fabric Data Factory Pipelines to build out the gold layer ready for report build, once the pipeline is implemented **execution can be kicked off to run non-iteractively and make data available in 20 to 45 minutes.**
+- Both methods use Fabric Data Factory Pipelines to build out the gold layer ready for report build, once the pipeline is implemented **execution can be kicked off to run non-interactively and make data available in 20 to 45 minutes.**
 
 
 # Fabric Power BI Direct Lake Connector with 250M Rows
