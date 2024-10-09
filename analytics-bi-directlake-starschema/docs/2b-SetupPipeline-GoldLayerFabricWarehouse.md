@@ -57,12 +57,12 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 ![Lakehouse](../Images/LakehouseData2.jpg)
 
 ### Create Pipeline for Gold Layer in Warehouse
-1. Create a new Warehouse or use an existing one. Examples in this repo will use the name **CMS_Warehouse**
+1. Create a new Warehouse or use an existing one. Examples in this repo will use the name **cms_warehouse**
 2. From the Workspace select **+New** > **Show all** > **Data pipeline**
 3. Name the pipeline **Populate_WH_Star_Schema**
 4. Select **Add** > **Copy data**
 5. Rename the **Copy data** activity to **Dim Year Table**
-6. Change the source to the Workspace's Fabric Warehouse (**CMS_Warehouse**) and select **Query** for the **Use query** option. Paste in the query from this Repo linked here: [01_cms_provider_dim_year.sql](../scripts/01_cms_provider_dim_year.sql) . The Warehouse will run the SQL query which pulls data from **CMS_Lakehouse**. Your Pipeline should look like this:
+6. Change the source to the Workspace's Fabric Warehouse (**cms_warehouse**) and select **Query** for the **Use query** option. Paste in the query from this Repo linked here: [01_cms_provider_dim_year.sql](../scripts/01_cms_provider_dim_year.sql) . The Warehouse will run the SQL query which pulls data from **CMS_Lakehouse**. Your Pipeline should look like this:
 ![analytics-bi-directlake-warehouse-starschema](../Images/WarehousePipelineSource.png)
 7. Change the destination to the Workspace's Fabric Warehouse (**CMS_Warehouse**) Table, for the option **Table option** select **Auto create table** and name it **cms_provider_dim_year**. Your Pipeline should look like this:
 ![analytics-bi-directlake-warehouse-starschema](../Images/WarehousePipelineDestination.png)
