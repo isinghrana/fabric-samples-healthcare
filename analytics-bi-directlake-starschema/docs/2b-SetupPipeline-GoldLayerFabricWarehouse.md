@@ -61,17 +61,23 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 2. In **cms_warehouse** select **New SQL query** > **New SQL query**
 3. Paste in the query from this repo linked here: [01_CMS_provider_dimensions_SPROC.sql](../scripts/01_CMS_provider_dimensions_SPROC.sql) . Validate that the Lakehouse name matches your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateDimTables** in your Warehouse.
 4. Repeat the process for the fact table. In **cms_warehouse** select **New SQL query** > **New SQL query**
-3. Paste in the query from this repo linked here: [01_CMS_provider_fact_SPROC.sql](../scripts/01_CMS_provider_fact_SPROC.sql) . Validate that the Lakehouse and Warehouse names match your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateFactTable** in your Warehouse.
-5. From the Workspace select **+New** > **Show all** > **Data pipeline**
-6. Name the pipeline **Populate_WH_Star_Schema**
-7. Select **Activites** > **Stored procedure**
-8. Rename the **Stored procedure1** activity to **Populate Dims SPROC**
-9. Under **Settings** > **Connection** select **cms_warehouse**. For **Stored procedure** select **usp_CreateAndPopulateDimTables**.
-10. Repeat the process for the fact table SPROC. Select **Activites** > **Stored procedure**
-8. Rename the **Stored procedure2** activity to **Populate Fact SPROC**
-9. Under **Settings** > **Connection** select **cms_warehouse**. For **Stored procedure** select **usp_CreateAndPopulateFactTable**.
-10. For the SPROC activity named **Populate Dims SPROC** drag the **On success** green check and drop on the activity for **Populate Fact SPROC** which will write the fact table after the dimensions have been populated. Your Pipeline should now look as follows:
-13. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Warehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
+5. Paste in the query from this repo linked here: [01_CMS_provider_fact_SPROC.sql](../scripts/01_CMS_provider_fact_SPROC.sql) . Validate that the Lakehouse and Warehouse names match your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateFactTable** in your Warehouse. Your Fabric Warehouse should now look like this:
+   
+**ENTER IMAGE HERE**
+
+6. From the Workspace select **+New** > **Show all** > **Data pipeline**
+7. Name the pipeline **Populate_WH_Star_Schema**
+8. Select **Activites** > **Stored procedure**
+9. Rename the **Stored procedure1** activity to **Populate Dims SPROC**
+10. Under **Settings** > **Connection** select **cms_warehouse**. For **Stored procedure** select **usp_CreateAndPopulateDimTables**.
+11. Repeat the process for the fact table SPROC. Select **Activites** > **Stored procedure**
+12. Rename the **Stored procedure2** activity to **Populate Fact SPROC**
+13. Under **Settings** > **Connection** select **cms_warehouse**. For **Stored procedure** select **usp_CreateAndPopulateFactTable**.
+14. For the SPROC activity named **Populate Dims SPROC** drag the **On success** green check and drop on the activity for **Populate Fact SPROC** which will write the fact table after the dimensions have been populated. Your Pipeline should now look as follows:
+
+**ENTER IMAGE HERE**
+
+15. On the Pipeline ribbon, click **Run** and the Pipeline will populate the Fabric Warehouse with the dimensions and staging table for the CMS data. You do not need to schedule the Pipeline since it is a one-time load.
 
 ***
 [Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./3-CreatePBISemanticModel.md)
