@@ -57,7 +57,7 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 ![Lakehouse](../Images/LakehouseData2.jpg)
 
 ### Create Gold Layer in Warehouse
-1. Create a new Warehouse or use an existing one. Examples in this repo will use the name **cms_warehouse**
+1. Create a new **Fabric Warehouse** from your Fabric Workspace or use an existing one. Examples in this repo will use the name **cms_warehouse**
 2. In **cms_warehouse** select **New SQL query** > **New SQL query**
 3. Paste in the query from this repo linked here: [01_CMS_provider_dimensions_SPROC.sql](../scripts/01_CMS_provider_dimensions_SPROC.sql) . Validate that the Lakehouse name matches your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateDimTables** in your Warehouse.
 4. Repeat the process for the fact table. In **cms_warehouse** select **New SQL query** > **New SQL query**
