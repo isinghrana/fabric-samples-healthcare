@@ -61,7 +61,7 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 2. In **cms_warehouse** select **New SQL query** > **New SQL query**
 3. Paste in the query from this repo linked here: [01_CMS_provider_dimensions_SPROC.sql](../scripts/01_CMS_provider_dimensions_SPROC.sql) . Validate that the Lakehouse name matches your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateDimTables** in your Warehouse.
 4. Repeat the process for the fact table. In **cms_warehouse** select **New SQL query** > **New SQL query**
-5. Paste in the query from this repo linked here: [01_CMS_provider_fact_SPROC.sql](../scripts/01_CMS_provider_fact_SPROC.sql) . Validate that the Lakehouse and Warehouse names match your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateFactTable** in your Warehouse. Your Fabric Warehouse should now look like this:
+5. Paste in the query from this repo linked here: [02_CMS_provider_fact_SPROC.sql](../scripts/02_CMS_provider_fact_SPROC.sql) . Validate that the Lakehouse and Warehouse names match your implementation. Run the script, and you should now see a Stored Procedure named **usp_CreateAndPopulateFactTable** in your Warehouse. Your Fabric Warehouse should now look like this:
    
 **ENTER IMAGE HERE**
 
