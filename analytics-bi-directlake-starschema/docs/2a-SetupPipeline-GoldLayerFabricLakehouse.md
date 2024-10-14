@@ -1,4 +1,4 @@
-## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Lakehouse**
+## Create Pipeline to ingest raw data, build silver layer flat table and gold layer star schema tables in **Fabric Lakehouse** using Spark Notebooks
 
 In this step you will create a Fabric Data Factory Pipeline to execute the previously imported three Spark Notebooks. Once the Pipeline executes successfully you will have all three layers of Medallion architecture created with Gold Layer being Star Schema Tables in a Lakehouse ready to be used for reporting.
 
