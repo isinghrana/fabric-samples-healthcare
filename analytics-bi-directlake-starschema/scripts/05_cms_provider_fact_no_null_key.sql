@@ -1,11 +1,4 @@
--- This query is used to create a View in the Warehouse that replaces blank values for columns that will be used for joins to build a fact table
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE VIEW [dbo].[cms_provider_fact_no_null_key] AS (SELECT [Brnd_Name]
+SELECT [Brnd_Name]
             ,[GE65_Bene_Sprsn_Flag]
             ,[GE65_Sprsn_Flag]
             ,[GE65_Tot_30day_Fills]
@@ -30,6 +23,4 @@ CREATE VIEW [dbo].[cms_provider_fact_no_null_key] AS (SELECT [Brnd_Name]
             ,[Tot_Day_Suply]
             ,[Tot_Drug_Cst]
             ,[Year]
-FROM [CMS_Lakehouse].[dbo].[cms_provider_drug_costs])
-
-GO
+FROM [CMS_Lakehouse].[dbo].[cms_provider_drug_costs]
