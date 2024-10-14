@@ -77,7 +77,7 @@ If you browse to your Lakehouse you will see Lakehouse Files and Tables populate
 13. Under **Settings** > **Connection** select **cms_warehouse**. For **Stored procedure** select **usp_CreateAndPopulateFactTable**.
 14. For the SPROC activity named **Populate Dims SPROC** drag the **On success** green check and drop on the activity for **Populate Fact SPROC** which will write the fact table after the dimensions have been populated. Your Pipeline should now look as follows:
 
-![Lakehouse](../Images/2acreatedpipeline.png)
+![Lakehouse](../Images/2acreatepipeline.png)
 
 **ENTER IMAGE HERE**
 
