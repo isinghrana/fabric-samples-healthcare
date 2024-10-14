@@ -32,7 +32,7 @@ Click the url above for instructions aon setting up your Lakehouse and importing
 
 **Note**: Fabric Data Factory Pipeline implementation steps are manual for now but we will look into making it easier using automation in future. **Both options 2a and 2b are manual but Step 2a is going to be a little less effort to setup because it uses Spark Notebooks which can be easily imported for use in your Fabric workspace. Step 2b will require little extra effort to setup Pipeline activities for SQL Stored Procedures, but in return the Gold Layer will be in the Fabric Warehouse instead of the Lakehouse (folks from a SQL background may prefer this option).**
 
-**2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse.
+**2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse. Click the link below for instructions in this GitHub Repo, and you can also watch a video reviewing the 2a process at this link: https://youtu.be/TG03mkJKq4k
 
 **[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)**
 
