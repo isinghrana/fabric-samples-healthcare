@@ -2,7 +2,7 @@
 
 
 ## Introduction 
-Microsoft Fabric is an end to end analyics platform that brings together all the data and analytics tools that organization need to go from the data lake to the business user. It makes available all the experiences Data Engineering, Data Integration, Data Science, Data Warehouse, Real-Time Analytics and Power BI involved in analytics stack as a a unified Software as Service (SaaS) platform to draw value from data.
+Microsoft Fabric is an end to end analyics platform that brings together all the data and analytics tools needed by organizations to go from the data lake to the business user. It makes available all the experiences Data Engineering, Data Integration, Data Science, Data Warehouse, Real-Time Analytics and Power BI involved in analytics stack as a a unified Software as Service (SaaS) platform to draw value from data.
 
 ![Fabric](./fabric.png)
 
