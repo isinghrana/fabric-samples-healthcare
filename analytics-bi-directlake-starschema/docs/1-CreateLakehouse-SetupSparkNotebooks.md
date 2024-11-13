@@ -6,7 +6,9 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
    
     ![Fabric Data Engineering Persona](../Images/FabricDataEngineeringHome.jpg)
 
-2. Create a new Lakehouse with name **cms_lakehouse** if not using an existing Lakehouse.
+2. Create a new Lakehouse with name **cms_lakehouse** if not using an existing Lakehouse, when creating new Lakehouse make sure to leave the Lakehouse Schema checkbox unchecked as shown in the screenshot below)
+
+    ![Create Lakehouse](../Images/CreateLakehouse.jpg)
 
 3. Open [01-DownloadCMSDataCsvFiles](../01-DownloadCMSDataCsvFiles.ipynb) Spark Notebook from the GitHub Repo and download to local machine using the *Download Raw File* button on top right corner as shown in the screenshot below
 
