@@ -55,3 +55,7 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - Steps are manual at this time but in future plan to automate for quick setup. We do have a .pbix file in this repo that can connect to the Semantic Model if the metadata matches the naming conventions in Step 3.
 
+***
+
+### Step 5: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - S
+
