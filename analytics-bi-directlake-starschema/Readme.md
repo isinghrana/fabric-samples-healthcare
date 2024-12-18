@@ -1,5 +1,6 @@
 ## Updates December 2024
-- Added a new component of this module to cover [Fabric AI Skills](https://learn.microsoft.com/en-us/fabric/data-science/concept-ai-skill), which is in Public Preview at the time of publication.
+- Added a new component of this module to cover [Fabric AI Skills](https://learn.microsoft.com/en-us/fabric/data-science/concept-ai-skill), which is in Public Preview at the time of publication. The AI Skills component can be deployed in a few minutes once you have completed **Step 2a** or **Step 2b** from the instructions below. The AI Skills demo will enable you to ask natural language queries of the star schema relational model in either the Fabric Lakehouse or Warehouse. The results can be used to both generate insights into the data or to create complex SQL queries. The new AI Skills component is listed as **Step 5** at the bottom of this page.
+- Updated instructions and file for the PBIX in this repo. Eliminated some broken code and improved deployment instructions.
 
 ## Updates October 2024
 - Automated the ingestion of CMS Data files directly from CMS Website using metadata json file so no need to download/uplodate data manually. Also now includes the year 2022 data files to increase the total row count to 250 million rows.
