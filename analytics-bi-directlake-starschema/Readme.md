@@ -57,5 +57,5 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ***
 
-### Step 5: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - S
+### Step 5: [Create Fabric AI Skill](./docs/5-CreateAISkill.md) - Create a Fabric AI Skill that uses the new star schema design in the Lakehouse or Warehouse. The AI Skill will enable natural language queries with text-to-SQL for your new end-to-end Fabric solution.
 
