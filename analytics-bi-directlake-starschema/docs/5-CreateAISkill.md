@@ -9,7 +9,8 @@
 7. The last setting in the right hand column is titled **Example SQL queries**. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json) 
 
 The Power BI Report that connects to the Direct Lake Semantic Model shoul look like this, and be ready for use with Power BI Copilot:
-![analytics-bi-directlake](../Images/ReportExample.png) 
+
+![analytics-bi-directlake](../Images/AIskills)screenshot.png) 
 
 *** 
 [Back to main Readme](../Readme.md#step-4-create-reports-using-power-bi-or-connect-using-excel----steps-are-manual-at-this-time-but-in-future-plan-to-automate-for-quick-setup-) 
