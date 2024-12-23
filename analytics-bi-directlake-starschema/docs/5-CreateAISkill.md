@@ -8,9 +8,15 @@
 6. Download the .json file [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)
 7. The last setting in the right hand column is titled **Example SQL queries**. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json) 
 
-The Power BI Report that connects to the Direct Lake Semantic Model shoul look like this, and be ready for use with Power BI Copilot:
+Your Fabric AI Skill is now ready to test with natural language queries, and should look like this:
 
 ![analytics-bi-directlake](../Images/AIskills_screenshot.png) 
 
+8. A few examples of queries to try include:
+   - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
+   - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
+   - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
+10. Words that the AI Skills demo will understand can be found in the text you pasted in **Notes for model** such as ace inhibitors, ARBs, quinolones, internists, etc. 
+
 *** 
-[Back to main Readme](../Readme.md#step-4-create-reports-using-power-bi-or-connect-using-excel----steps-are-manual-at-this-time-but-in-future-plan-to-automate-for-quick-setup-) 
+[Back to main Readme](../Readme.md#step-5-create-AI-skill)
