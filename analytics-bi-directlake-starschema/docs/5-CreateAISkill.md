@@ -10,7 +10,7 @@
 
 The Power BI Report that connects to the Direct Lake Semantic Model shoul look like this, and be ready for use with Power BI Copilot:
 
-![analytics-bi-directlake](../Images/AIskills)screenshot.png) 
+![analytics-bi-directlake](../Images/AIskills_screenshot.png) 
 
 *** 
 [Back to main Readme](../Readme.md#step-4-create-reports-using-power-bi-or-connect-using-excel----steps-are-manual-at-this-time-but-in-future-plan-to-automate-for-quick-setup-) 
