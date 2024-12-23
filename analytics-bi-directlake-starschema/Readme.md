@@ -1,3 +1,6 @@
+## Updates December 2024
+- Added a new component of this module to cover [Fabric AI Skills](https://learn.microsoft.com/en-us/fabric/data-science/concept-ai-skill), which is in Public Preview at the time of publication. The AI Skills component can be deployed in a few minutes once you have completed **Step 2a** or **Step 2b** from the instructions below. The AI Skills demo will enable you to ask natural language queries of the star schema relational model in either the Fabric Lakehouse or Warehouse. The results can be used to both generate insights into the data or to create complex SQL queries. The new AI Skills component is listed as **Step 5** at the bottom of this page.
+- Updated instructions and file for the PBIX in this repo. Eliminated some broken code (naming conventions fixed for Prescriber State, Prescriber City State, and Prescriber City columns) and improved deployment instructions.
 
 ## Updates October 2024
 - Automated the ingestion of CMS Data files directly from CMS Website using metadata json file so no need to download/uplodate data manually. Also now includes the year 2022 data files to increase the total row count to 250 million rows.
@@ -51,4 +54,8 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 ***
 
 ### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - Steps are manual at this time but in future plan to automate for quick setup. We do have a .pbix file in this repo that can connect to the Semantic Model if the metadata matches the naming conventions in Step 3.
+
+***
+
+### Step 5: [Create Fabric AI Skill](./docs/5-CreateAISkill.md) - Create a Fabric AI Skill that uses the new star schema design in the Lakehouse or Warehouse. The AI Skill will enable natural language queries with text-to-SQL for your new end-to-end Fabric solution.
 

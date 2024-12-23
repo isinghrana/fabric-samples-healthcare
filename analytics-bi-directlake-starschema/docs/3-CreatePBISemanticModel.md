@@ -76,10 +76,10 @@
 
  | Table Name | Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ---------- | ----------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
- | cms_provider_dim_geography | City | Text | N/A | N/A | N/A | City | 
- | cms_provider_dim_geography | City State | Text | N/A | N/A | N/A | Place | 
+ | cms_provider_dim_geography | Prescriber City | Text | N/A | N/A | N/A | City | 
+ | cms_provider_dim_geography | Prescriber City State | Text | N/A | N/A | N/A | Place | 
  | cms_provider_dim_provider | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
- | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
+ | cms_provider_dim_geography | Prescriber State | Text | N/A | N/A | N/A | State or Province | 
  | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
 
 6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Now you can adjust some settings for the dataset to potentially enable better performance:
