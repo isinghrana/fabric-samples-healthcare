@@ -9,16 +9,17 @@ A video walking through the process below and giving a demonstration of the capa
 6. Download the .json file [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)
 7. Now press the **Example SQL queries** button at the top to enable the option for supplying sample sql queries. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)   Click the X to close this window and the X again to cloes the Data Agent window.
 
-Your Fabric Data Agent is now ready to test with natural language queries, and should look like this.  Red highlights show the 6 tables we selected and the Data Agent Instructions and Example Queries options we used.
+8. Your Fabric Data Agent is now ready to test with natural language queries, and should look like this.  Red highlights show the 6 tables we selected and the Data Agent Instructions and Example Queries options we used.
 
 ![image](https://github.com/user-attachments/assets/d8bd2e1a-160f-48fa-9bd0-56cd18f77ef6)
 
 
-8. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
+9. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
    - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
-10. Words that the Data Agent demo will understand can be found in the text you pasted in **Notes for model** such as ace inhibitors, ARBs, quinolones, internists, etc. 
+10. Words that the Data Agent demo will understand can be found in the text you pasted in **Notes for model** such as ace inhibitors, ARBs, quinolones, internists, etc.
+11. Fabric Data Agents can be queried from Azure AI Foundry Agents to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
 
 *** 
 [Back to main Readme](../Readme.md#step-5-create-AI-skill)
