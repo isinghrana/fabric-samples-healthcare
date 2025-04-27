@@ -10,6 +10,7 @@ A video walking through the process below and giving a demonstration of the capa
 7. Now press the **Example SQL queries** button at the top to enable the option for supplying sample sql queries. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)   Click the X to close this window and the X again to cloes the Data Agent window.
 8. Your Fabric Data Agent is now ready to test with natural language queries, and should look like this.  Red highlights show the 6 tables we selected and the Data Agent Instructions and Example Queries options we used.
 
+
 ![image](https://github.com/user-attachments/assets/d8bd2e1a-160f-48fa-9bd0-56cd18f77ef6)
 
 9. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
