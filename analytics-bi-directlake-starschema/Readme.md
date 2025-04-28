@@ -57,5 +57,5 @@ You will need the Lakehouse name from Step 1 and if you used the suggested name 
 
 ***
 
-### Step 5: [Create Fabric Data Agent](./docs/5-CreateAISkill.md) - Create a Fabric Data Agent that uses the new star schema design in the Lakehouse or Warehouse. The Data Agent will enable natural language queries with text-to-SQL for your new end-to-end Fabric solution.
+### Step 5: [Create Fabric Data Agent and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) - Create a Fabric Data Agent that uses the new star schema design in the Lakehouse or Warehouse. The Data Agent will enable natural language queries with text-to-SQL for your new end-to-end Fabric solution. Optionally, instructions for querying the Fabric Data Agent from an Azure AI Foundry Agent are at the end of this section.
 
