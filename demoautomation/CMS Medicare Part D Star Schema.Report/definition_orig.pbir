@@ -1,0 +1,14 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.0.0/schema.json",
+    "version": "4.0",
+    "datasetReference": {
+        "byConnection": {
+            "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/HLS Demos\";initial catalog=CMS_Direct_Lake_Star_Schema;integrated security=ClaimsToken",
+            "pbiServiceModelId": null,
+            "pbiModelVirtualServerName": "sobe_wowvirtualserver",
+            "pbiModelDatabaseName": "8f626775-c01a-41f4-bb3f-25750fe3f223",
+            "name": "EntityDataSource",
+            "connectionType": "pbiServiceXmlaStyleLive"
+        }
+    }
+}

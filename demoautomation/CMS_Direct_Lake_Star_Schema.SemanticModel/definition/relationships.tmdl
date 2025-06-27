@@ -1,0 +1,24 @@
+relationship ec5c4900-2879-182f-4286-5c75e5f92fae
+	relyOnReferentialIntegrity
+	securityFilteringBehavior: none
+	fromColumn: cms_provider_drug_costs_star.geo_key
+	toColumn: cms_provider_dim_geography.geo_key
+
+relationship 280e332f-82fa-a69c-4fe1-9cd23f27a7dc
+	relyOnReferentialIntegrity
+	securityFilteringBehavior: none
+	fromColumn: cms_provider_drug_costs_star.drug_key
+	toColumn: cms_provider_dim_drug.drug_key
+
+relationship c1ea6aba-7d69-1674-fe4f-f7bf1891e9d8
+	relyOnReferentialIntegrity
+	securityFilteringBehavior: none
+	fromColumn: cms_provider_drug_costs_star.Year
+	toColumn: cms_provider_dim_year.Year
+
+relationship 6c2f2fd1-ac3b-4395-dedc-dc7a785e2519
+	relyOnReferentialIntegrity
+	securityFilteringBehavior: none
+	fromColumn: cms_provider_drug_costs_star.provider_key
+	toColumn: cms_provider_dim_provider.provider_key
+

@@ -1,0 +1,125 @@
+table cms_provider_dim_provider
+	lineageTag: 022a9ba4-9f7c-4520-ad95-cdec5186b6b2
+	sourceLineageTag: [dbo].[cms_provider_dim_provider]
+
+	column Max_Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c201bc50-a343-47f2-a59a-26cc45378966
+		sourceLineageTag: Max_Year
+		summarizeBy: none
+		sourceColumn: Max_Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Min_Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 023101dc-334b-4029-8c6d-f44f512e28cc
+		sourceLineageTag: Min_Year
+		summarizeBy: none
+		sourceColumn: Min_Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prscrbr_First_Name
+		dataType: string
+		isHidden
+		lineageTag: 8315b232-ba7d-43cb-8a17-32af3cf4d8b8
+		sourceLineageTag: Prscrbr_First_Name
+		summarizeBy: none
+		sourceColumn: Prscrbr_First_Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 024126ab-fea3-4f1a-9cb9-bd2d7f826394
+		sourceLineageTag: Prscrbr_Full_Name
+		summarizeBy: none
+		sourceColumn: Prscrbr_Full_Name
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prscrbr_Last_Org_Name
+		dataType: string
+		isHidden
+		lineageTag: 7483466a-783d-4bf2-bba7-f1f8ea4405d1
+		sourceLineageTag: Prscrbr_Last_Org_Name
+		summarizeBy: none
+		sourceColumn: Prscrbr_Last_Org_Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prescriber NPI'
+		dataType: int64
+		formatString: 0
+		lineageTag: 32e21d9b-28be-4a61-97e7-f58f81ddc7e9
+		sourceLineageTag: Prscrbr_NPI
+		summarizeBy: none
+		sourceColumn: Prscrbr_NPI
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Also known as Prescriber Specialty
+	column 'Prescriber Type'
+		dataType: string
+		lineageTag: 0711c1bc-66cf-416f-966f-3f7e9936d0be
+		sourceLineageTag: Prscrbr_Type
+		summarizeBy: none
+		sourceColumn: Prscrbr_Type
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prscrbr_Type_Src
+		dataType: string
+		isHidden
+		lineageTag: 89a9ee08-1df2-4011-a6b7-dd755be2d6e2
+		sourceLineageTag: Prscrbr_Type_Src
+		summarizeBy: none
+		sourceColumn: Prscrbr_Type_Src
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column provider_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ec0e426f-fd89-4448-b2ae-5bcadbc29fb4
+		sourceLineageTag: provider_key
+		summarizeBy: none
+		sourceColumn: provider_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cms_provider_dim_provider-ebdff0ae-e675-4df7-89e8-9e890f8d04c5 = entity
+		mode: directLake
+		source
+			entityName: cms_provider_dim_provider
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+

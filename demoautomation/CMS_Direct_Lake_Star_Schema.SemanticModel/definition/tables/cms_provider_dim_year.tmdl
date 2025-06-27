@@ -1,0 +1,36 @@
+table cms_provider_dim_year
+	lineageTag: db2a1d2e-28c7-4177-9839-c632e6e27a95
+	sourceLineageTag: [dbo].[cms_provider_dim_year]
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 27499f70-4f6c-459a-adc4-0f35e7d9dda4
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Date_Key
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 64e8c010-495e-44e9-8baa-a7fef76a2438
+		sourceLineageTag: Year_Date_Key
+		summarizeBy: none
+		sourceColumn: Year_Date_Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cms_provider_dim_year-20982ffc-d546-43b2-a6a9-11ce0046d132 = entity
+		mode: directLake
+		source
+			entityName: cms_provider_dim_year
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+

@@ -1,0 +1,108 @@
+table cms_provider_dim_geography
+	lineageTag: a903973a-57fb-49c6-bcfa-9b36f557ab13
+	sourceLineageTag: [dbo].[cms_provider_dim_geography]
+
+	column Max_Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a6583190-2fb4-4885-9177-136bcfad3e83
+		sourceLineageTag: Max_Year
+		summarizeBy: none
+		sourceColumn: Max_Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Min_Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d2502146-4b57-4528-9794-fb05627416d8
+		sourceLineageTag: Min_Year
+		summarizeBy: none
+		sourceColumn: Min_Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 1ef6a6da-2c5e-4b04-98c1-c54228b924e9
+		sourceLineageTag: Prscrbr_City
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: Prscrbr_City
+
+		changedProperty = Name
+
+		changedProperty = DataCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'City State'
+		dataType: string
+		lineageTag: 27bbf9b1-6e78-4fd1-afab-ceb2691814b9
+		sourceLineageTag: Prscrbr_City_State
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: Prscrbr_City_State
+
+		changedProperty = Name
+
+		changedProperty = DataCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 77a8738f-d249-4305-95ae-933f450385ba
+		sourceLineageTag: Prscrbr_State_Abrvtn
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Prscrbr_State_Abrvtn
+
+		changedProperty = Name
+
+		changedProperty = DataCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State FIPS Code'
+		dataType: string
+		isHidden
+		lineageTag: e47750ba-bf69-4aa2-9156-651ad1bcb796
+		sourceLineageTag: Prscrbr_State_FIPS
+		summarizeBy: none
+		sourceColumn: Prscrbr_State_FIPS
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column geo_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fd4a925b-d073-4775-9dda-e15aec0188b7
+		sourceLineageTag: geo_key
+		summarizeBy: none
+		sourceColumn: geo_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cms_provider_dim_geography-ee8542a9-2d9c-4c2d-af01-f72aa88121f1 = entity
+		mode: directLake
+		source
+			entityName: cms_provider_dim_geography
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+
