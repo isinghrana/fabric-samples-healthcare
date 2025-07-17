@@ -92,4 +92,4 @@
 8. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 
-[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./4-CreatePBIReport.md)
+[Back to main Readme](../manual-setup.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./4-CreatePBIReport.md)

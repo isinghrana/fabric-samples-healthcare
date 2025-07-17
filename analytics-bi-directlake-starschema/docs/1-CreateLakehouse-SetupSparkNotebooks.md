@@ -34,4 +34,4 @@ Select your **cms_lakehouse** and click **Connect.**
 9. Repeat Step 6 for **02-CreateCMSDataTable** and **03-CreateCMSStarSchemaTables** Notebooks
 
 ***
-[Back to main Readme](../Readme.md#step-1-create-lakehouse-and-setup-spark-notebooks)
+[Back to main Readme](../manual-setup.md#step-1-create-lakehouse-and-setup-spark-notebooks)

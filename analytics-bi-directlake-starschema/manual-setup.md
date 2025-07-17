@@ -1,9 +1,11 @@
 # Manual Install - Fabric Power BI Direct Lake Connector with 275 Million Rows
 
+**Pre-Requisite**: Fabric-enabled Workspace
+
 ## Steps to setup demo in your own environment
 
 ### Step 1: [Create Lakehouse and setup Spark Notebooks](./docs/1-CreateLakehouse-SetupSparkNotebooks.md) 
-Click the url above for instructions aon setting up your Lakehouse and importing the Spark Notebooks.
+Click the link above for instructions on setting up your Lakehouse and importing the Spark Notebooks.
 
 ***
 

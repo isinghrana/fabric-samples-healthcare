@@ -5,20 +5,9 @@
 
 This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**.
 
-The dataset used is the publicly available ![Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
+The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
-> 🎥 **Watch the full demo**: YouTube Video
-
----
-
-## 🧠 What You'll Learn
-
-This demo provides hands-on experience with:
-
-- **Data engineering** using Fabric Spark and Data Pipelines
-- **Power BI Direct Lake Mode** for querying large-scale data
-- **Medallion Lakehouse Architecture** (Bronze → Silver → Gold)
-- **Natural Language querying** using **Fabric Data Agents**
+> 🎥 **Watch the full demo**: YouTube Video https://youtu.be/2tLIGVZ4c8E
 
 ---
 
@@ -33,6 +22,17 @@ The solution follows the **Medallion Architecture**:
 Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
 
 ![analytics-bi-directlake](./Images/Logical_Diagram_Star_new.png)
+
+---
+
+## 🧠 What You'll Learn
+
+This demo provides hands-on experience with:
+
+- **Data engineering** using Fabric Spark and Data Pipelines
+- **Power BI Direct Lake Mode** for querying large-scale data
+- **Medallion Lakehouse Architecture** (Bronze → Silver → Gold)
+- **Natural Language querying** using **Fabric Data Agents**
 
 ---
 
