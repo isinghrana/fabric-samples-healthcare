@@ -14,7 +14,7 @@
 
 3. Once the import is complete, open the **`install_cms_demo`** notebook and click **`Run All`** to execute all cells sequentially.
 
-TODO: Notebook Run All Image
+    ![Run Notebook](./Images/run_install_notebook.jpg)
 
 - The notebook will execute each cell one by one. The final cell triggers the **Fabric Data Factory pipeline**.
 - This pipeline runs **asynchronously** and typically takes **20 to 45 minutes** to complete.
@@ -29,5 +29,10 @@ Navigate to the **Fabric Data Factory pipeline**, then from Run menu click **“
 
   ![Pipeline Run](./Images/monitor_pipeline_run.jpg)
 
+***
 
+## [Create Fabric Data Agent and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) 
 
+Optional Manual Setup step, expected to automated in future
+
+This step guides you through creating a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**.
