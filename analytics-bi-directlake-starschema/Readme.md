@@ -52,8 +52,11 @@ Run a single notebook to set up the full environment with following components d
 
 📘 **Setup Guide**: [`automated-setup.md`](./automated-setup.md)
 
-> ⏱️ Requires less than 5 minutes of active setup, followed by approximately 20–45 minutes of automated data loading via a non-interactive Data Factory pipeline. 
-> ⚠️ Note: This method currently uses the Lakehouse for all layers (including Gold). Fabric Data Agent setup is **not yet automated** but planned for a future release.
+> ⏱️ Requires less than 5 minutes to setup the installation Notebook, followed by approximately 20–45 minutes for a non-interactive Data Factory pipeline to load data. 
+
+> ⚠️ Note: This method currently uses the Lakehouse for all layers (including Gold). 
+
+> ⚠️ Note: Fabric Data Agent setup is **not yet automated** but planned for a future release.
 
 ---
 

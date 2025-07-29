@@ -17,7 +17,7 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
    
 6. Import the three downloaded Notebooks into Fabric Workspace by clicking "Import > Notebook > From this computer"
 
-![image](https://github.com/user-attachments/assets/40edcf66-1641-4651-bc5e-3a5081b13be6)
+    ![Import Notebook](../Images/import_notebook.jpg)
 
 7. Once the import is successful Open **01-DownloadCMSDataCsvFiles** Notebook, add the Lakehouse created in Step 2 as default lakehouse using **Add data items > Exising data souces** option. 
     
@@ -26,8 +26,7 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
 Select your **cms_lakehouse** and click **Connect.**
 ![image](https://github.com/user-attachments/assets/f0340830-dc10-49c6-bf05-362610e92d4e)
 
-
-9. Repeat Step 6 for **02-CreateCMSDataTable** and **03-CreateCMSStarSchemaTables** Notebooks
+8. Repeat Step 6 for **02-CreateCMSDataTable** and **03-CreateCMSStarSchemaTables** Notebooks
 
 ***
 [Back to main Readme](../manual-setup.md#step-1-create-lakehouse-and-setup-spark-notebooks)
