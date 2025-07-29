@@ -33,6 +33,6 @@ Navigate to the **Fabric Data Factory pipeline**, then from Run menu click **“
 
 ## [Create Fabric Data Agent and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) 
 
-Optional Manual Setup step, expected to automated in future
+Optional Manual Setup step - expected to be automated in future
 
 This step guides you through creating a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**.
