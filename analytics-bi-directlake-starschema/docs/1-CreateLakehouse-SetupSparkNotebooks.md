@@ -19,11 +19,7 @@ In this step you will create Lakehouse and setup Spark Notebooks to be used for 
 
 ![image](https://github.com/user-attachments/assets/40edcf66-1641-4651-bc5e-3a5081b13be6)
 
-7. Once the import is successful Open **01-DownloadCMSDataCsvFiles** Notebook, you will need to select the Data Items and then **Remove all sources** to remove links to old lakehouses.  
-
-![image](https://github.com/user-attachments/assets/0f426140-d277-4514-b13f-faf46f6f169f)
-
-Now add the Lakehouse created in Step 2 using **Add data items > Exising data souces** option. 
+7. Once the import is successful Open **01-DownloadCMSDataCsvFiles** Notebook, add the Lakehouse created in Step 2 as default lakehouse using **Add data items > Exising data souces** option. 
     
 <img width="275" alt="image" src="https://github.com/user-attachments/assets/e9ee4310-4689-4bdb-9154-02df851dbf2b" />
 
