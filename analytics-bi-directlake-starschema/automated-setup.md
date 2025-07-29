@@ -1,5 +1,7 @@
 # Quick Install - Fabric Lakehouse and Power BI Direct Lake Connector with 275 Million Rows
 
+[Main Readme for overall architecture diagram](../README.md)
+
 **Pre-Requisite**: Fabric-enabled Workspace
 
 ## Steps to setup demo in your own environment
@@ -29,8 +31,6 @@
 
 ***
 
-## [Create Fabric Data Agent and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) 
-
-Optional Manual Setup step - expected to be automated in future
+## [Create Fabric Data Agent and query from Azure AI Foundry Agent - Optional Step](./docs/5-CreateAISkill.md) 
 
 This step guides you through creating a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**.
