@@ -16,16 +16,14 @@
 
     ![Run Notebook](./Images/run_install_notebook.jpg)
 
-- The notebook will execute each cell one by one. The final cell triggers the **Fabric Data Factory pipeline**.
-- This pipeline runs **asynchronously** and typically takes **20 to 45 minutes** to complete.
-- At this point, the notebook execution is complete—you can safely close it.
-- Workspace should have all the components available as shown in the screenshot, you’re free to step away and return later; the **Lakehouse tables will be loaded with data** once the pipeline finishes.
+   - The notebook will execute each cell one by one. The final cell triggers the **Fabric Data Factory pipeline**.
+   - This pipeline runs **asynchronously** and typically takes **20 to 45 minutes** to complete.
+   - At this point, the notebook execution is complete—you can safely close it.
+   - Workspace should have all the components available as shown in the screenshot, you’re free to step away and return later; the **Lakehouse tables will be loaded with data** once the pipeline finishes.
 
     ![Installed Components](./Images/demo_components.jpg)
 
-4. Monitor the Pipeline Execution
-
-Navigate to the **Fabric Data Factory pipeline**, then from Run menu click **“View Run History”** to see the execution history and click the Activity Name **cms_pipeline** to monitor the execution details.
+4. Monitor Pipeline Execution - Navigate to the **Fabric Data Factory pipeline**, then from Run menu click **“View Run History”** to see the execution history and click the Activity Name **cms_pipeline** to monitor the execution details. Alternatively you can use Fabric Monitor Hub to monitor the pipeline execution.
 
   ![Pipeline Run](./Images/monitor_pipeline_run.jpg)
 

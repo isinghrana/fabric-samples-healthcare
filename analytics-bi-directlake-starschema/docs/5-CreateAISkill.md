@@ -21,4 +21,4 @@ A video walking through the process below and giving a demonstration of the capa
 10. Fabric Data Agents can be queried from Azure AI Foundry Agents to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
 
 *** 
-[Back to main Readme](../Readme.md#step-5-create-AI-skill)
+[Back to main Readme](../Readme.md)
