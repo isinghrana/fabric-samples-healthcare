@@ -1,4 +1,4 @@
-# Manual Install - Fabric Power BI Direct Lake Connector with 275 Million Rows
+# Manual Setup - Fabric Power BI Direct Lake Connector with 275 Million Rows
 
 **Pre-Requisite**: Fabric-enabled Workspace
 

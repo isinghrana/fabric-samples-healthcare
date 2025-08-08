@@ -38,9 +38,9 @@ This demo provides hands-on experience with:
 
 ## ⚙️ Setup Options
 
-### ✅ Option 1: Quick Install (Automated)
+### ✅ Option 1: Quick Setup (Automated)
 
-Ideal for a fast setup with minimal effort. 
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes.
 
 Run a single notebook to set up the full environment with following components deployed:
 
@@ -50,7 +50,7 @@ Run a single notebook to set up the full environment with following components d
 - Semantic Model
 - Power BI Report
 
-📘 **Setup Guide**: [`automated-setup.md`](./automated-setup.md)
+📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
 > ⏱️ Requires less than 5 minutes to setup the installation Notebook, followed by approximately 20–45 minutes for a non-interactive Data Factory pipeline to load data. 
 
@@ -58,14 +58,14 @@ Run a single notebook to set up the full environment with following components d
 
 ---
 
-### 🛠️ Option 2: Manual Install (Step-by-Step)
+### 🛠️ Option 2: Manual Setup (Step-by-Step)
 
 Ideal for hands-on learning and deeper understanding of Microsoft Fabric and Power BI.
 
 Follow the step-by-step instructions to manually set up the solution components:
 
-- **Lakehouse, Notebooks, and Data Pipeline** setup takes approximately **10–15 minutes**
-- The **Data Factory pipeline** then runs non-interactively to load data, which takes about **20–45 minutes**
+- **Lakehouse or Warehouse, Notebooks and Data Pipeline** (Warehouse for Gold Layer is an option available in manual setup only) ,this step takes approximately **10–15 minutes**
+- **Data Factory pipeline** runs non-interactively to load data which takes about **20–45 minutes**
 - **Semantic Model** creation requires additional manual effort and is the most time-intensive part
 - A **Power BI report template** is already included to help accelerate report building
 

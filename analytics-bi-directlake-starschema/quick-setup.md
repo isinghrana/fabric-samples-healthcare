@@ -1,8 +1,15 @@
 # Quick Install - Fabric Lakehouse and Power BI Direct Lake Connector with 275 Million Rows
 
-[Main Readme for overall architecture diagram](../README.md)
+[Back to Main Readme](./README.md)
 
-**Pre-Requisite**: Fabric-enabled Workspace
+This page guides you on steps to run automation notebook that installs the full end-to-end CMS analytics solution directly into your Microsoft Fabric workspace. The architecture diagram below helps visualize the final state of the solution.
+
+## 🏗️ Architecture
+
+![quickinstall](./Images/quickinstall.png)
+
+
+### *Pre-Requisite*: Fabric-enabled Workspace
 
 ## Steps to setup demo in your own environment
 
@@ -10,7 +17,7 @@
 
     ![install_cms_demo](./Images/downoad_install_notebook.jpg)
 
-2. Import the downloaded Notebook into Fabric Workspace by clicking "Import > Notebook > From this computer"
+2. Import the downloaded Notebook into Fabric Workspace by clicking "Import > Notebook > From this computer".**We recommend using a new Workspace with nothing in it to prevent any potential conflicts. The notebook will create all artifacts for you.**
 
     ![Import Notebook](./Images/import_notebook.jpg)
 
@@ -31,6 +38,10 @@
 
 ***
 
-## [Create Fabric Data Agent and query from Azure AI Foundry Agent - Optional Step](./docs/5-CreateAISkill.md) 
+## Create Fabric Data Agent and query from Azure AI Foundry Agent - Optional Step
 
-This step guides you through creating a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**.
+Next you you can go through steps to create a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**. NOTE: This is a manul step which we expect to automate in future.
+
+[Faric Data Agent Creation Step](./docs/5-CreateAISkill.md) 
+
+[Back to Main Readme](./README.md)
