@@ -10,7 +10,7 @@
 
     ![install_cms_demo](./Images/downoad_install_notebook.jpg)
 
-2. Import the downloaded Notebook into Fabric Workspace by clicking "Import > Notebook > From this computer"
+2. Import the downloaded Notebook into Fabric Workspace by clicking "Import > Notebook > From this computer". **We recommend using a new Workspace with nothing in it to prevent any potential conflicts. The notebooks will create everything for you.**
 
     ![Import Notebook](./Images/import_notebook.jpg)
 
