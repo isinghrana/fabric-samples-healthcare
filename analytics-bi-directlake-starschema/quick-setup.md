@@ -1,6 +1,6 @@
 # Quick Install - Fabric Lakehouse and Power BI Direct Lake Connector with 275 Million Rows
 
-[Back to Main Readme](./README.md)
+[Back to Main Readme](./Readme.md)
 
 This page guides you on steps to run automation notebook that installs the full end-to-end CMS analytics solution directly into your Microsoft Fabric workspace. The architecture diagram below helps visualize the final state of the solution.
 
@@ -46,4 +46,4 @@ Next you you can go through steps to create a **Fabric Data Agent** that utilize
 
 ***
 
-[Back to Main Readme](./README.md)
+[Back to Main Readme](./Readme.md)
