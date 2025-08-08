@@ -40,7 +40,7 @@ This demo provides hands-on experience with:
 
 ### ✅ Option 1: Quick Install (Automated)
 
-Ideal for a fast setup with minimal effort. 
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes.
 
 Run a single notebook to set up the full environment with following components deployed:
 
@@ -66,6 +66,7 @@ Follow the step-by-step instructions to manually set up the solution components:
 
 - **Lakehouse, Notebooks, and Data Pipeline** setup takes approximately **10–15 minutes**
 - The **Data Factory pipeline** then runs non-interactively to load data, which takes about **20–45 minutes**
+- Installing a **Fabric Waehouse** is also an option that is only available with the manual effort.
 - **Semantic Model** creation requires additional manual effort and is the most time-intensive part
 - A **Power BI report template** is already included to help accelerate report building
 
