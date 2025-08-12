@@ -4,19 +4,13 @@
 
 ## 🚀 End-to-End Fabric Demo Setup Guide
 
-This guide walks you through installing the complete solution, which includes:
-
-- **Lakehouse**
-- **Pipeline**
-- **Notebooks**
-- **Semantic Model**
-- **Report**
+This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model and Report**
 
 ### ✅ Installation in Just 3 Steps
 
-1. **Download the automation notebook from GitHub**  
-2. **Import the notebook into your Fabric workspace**  
-3. **Run the notebook to deploy the entire solution**
+1. Download the [install_cms_demo](./demoautomation/install_cms_demo.ipynb) Fabric Spark Notebook from GitHub  
+2. Import the notebook into your Fabric workspace
+3. Run the notebook to deploy the entire solution
 
 For detailed instructions, follow the step-by-step guide below or watch this quick Youtube video https://www.youtube.com/watch?v=RgQu1CL9QfM.
 
