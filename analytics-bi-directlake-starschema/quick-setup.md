@@ -20,6 +20,10 @@ This guide walks you through installing the complete solution, which includes:
 
 For detailed instructions, follow the step-by-step guide below or watch this quick Youtube video https://www.youtube.com/watch?v=RgQu1CL9QfM.
 
+## 🏗️ Architecture
+
+![quickinstall](./Images/quickinstall.png)
+
 ### *Pre-Requisite*: Fabric-enabled Workspace
 
 ## Steps to setup demo in your own environment
