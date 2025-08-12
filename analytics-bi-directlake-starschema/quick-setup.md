@@ -2,12 +2,23 @@
 
 [Back to Main Readme](./Readme.md)
 
-This page guides you on steps to run automation notebook that installs the full end-to-end CMS analytics solution directly into your Microsoft Fabric workspace. The architecture diagram below helps visualize the final state of the solution.
+## 🚀 End-to-End Fabric Demo Setup Guide
 
-## 🏗️ Architecture
+This guide walks you through installing the complete solution, which includes:
 
-![quickinstall](./Images/quickinstall.png)
+- **Lakehouse**
+- **Pipeline**
+- **Notebooks**
+- **Semantic Model**
+- **Report**
 
+### ✅ Installation in Just 3 Steps
+
+1. **Download the automation notebook from GitHub**  
+2. **Import the notebook into your Fabric workspace**  
+3. **Run the notebook to deploy the entire solution**
+
+For detailed instructions, follow the step-by-step guide below or watch this quick Youtube video https://www.youtube.com/watch?v=RgQu1CL9QfM.
 
 ### *Pre-Requisite*: Fabric-enabled Workspace
 
