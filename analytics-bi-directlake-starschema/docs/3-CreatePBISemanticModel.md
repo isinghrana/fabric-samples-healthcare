@@ -76,11 +76,11 @@
 
  | Table Name | Column name | Format | Percentage Format | Thousands seperator | Decimal places | Data category | 
  | ---------- | ----------- | ------ | ----------------- | ------------------- | -------------- | ------------- |
- | cms_provider_dim_geography | City | Text | N/A | N/A | N/A | City | 
- | cms_provider_dim_geography | City State | Text | N/A | N/A | N/A | Place | 
- | cms_provider_dim_provider | Prescriber NPI | Whole Number | No | Yes | 0 | Uncategorized | 
- | cms_provider_dim_geography | State | Text | N/A | N/A | N/A | State or Province | 
- | cms_provider_dim_year | Year | Whole Number | No | Yes | 0 | Uncategorized | 
+ | cms_provider_dim_geography | Prescriber City | Text | N/A | N/A | N/A | City | 
+ | cms_provider_dim_geography | Prescriber City State | Text | N/A | N/A | N/A | Place | 
+ | cms_provider_dim_provider | Prescriber NPI | Whole Number | No | No | 0 | Uncategorized | 
+ | cms_provider_dim_geography | Prescriber State | Text | N/A | N/A | N/A | State or Province | 
+ | cms_provider_dim_year | Year | Whole Number | No | No | 0 | Uncategorized | 
 
 6. The Power BI dataset now exists within Fabric, no caching or refreshing needed! You can go back to your Workspace and re-name the dataset, which shows up as a new artifact in the Fabric Workspace. Now you can adjust some settings for the dataset to potentially enable better performance:
   - From the Workspace, click on the ellipse next to the dataset name.
@@ -92,4 +92,4 @@
 8. A video walking you through these steps can be found at [this link](https://youtu.be/8K4vvy_o9j0).
 
 
-[Back to main Readme](../Readme.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./4-CreatePBIReport.md)
+[Back to main Readme](../manual-setup.md#step-2-download-raw-files-and-build-out-silver-and-gold-layer-tables-star-schema-to-be-used-for-reporting) | [Next](./4-CreatePBIReport.md)

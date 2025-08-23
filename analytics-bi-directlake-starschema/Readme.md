@@ -1,54 +1,81 @@
 
-## Updates October 2024
-- Automated the ingestion of CMS Data files directly from CMS Website using metadata json file so no need to download/uplodate data manually. Also now includes the year 2022 data files to increase the total row count to 250 million rows.
-- Added an alternate path of using Fabric Warehouse for Gold Layer for the teams who prefer T-SQL skillset for the consumption layer, original version only used Fabric Lakehouse because Power BI Direct Lake Mode was not support at that time but now Fabric Warehouse supports Power BI Direct lake mode.
-- Both methods use Fabric Data Factory Pipelines to build out the gold layer ready for report build, once the pipeline is implemented **execution can be kicked off to run non-interactively and make data available in 20 to 45 minutes.**
+# **Power BI Direct Lake Connector with 275M+ Healthcare Records**
 
+## 🚀 Overview
 
-# Fabric Power BI Direct Lake Connector with 250M Rows
+This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**.
 
-## Scenario
-The Fabric Direct Lake connector is a new technology for querying delta parquet files from Power BI without data caching or an intermediary relational database. Power BI datasets have been modernized so that the semantic layer containing metadata and query logic can directly query the Fabric Data Lake. Data for the demo is 250 million rows of real healthcare data from the open data database titled **Medicare Part D Prescribers - by Provider and Drug**. Link here: https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug . An end-to-end demo of this solution module can be viewed at this link: https://youtu.be/2tLIGVZ4c8E 
+The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
-## Scope
-This demo is intended to provide experience with data engineering tasks using Fabric Spark and/or Data Pipelines to build out Delta Parquet tables and then use the Direct Lake connector in Power BI to query large volumes of real data. The medallion lakehouse architecture is followed in this sample where raw CSV files are loaded to Bronze Layer, then Silver Layer flat table built using Delta Parquet format and lastly Gold Layer tables serve up the star schema model for a Direct Lake Power BI dataset. 
+> 🎥 **Watch the full demo**: YouTube Video https://youtu.be/2tLIGVZ4c8E
+
+---
+
+## 🏗️ Architecture
+
+The solution follows the **Medallion Architecture**:
+
+- **Bronze Layer**: Raw CSV files downloaded from CMS
+- **Silver Layer**: Cleaned and flattened Delta Parquet tables
+- **Gold Layer**: Star schema tables optimized for Power BI reporting
+
+Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
 
 ![analytics-bi-directlake](./Images/Logical_Diagram_Star_new.png)
 
-### Pre-Requisite
-Fabric enabled Workspace is the pre-requisite to be able to setup and end to end demonstration in your own environment. The instructions below are combination of Spark Notebook and a few manual steps to create Power BI Dataset and corresponding report.
+---
 
-***
+## 🧠 What You'll Learn
 
-## Steps to setup demo in your own environment
+This demo provides hands-on experience with:
 
-### Step 1: [Create Lakehouse and setup Spark Notebooks](./docs/1-CreateLakehouse-SetupSparkNotebooks.md) 
-Click the url above for instructions aon setting up your Lakehouse and importing the Spark Notebooks.
+- **Data engineering** using Fabric Spark and Data Pipelines
+- **Power BI Direct Lake Mode** for querying large-scale data
+- **Medallion Lakehouse Architecture** (Bronze → Silver → Gold)
+- **Natural Language querying** using **Fabric Data Agents**
 
-***
+---
 
-### Step 2: Download Raw Files and build out Silver and Gold Layer Tables (Star Schema) to be used for Reporting
-**Two methods are documented and available for this step and only one of the two needs to be implemented.** The choice on which method to use is more of a preference based on your skill set. Microsoft Fabric is a broad platform and allows end users to pick tools of their preference hence choice here demonstrates verstaility of the platform. In this step Bronze, Silver and Gold Layers of Medallion architecture are built using slightly different methods, the biggest difference is whether Gold Layer Star Schema Tables to be used for reporting are created in a Lakehouse or a Warehouse. 
+## ⚙️ Setup Options
 
-**Note**: Fabric Data Factory Pipeline implementation steps are manual for now but we will look into making it easier using automation in future. **Both options 2a and 2b are manual but Step 2a is going to be a little less effort to setup because it uses Spark Notebooks which can be easily imported for use in your Fabric workspace. Step 2b will require little extra effort to setup Pipeline activities for SQL Stored Procedures, but in return the Gold Layer will be in the Fabric Warehouse instead of the Lakehouse (folks from a SQL background may prefer this option).**
+### ✅ Option 1: Quick Setup (Automated)
 
-**2a. Gold Layer in Fabric Lakehouse** - A Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building out all three layers - Bronze, Silver and Gold Layers in a Fabric Lakehouse. Click the link below for instructions in this GitHub Repo, and you can also watch a video reviewing the 2a process at this link: https://youtu.be/TG03mkJKq4k
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes.
 
-**[Setup Pipeline with Gold Layer in Fabric Lakehouse](./docs/2a-SetupPipeline-GoldLayerFabricLakehouse.md)**
+Run a single notebook to set up the full environment with following components deployed:
 
-Skip to Step 3 if Step 2a was chosen and successfully executed to create star schema tables.
+- Lakehouse
+- Notebooks
+- Data Factory Pipeline
+- Semantic Model
+- Power BI Report
 
-**2b. Gold Layer in Fabric Warehouse** - Fabric Data Factory Pipeline is implemented to use Spark Notebooks for building Bronze and Silver Layers in a Lakehouse but SQL Stored Procedures for building out the final Gold Layer persisted in Fabric Warehouse. A video detailing the creation and deployment of these Stored Procedures can be found at this link: https://youtu.be/G6t4d5FU0zI 
+📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
-You will need the Lakehouse name from Step 1 and if you used the suggested name **cms_lakehouse** it will be easier otherwise a few edits in T-SQL scripts will be required.
+> ⏱️ Requires less than 5 minutes to setup the installation Notebook, followed by approximately 20–45 minutes for a non-interactive Data Factory pipeline to load data. 
 
-**[Setup Pipeline with Gold Layer in Fabric Warehouse](./docs/2b-SetupPipeline-GoldLayerFabricWarehouse.md)**
+> ⚠️ Note: This method currently uses the Lakehouse for all layers (including Gold) and also Fabric Data Agent setup is **not yet automated** but planned for a future release.
 
-***
+---
 
-### Step 3: [Create the Direct Lake Power BI Star Schema Semantic Model with DAX expressions and metadata](./docs/3-CreatePBISemanticModel.md) - Steps are manual at this time but in the future we plan to automate for quick setup.
+### 🛠️ Option 2: Manual Setup (Step-by-Step)
 
-***
+Ideal for hands-on learning and deeper understanding of Microsoft Fabric and Power BI.
 
-### Step 4: [Create Reports using Power BI or Connect using Excel](./docs/4-CreatePBIReport.md) - Steps are manual at this time but in future plan to automate for quick setup. We do have a .pbix file in this repo that can connect to the Semantic Model if the metadata matches the naming conventions in Step 3.
+Follow the step-by-step instructions to manually set up the solution components:
+
+- **Lakehouse or Warehouse, Notebooks and Data Pipeline** (Warehouse for Gold Layer is an option available in manual setup only) ,this step takes approximately **10–15 minutes**
+- **Data Factory pipeline** runs non-interactively to load data which takes about **20–45 minutes**
+- **Semantic Model** creation requires additional manual effort and is the most time-intensive part
+- A **Power BI report template** is already included to help accelerate report building
+
+📘 **Setup Guide**: [`manual-setup.md`](./manual-setup.md)
+
+> ⏱️ **Total setup time**: ~30–60 minutes depending on experience  
+> 💡 **Recommended for**: Users who want to explore the architecture and learn by doing
+
+
+
+---
+
 
