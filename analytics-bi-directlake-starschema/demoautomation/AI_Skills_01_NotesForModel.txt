@@ -1,0 +1,47 @@
+CMS Medicare Part D Data Overview
+
+This data is from the CMS Medicare Part D prescribers by provider and drug public database
+
+Tables and Columns:
+
+1. Drug Table
+1a. table cms_provider_dim_drug is a dimension of unique drugs
+1a1. column Brnd_Name is the brand name of a drug or medication
+1a2. column Gnrc_Name is the generic name of a drug or medication
+
+2. Provider Table
+2a. table cms_provider_dim_provider is a dimension table with a list of Providers, Doctors, and Prescribers
+2a1. column Prscrbr_Last_Org_Name is the last name of Providers, Doctors, and Prescribers
+2a2. column Prscrbr_Full_Name is their full first and last name of Providers, Doctors, and Prescribers 
+2a3. column Prscrbr_Type is the medical specialty of Providers, Doctors, and Prescribers
+
+3. Year Table
+3a. table cms_provider_dim_year is a dimension table of Calendar Years
+3a1. column Year is the calendar year. the column named year should be used for all questions and analysis about years or time
+
+4. Geography Table
+4a. table cms_provider_dim_geography is a dimension table of States and Cities
+4a1. column Prscrbr_State_Abrvtn should be used for queries about States or a US State. States are abbreviated with capitalized two letter abbreviations such as MN or WI
+4a2. column Prscrbr_City_State is cities in the format of Minneapolis, MN or Detroit, MI 
+
+5. Drug Costs Table 
+5a. table cms_provider_drug_costs_star is a fact table with information about drug prescribing and costs. Aggregate SQL functions use the fields Tot_Benes, Tot_Clms, Tot_Day_Suply, and Tot_Drug_Cst. Foreign keys on the fact table cms_provider_drug_costs_star are Drug_key, Geo_Key, Provider_Key and Year
+5a1. Tot_Benes is total beneficiaries
+5a2. Tot_Clms is total claims
+5a3. Tot_Day_Suply is total day supply
+5a4. Tot_Drug_Cst is total drug cost or total cost or cost
+5a5. Tot_Drug_Cst should be formatted as USA currency
+5a6. Use ORDER BY clauses to sort results by the metric of interest (for example, total claims, total cost, cost per day)
+
+Key Classes of Drugs:
+
+1. all Ace Inhibitor drugs contain pril within the Generic Name of table cms_provider_dim_drug
+2. all quinolone antibiotics also known as quinolones will contain floxacin within the Generic Name of table cms_provider_dim_drug
+3. Angiotensin Receptor Blocker drugs also known as ARBs will contain sartan within the Generic Name of table cms_provider_dim_drug
+4. all statins will contain statin within the Generic Name of table cms_provider_dim_drug
+5. all benzodiazepines contain zolam or zepam within the Generic Name of table cms_provider_dim_drug
+6. beta blocker drugs contain olol within the Generic Name of table cms_provider_dim_drug. The exception is carvedilol which is not a true beta blocker
+
+Provider Specialties:
+
+1. internists or Internal Medicine will contain Internal Medicine within the column Prscrbr_Type of table cms_provider_dim_provider
