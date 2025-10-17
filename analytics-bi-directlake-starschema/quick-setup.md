@@ -36,13 +36,13 @@ To enable Data Agent functionality, configure the following settings before runn
 
 1.  **Copilot and Azure OpenAI** *(Required)*
     *   **Setting**: *“Users can use Copilot and other features powered by Azure OpenAI”*
-    *   **Scope**: Enable at **Tenant**, **Fabric Capacity**, or for specific users via **Entra Groups**
+    *   **Scope**: Enable at **Tenant** or **Fabric Capacity** Level, can be scoped to specific users via **Entra Groups** or entire organization
 
 2.  **Data Residency** *(Optional – only if Fabric Capacity is outside US/EU data boundary)*
     *   **Settings**:
         *   *“Data sent to Azure OpenAI can be processed outside your capacity's geographic region...”*
         *   *“Data sent to Azure OpenAI can be stored outside your capacity's geographic region...”*
-    *   **Scope**: Enable at **Tenant**, **Capacity**, or for specific users via **Entra Groups**
+    *   **Scope**: Enable at **Tenant** or **Capacity** Level, can be scoped to specific users via **Entra Groups** or entire organization
 
 3.  **Data Agent Creation** *(Required)*
     *   **Setting**: *“Users can create and share Data agent item types”*
