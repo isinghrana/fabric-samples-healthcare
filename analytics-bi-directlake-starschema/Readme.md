@@ -21,7 +21,7 @@ The solution follows the **Medallion Architecture**:
 
 Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
 
-![analytics-bi-directlake](./Images/Logical_Diagram_Star_new.png)
+![analytics-bi-directlake](./Images/overall_arch.png)
 
 ---
 
@@ -49,12 +49,13 @@ Run a single notebook to set up the full environment with following components d
 - Data Factory Pipeline
 - Semantic Model
 - Power BI Report
+- Data Agent
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
 > ⏱️ Requires less than 5 minutes to setup the installation Notebook, followed by approximately 20–45 minutes for a non-interactive Data Factory pipeline to load data. 
 
-> ⚠️ Note: This method currently uses the Lakehouse for all layers (including Gold) and also Fabric Data Agent setup is **not yet automated** but planned for a future release.
+> ⚠️ Note: This method currently uses the Lakehouse for all layers (including Gold).
 
 ---
 
