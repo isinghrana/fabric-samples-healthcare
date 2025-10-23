@@ -4,7 +4,7 @@
 
 ## 🚀 End-to-End Fabric Demo Setup Guide
 
-This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model and Report**
+This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model, Report and Data Agent**
 
 ### ✅ Installation in Just 3 Steps
 
@@ -80,5 +80,17 @@ Relevant Documentation Links:
   ![Pipeline Run](./Images/monitor_pipeline_run.jpg)
 
 ***
+
+Once the Pipeline job has completed execution solution is available to explore Reports, run SQL Queries, generate Reports from the Semantic Model using Power BI Copilot as well as chat with your data using Fabric Data Agent.
+
+### Fabric Data Agent
+
+Following are a handful of example queries to use with Fabric Data Agent:
+   - What are the top 5 states by total drug costs?
+   - What are the top 5 states by total drug costs for the year 2020?
+   - Please share drug cost trends for Minnesota from the year 2015 to 2020
+   - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
+   - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
+   - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 
 [Back to Main Readme](./Readme.md)
