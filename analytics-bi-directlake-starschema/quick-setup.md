@@ -16,9 +16,43 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
 
 ## 🏗️ Architecture
 
-![quickinstall](./Images/quickinstall.png)
+![quickinstall](./Images/quickinstall-dataagent.png)
 
-### *Pre-Requisite*: Fabric-enabled Workspace
+Here’s the updated section with your requested addition:
+
+***
+
+### **Prerequisites**
+
+*   **Fabric-enabled Workspace**
+*   [**Fabric Data Agent**](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) (Optional)    
+    *   The installation script attempts to create a Fabric Data Agent by default. If this step fails due to tenant settings, all other components will still install successfully. Any Data Agent creation errors can be safely ignored.
+    * If you prefer to skip the Data Agent creation step, open the installation notebook after importing it into your Fabric workspace and set the `invoke_data_agent_create_step` variable to `False` in the first code cell.
+    *   **Fabric Trial Capacity cannot be used for Fabric Data Agent**
+
+#### ⚙️ **Fabric Data Agent Settings**
+
+To enable Data Agent functionality, configure the following settings before running the installation Notebook:
+
+1.  **Copilot and Azure OpenAI** *(Required)*
+    *   **Setting**: *“Users can use Copilot and other features powered by Azure OpenAI”*
+    *   **Scope**: Enable at **Tenant** or **Fabric Capacity** Level, can be scoped to specific users via **Entra Groups**
+
+2.  **Data Residency** *(Optional – only if Fabric Capacity is outside US/EU data boundary)*
+    *   **Settings**:
+        *   *“Data sent to Azure OpenAI can be processed outside your capacity's geographic region...”*
+        *   *“Data sent to Azure OpenAI can be stored outside your capacity's geographic region...”*
+    *   **Scope**: Enable at **Tenant** or **Capacity** Level, can be scoped to specific users via **Entra Groups**
+
+3.  **Data Agent Creation** *(Required)*
+    *   **Setting**: *“Users can create and share Data agent item types”*
+    *   **Scope**: Must be enabled at **Tenant level**; can be scoped to specific users via **Entra Groups**
+
+Relevant Documentation Links:
+* https://learn.microsoft.com/en-us/fabric/data-science/data-agent-tenant-settings
+* https://learn.microsoft.com/en-us/fabric/fundamentals/copilot-fabric-overview#available-regions
+
+
 
 ## Steps to setup demo in your own environment
 
@@ -44,14 +78,6 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
 4. Monitor Pipeline Execution - Navigate to the **Fabric Data Factory pipeline**, then from Run menu click **“View Run History”** to see the execution history and click the Activity Name **cms_pipeline** to monitor the execution details. Alternatively you can use Fabric Monitor Hub to monitor the pipeline execution.
 
   ![Pipeline Run](./Images/monitor_pipeline_run.jpg)
-
-***
-
-## Create Fabric Data Agent and query from Azure AI Foundry Agent - Optional Step
-
-Next you you can go through steps to create a **Fabric Data Agent** that utilizes the Lakehouse Tables from the solution. The agent enables **natural language queries using text-to-SQL**, allowing users to interact with data conversationally. Also find instructions for querying the Fabric Data Agent from an **Azure AI Foundry Agent**. NOTE: This is a manul step which we expect to automate in future.
-
-[Faric Data Agent Creation Step](./docs/5-CreateAISkill.md) 
 
 ***
 
