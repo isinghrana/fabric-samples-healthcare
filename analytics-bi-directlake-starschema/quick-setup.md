@@ -16,11 +16,9 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
 
 ![quickinstall](./Images/quickinstall-dataagent.png)
 
-Here’s the updated section with your requested addition:
-
 ***
 
-Contents:  
+**Table of Contents**:  
   - [Prerequisites](#prerequisites)
   - [Steps to setup demo in your own environment](#steps-to-setup-demo-in-your-own-environment)
   - [Fabric Data Agent - Sample Questions to Chat with your data](#fabric-data-agent---sample-questions-to-chat-with-your-data)
