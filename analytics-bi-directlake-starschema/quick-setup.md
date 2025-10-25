@@ -12,7 +12,7 @@ This guide walks you through installing the complete solution, which includes: *
 
 For detailed instructions, follow the step-by-step guide below or watch this quick Youtube video https://www.youtube.com/watch?v=RgQu1CL9QfM.
 
-## 🏗️ Architecture
+## Architecture
 
 ![quickinstall](./Images/quickinstall-dataagent.png)
 
