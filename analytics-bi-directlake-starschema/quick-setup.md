@@ -1,8 +1,6 @@
-# Quick Install - Fabric Lakehouse and Power BI Direct Lake Connector with 275 Million Rows
+# Quick Install - End-to-End Fabric Analytic Sample - Lakehouse, Pipeline, Notebooks, Power BI Report and Data Agent 
 
 [Back to Main Readme](./Readme.md)
-
-## 🚀 End-to-End Fabric Demo Setup Guide
 
 This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model, Report and Data Agent**
 
@@ -22,7 +20,15 @@ Here’s the updated section with your requested addition:
 
 ***
 
-### **Prerequisites**
+Contents:  
+  - [Prerequisites](#prerequisites)
+  - [Steps to setup demo in your own environment](#steps-to-setup-demo-in-your-own-environment)
+  - [Fabric Data Agent - Sample Questions to Chat with your data](#fabric-data-agent---sample-questions-to-chat-with-your-data)
+  - [Fabric Lakehouse SQL Endpoint - Sample SQL Queries](#fabric-lakehouse-sql-endpoint---sample-sql-queries)
+
+***
+
+## Prerequisites
 
 *   **Fabric-enabled Workspace**
 *   [**Fabric Data Agent**](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) (Optional)    
@@ -30,7 +36,7 @@ Here’s the updated section with your requested addition:
     * If you prefer to skip the Data Agent creation step, open the installation notebook after importing it into your Fabric workspace and set the `invoke_data_agent_create_step` variable to `False` in the first code cell.
     *   **Fabric Trial Capacity cannot be used for Fabric Data Agent**
 
-#### ⚙️ **Fabric Data Agent Settings**
+### ⚙️ Fabric Data Agent Settings
 
 To enable Data Agent functionality, configure the following settings before running the installation Notebook:
 
@@ -52,7 +58,7 @@ Relevant Documentation Links:
 * https://learn.microsoft.com/en-us/fabric/data-science/data-agent-tenant-settings
 * https://learn.microsoft.com/en-us/fabric/fundamentals/copilot-fabric-overview#available-regions
 
-
+***
 
 ## Steps to setup demo in your own environment
 
@@ -79,18 +85,46 @@ Relevant Documentation Links:
 
   ![Pipeline Run](./Images/monitor_pipeline_run.jpg)
 
+Once the Pipeline job completes the solution is available to explore Reports, run SQL Queries, generate Reports from the Semantic Model using Power BI Copilot as well as chat with your data using Fabric Data Agent. The subsequent sections share sample questions and queries that you can use with Fabric Data Agent and Lakehouse SQL Endpoint.
+
 ***
 
-Once the Pipeline job has completed execution solution is available to explore Reports, run SQL Queries, generate Reports from the Semantic Model using Power BI Copilot as well as chat with your data using Fabric Data Agent.
+## Fabric Data Agent - Sample Questions to Chat with your data
 
-### Fabric Data Agent
-
-Following are a handful of example queries to use with Fabric Data Agent:
    - What are the top 5 states by total drug costs?
    - What are the top 5 states by total drug costs for the year 2020?
    - Please share drug cost trends for Minnesota from the year 2015 to 2020
    - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
+
+***
+
+## Fabric Lakehouse SQL Endpoint - Sample SQL Queries
+
+```sql
+-- Drug Cost for a State by Year
+SELECT c.Year, SUM(c.Tot_Drug_Cst) AS Total_Drug_Cost
+FROM cms_provider_drug_costs_star c
+JOIN cms_provider_dim_geography g ON c.geo_key = c.geo_key
+WHERE g.Prscrbr_State_Abrvtn = 'MN'
+GROUP BY Year
+ORDER BY Year;
+
+-- Total Drug Cost by Year
+SELECT c.Year, SUM(c.Tot_Drug_Cst) AS Total_Drug_Cost
+FROM cms_provider_drug_costs_star c
+GROUP BY Year
+ORDER BY Year;
+
+--Total Drug Cost by State for the Year 2021
+SELECT g.Prscrbr_State_Abrvtn, SUM(c.Tot_Drug_Cst) AS Total_Drug_Cost
+FROM cms_provider_drug_costs_star c
+JOIN cms_provider_dim_geography g ON c.geo_key = g.geo_key
+WHERE Year = 2021
+GROUP BY c.Year, g.Prscrbr_State_Abrvtn;
+```
+
+---
 
 [Back to Main Readme](./Readme.md)
