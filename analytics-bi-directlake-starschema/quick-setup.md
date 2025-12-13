@@ -14,7 +14,7 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
 
 ## Architecture
 
-![quickinstall](./Images/quickinstall-dataagent.png)
+![quickinstall](./Images/Quick_Logical_Option.png)
 
 ***
 
