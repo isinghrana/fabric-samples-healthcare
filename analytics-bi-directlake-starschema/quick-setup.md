@@ -2,7 +2,7 @@
 
 [Back to Main Readme](./Readme.md)
 
-This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model, Report and Data Agent**
+This guide walks you through installing the complete solution, which includes: **Lakehouse, Pipeline, Notebooks, Semantic Model, Report and Data Agents**
 
 ### ✅ Installation in Just 3 Steps
 
@@ -32,9 +32,9 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
 *   [**Fabric Data Agent**](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) (Optional)    
     *   The installation script attempts to create a Fabric Data Agent by default. If this step fails due to tenant settings, all other components will still install successfully. Any Data Agent creation errors can be safely ignored.
     * If you prefer to skip the Data Agent creation step, open the installation notebook after importing it into your Fabric workspace and set the `invoke_data_agent_create_step` variable to `False` in the first code cell.
-    *   **Fabric Trial Capacity cannot be used for Fabric Data Agent**
+    *   **Fabric Trial Capacity cannot be used for Fabric Data Agents**
 
-### ⚙️ Fabric Data Agent Settings
+### ⚙️ Fabric Data Agents Settings
 
 To enable Data Agent functionality, configure the following settings before running the installation Notebook:
 
@@ -87,12 +87,12 @@ Once the Pipeline job completes the solution is available to explore Reports, ru
 
 ***
 
-## Fabric Data Agent - Sample Questions to Chat with your data
+## Fabric Data Agents - Sample Questions to Chat with your data
 
    - What are the top 5 states by total drug costs?
    - What are the top 5 states by total drug costs for the year 2020?
    - Please share drug cost trends for Minnesota from the year 2015 to 2020
-   - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
+   - Show the top 10 quinolone drugs prescribed by internists in florida in 2023
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 
