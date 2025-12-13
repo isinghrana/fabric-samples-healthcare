@@ -21,7 +21,7 @@ The solution follows the **Medallion Architecture**:
 
 Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
 
-![analytics-bi-directlake](./Images/overall_arch.png)
+![analytics-bi-directlake](./Images/Classic_Logical_Option.png)
 
 ---
 
