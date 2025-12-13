@@ -3,7 +3,7 @@
 
 ## 🚀 Overview
 
-This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**.
+This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse or Warehouse**.
 
 The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
@@ -49,7 +49,7 @@ Run a single notebook to set up the full environment with following components d
 - Data Factory Pipeline
 - Semantic Model
 - Power BI Report
-- Data Agent
+- Data Agents
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
