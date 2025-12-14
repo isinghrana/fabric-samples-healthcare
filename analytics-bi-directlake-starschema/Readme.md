@@ -49,7 +49,7 @@ Run a single notebook to set up the full environment with following components d
 - Data Factory Pipeline
 - Semantic Model
 - Power BI Report
-- Data Agents
+- Data Agents for Lakehouse and Semantic Model
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
