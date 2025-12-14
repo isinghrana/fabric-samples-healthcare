@@ -19,7 +19,7 @@ The solution follows the **Medallion Architecture**:
 - **Silver Layer**: Cleaned and flattened Delta Parquet tables
 - **Gold Layer**: Star schema tables optimized for Power BI reporting
 
-Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
+Additionally, it integrates **Fabric Data Agents** enabling **Generative AI-powered natural language queries**.
 
 ![analytics-bi-directlake](./Images/Classic_Logical_Option.png)
 
