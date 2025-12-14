@@ -89,7 +89,7 @@ Once the Pipeline job completes the solution is available to explore Reports, ru
 
 ## Fabric Data Agents - Sample Questions to Chat with your data
 
-The quick setup will install two Fabric Data Agents. One will work with the Gold layer of the Lakehouse and the other will work with the Semantic Model. You can then compare the results and performance of both options.
+The quick setup will install two Fabric Data Agents. One will work with the Gold layer of the Lakehouse and the other will work with the Semantic Model. You can then compare the results and performance of both options. A few sample questions include:
    - What are the top 5 states by total drug costs?
    - What are the top 5 states by total drug costs for the year 2020?
    - Please share drug cost trends for Minnesota from the year 2015 to 2020
