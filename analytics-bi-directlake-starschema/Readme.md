@@ -73,7 +73,7 @@ Follow the step-by-step instructions to manually set up the solution components:
 📘 **Setup Guide**: [`manual-setup.md`](./manual-setup.md)
 
 > ⏱️ **Total setup time**: ~30–60 minutes depending on experience  
-> 💡 **Recommended for**: Users who want to explore the architecture and learn by doing
+> 💡 **Recommended for**: Users who want to explore the architecture and learn by doing or Users who want to try the Fabric Warehouse
 
 
 
