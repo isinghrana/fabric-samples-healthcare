@@ -69,6 +69,7 @@ Follow the step-by-step instructions to manually set up the solution components:
 - **Data Factory pipeline** runs non-interactively to load data which takes about **20–45 minutes**
 - **Semantic Model** creation requires additional manual effort and is the most time-intensive part
 - A **Power BI report template** is already included to help accelerate report building
+- **Fabric Data Agents** for the Lakehouse, Warehouse, and Semantic Model
 
 📘 **Setup Guide**: [`manual-setup.md`](./manual-setup.md)
 
