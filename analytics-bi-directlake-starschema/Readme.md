@@ -3,7 +3,7 @@
 
 ## 🚀 Overview
 
-This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse or Warehouse**.
+This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse or Warehouse**. The **Semantic Model** is also optimized for Power BI Copilot, including the standalone version that functions as a SaaS MCP server for chatting on all of your content and data.
 
 The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
@@ -32,7 +32,7 @@ This demo provides hands-on experience with:
 - **Data engineering** using Fabric Spark and Data Pipelines
 - **Power BI Direct Lake Mode** for querying large-scale data
 - **Medallion Lakehouse Architecture** (Bronze → Silver → Gold)
-- **Natural Language querying** using **Fabric Data Agents**
+- **Natural Language querying** using **Fabric Data Agents** and **Power BI Copilot**
 
 ---
 
@@ -47,7 +47,7 @@ Run a single notebook to set up the full environment with following components d
 - Lakehouse
 - Notebooks
 - Data Factory Pipeline
-- Semantic Model
+- Semantic Model (optimized for Power BI Copilot and Fabric Data Agents)
 - Power BI Report
 - Data Agents for Lakehouse and Semantic Model
 
