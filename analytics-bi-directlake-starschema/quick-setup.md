@@ -1,4 +1,4 @@
-# Quick Install - End-to-End Fabric Analytic Sample - Lakehouse, Pipeline, Notebooks, Power BI Report and Data Agent 
+# Quick Install - End-to-End Fabric Analytic Sample - Lakehouse, Pipeline, Notebooks, Power BI Report and Data Agents 
 
 [Back to Main Readme](./Readme.md)
 
