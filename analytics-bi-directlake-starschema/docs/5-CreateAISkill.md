@@ -2,6 +2,7 @@
 
 A video walking through the process below (for the Lakehouse/Warehouse Data Agent) and giving a demonstration of the capabilities of a Data Agent using the contents of this repo can be found here:  (Note Data Agents were previously named "AI Skills". Any reference to "AI Skills" in this video refer to "Data Agents")    https://youtu.be/ftout8UX4lg 
 
+### Create Lakehouse or Warehouse Fabric Data Agent
 1. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
 2. Next, select the Fabric Lakehouse or Warehouse that you would like to query using the Data Agent. If you followed step 2a and deployed a star schema in the Lakehouse select **cms_lakehouse**, and if you followed step 2b and deployed a star schema in the warehouse select **cms_warehouse.** Then click **Confirm.**
 3. In the vertical panel on the left hand side of the screen, select the five tables **cms_provider_dim_drug**, **cms_provider_dim_provider**, **cms_provider_dim_geography**, **cms_provider_dim_year**, and **cms_provider_drug_costs_star**. The boxes next to the table names should be checked green. 
