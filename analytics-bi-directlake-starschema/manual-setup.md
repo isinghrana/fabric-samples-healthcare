@@ -38,6 +38,6 @@ Steps are manual at this time but in future plan to automate for quick setup. We
 
 ***
 
-### Step 5: [Create Fabric Data Agent and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) 
-Create a Fabric Data Agent that uses the new star schema design in the Lakehouse or Warehouse. The Data Agent will enable natural language queries with text-to-SQL for your new end-to-end Fabric solution. Optionally, instructions for querying the Fabric Data Agent from an Azure AI Foundry Agent are at the end of this section.
+### Step 5: [Create Fabric Data Agents and query from Azure AI Foundry Agent](./docs/5-CreateAISkill.md) 
+Create Fabric Data Agents that uses the new star schema design in the Lakehouse, Warehouse, or Semantic Model. The Data Agent will enable natural language queries with text-to-SQL or text-to-DAX for your new end-to-end Fabric solution. Optionally, instructions for querying the Fabric Data Agent from an Azure AI Foundry Agent are at the end of this section.
 
