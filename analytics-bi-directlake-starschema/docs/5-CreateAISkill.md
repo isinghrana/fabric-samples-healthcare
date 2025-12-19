@@ -1,4 +1,4 @@
-## Create Fabric Data Agents
+## Create Fabric Data Agents and prep Fabric Semantic Model for Power BI Copilot
 
 A video walking through the process below (for the Lakehouse/Warehouse Data Agent) and giving a demonstration of the capabilities of a Data Agent using the contents of this repo can be found here:  (Note Data Agents were previously named "AI Skills". Any reference to "AI Skills" in this video refer to "Data Agents")    https://youtu.be/ftout8UX4lg 
 
