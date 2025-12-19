@@ -1,6 +1,6 @@
-## Create Fabric Data Agent
+## Create Fabric Data Agents
 
-A video walking through the process below and giving a demonstration of the capabilities of a Data Agent using the contents of this repo can be found here:  (Note Data Agents were previously named "AI Skills". Any reference to "AI Skills" in this video refer to "Data Agents")    https://youtu.be/ftout8UX4lg 
+A video walking through the process below (for the Lakehouse/Warehouse Data Agent) and giving a demonstration of the capabilities of a Data Agent using the contents of this repo can be found here:  (Note Data Agents were previously named "AI Skills". Any reference to "AI Skills" in this video refer to "Data Agents")    https://youtu.be/ftout8UX4lg 
 
 1. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
 2. Next, select the Fabric Lakehouse or Warehouse that you would like to query using the Data Agent. If you followed step 2a and deployed a star schema in the Lakehouse select **cms_lakehouse**, and if you followed step 2b and deployed a star schema in the warehouse select **cms_warehouse.** Then click **Confirm.**
