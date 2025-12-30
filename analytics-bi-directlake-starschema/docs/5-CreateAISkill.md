@@ -30,7 +30,7 @@ A video walking through the process below (for the Lakehouse/Warehouse Data Agen
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 17. Words that the Data Agent demo will understand can be found in the text you pasted in **Agent instructions** such as ace inhibitors, ARBs, quinolones, internists, etc.
-80. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
+18. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
 
 *** 
 [Back to main Readme](../Readme.md)
