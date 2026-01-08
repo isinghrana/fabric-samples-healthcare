@@ -34,7 +34,7 @@ A video walking through the process below (for the Lakehouse/Warehouse Data Agen
 17. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk
 
 ### Example of query time comparison
-Below is a chart of some testing between the Lakehouse Data Agent and the Semantic Model Data Agent. I (Greg Beaumont) also tested a smaller Semantic Model Data Agent with a few hundred thousand rows and one year of data. The results were much better but the Lakehouse Data agent was still faster. 
+Below is a chart of some query testing (in seconds) between the Lakehouse Data Agent and the Semantic Model Data Agent. I (Greg Beaumont) also tested a smaller Semantic Model Data Agent with a few hundred thousand rows and one year of data. The results were much better but the Lakehouse Data agent was still faster. 
 ![analytics-bi-directlake](../Images/semanticvslakehouseagent.png)
 
 *** 
