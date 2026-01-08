@@ -15,22 +15,23 @@ A video walking through the process below (for the Lakehouse/Warehouse Data Agen
 
 ### Optimize Semantic Model for Power BI Copilot and Fabric Data Agent
 8. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click **Prep data for AI**.
-10. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](../scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
-11. You can come back to this editor in the future to experiment with new instrutions and **Verified answers**. Your Semantic Model is now prepped for AI. 
+![analytics-bi-directlake](./Images/prepforai.png)
+9. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](../scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
+10. You can come back to this editor in the future to experiment with new instrutions and **Verified answers**. Your Semantic Model is now prepped for AI. 
 
 ### Create Semantic Model Fabric Data Agent
-12. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
-13. Next, select the Semantic Model that you would like to query using the Data Agent. Then click **Confirm.**
-14. In the vertical panel on the left hand side of the screen, select all five tables. The boxes next to the table names should be checked green. 
-15. Click the **Publish** button in the menu bar and your Fabric Data Agent is now ready to test with natural language queries
+11. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
+12. Next, select the Semantic Model that you would like to query using the Data Agent. Then click **Confirm.**
+13. In the vertical panel on the left hand side of the screen, select all five tables. The boxes next to the table names should be checked green. 
+14. Click the **Publish** button in the menu bar and your Fabric Data Agent is now ready to test with natural language queries
 
 ### Test both Fabric Data Agents
-16. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
+15. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
    - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
-17. Words that the Data Agent demo will understand can be found in the text you pasted in **Agent instructions** such as ace inhibitors, ARBs, quinolones, internists, etc.
-18. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
+16. Words that the Data Agent demo will understand can be found in the text you pasted in **Agent instructions** such as ace inhibitors, ARBs, quinolones, internists, etc.
+17. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk  
 
 *** 
 [Back to main Readme](../Readme.md)
