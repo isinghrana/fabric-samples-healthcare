@@ -15,7 +15,7 @@ A video walking through the process below (for the Lakehouse/Warehouse Data Agen
 
 ### Optimize Semantic Model for Power BI Copilot and Fabric Data Agent
 8. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click **Prep data for AI**.
-![analytics-bi-directlake](./Images/2awarehouse.png)
+![analytics-bi-directlake](../Images/prepforai.png)
 9. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](../scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
 10. You can come back to this editor in the future to experiment with new instrutions and **Verified answers**. Your Semantic Model is now prepped for AI. 
 
