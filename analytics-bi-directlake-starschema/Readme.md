@@ -3,7 +3,7 @@
 
 ## 🚀 Overview
 
-This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**.
+This solution demonstrates the capabilities of **Microsoft Fabric** using over **275 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse or Warehouse**. The **Semantic Model** is also optimized for Power BI Copilot, including the standalone version that functions as a SaaS MCP server for chatting on all of your content and data.
 
 The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
@@ -19,9 +19,9 @@ The solution follows the **Medallion Architecture**:
 - **Silver Layer**: Cleaned and flattened Delta Parquet tables
 - **Gold Layer**: Star schema tables optimized for Power BI reporting
 
-Additionally, it integrates the **Fabric Data Agent** enabling **Generative AI-powered natural language queries**.
+Additionally, it integrates **Fabric Data Agents** enabling **Generative AI-powered natural language queries**.
 
-![analytics-bi-directlake](./Images/overall_arch.png)
+![analytics-bi-directlake](./Images/Classic_Logical_Option.png)
 
 ---
 
@@ -32,7 +32,7 @@ This demo provides hands-on experience with:
 - **Data engineering** using Fabric Spark and Data Pipelines
 - **Power BI Direct Lake Mode** for querying large-scale data
 - **Medallion Lakehouse Architecture** (Bronze → Silver → Gold)
-- **Natural Language querying** using **Fabric Data Agents**
+- **Natural Language querying** using **Fabric Data Agents** and **Power BI Copilot**
 
 ---
 
@@ -47,9 +47,9 @@ Run a single notebook to set up the full environment with following components d
 - Lakehouse
 - Notebooks
 - Data Factory Pipeline
-- Semantic Model
+- Semantic Model (optimized for Power BI Copilot and Fabric Data Agents)
 - Power BI Report
-- Data Agent
+- Data Agents for Lakehouse and Semantic Model
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
@@ -69,11 +69,12 @@ Follow the step-by-step instructions to manually set up the solution components:
 - **Data Factory pipeline** runs non-interactively to load data which takes about **20–45 minutes**
 - **Semantic Model** creation requires additional manual effort and is the most time-intensive part
 - A **Power BI report template** is already included to help accelerate report building
+- **Fabric Data Agents** for the Lakehouse, Warehouse, and Semantic Model
 
 📘 **Setup Guide**: [`manual-setup.md`](./manual-setup.md)
 
 > ⏱️ **Total setup time**: ~30–60 minutes depending on experience  
-> 💡 **Recommended for**: Users who want to explore the architecture and learn by doing
+> 💡 **Recommended for**: Users who want to explore the architecture and learn by doing or Users who want to try the Fabric Warehouse
 
 
 
