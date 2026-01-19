@@ -17,7 +17,7 @@ The solution follows the **Medallion Architecture**:
 
 - **Bronze Layer**: Raw CSV files downloaded from CMS
 - **Silver Layer**: Cleaned and flattened Delta Parquet tables
-- **Gold Layer**: Star schema tables optimized for Power BI reporting
+- **Gold Layer**: Star schema tables optimized for Power BI reporting and Power BI Copilot
 
 Additionally, it integrates **Fabric Data Agents** enabling **Generative AI-powered natural language queries**.
 
@@ -40,7 +40,7 @@ This demo provides hands-on experience with:
 
 ### ✅ Option 1: Quick Setup (Automated)
 
-Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes.
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes. The Quick Setup will install everything including the Lakehouse Data Agent, but the Semantic Model Data Agent will need to be added manually. Currently the AI Instructions for the Semantic Model Data Agent require large semantic model storage format (a Workspace setting), and are still in Public Preview. We may add these instructions and the Semantic Model Data Agent to the Quick Setup once everything is generally available.
 
 Run a single notebook to set up the full environment with following components deployed:
 
@@ -49,7 +49,7 @@ Run a single notebook to set up the full environment with following components d
 - Data Factory Pipeline
 - Semantic Model (optimized for Power BI Copilot and Fabric Data Agents)
 - Power BI Report
-- Data Agents for Lakehouse and Semantic Model
+- Data Agent for Lakehouse
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
