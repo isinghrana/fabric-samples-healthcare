@@ -97,7 +97,7 @@ The quick setup will install a Lakehouse Fabric Data Agent that will work with t
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 
-You can easily install the Semantic Model Data Agent from the final step of the manual setup process. You will then have both the Lakehouse and Semantic Model versions of Data Agents for comparison. The first step is to add the AI Instructions to the semantic model, and you can start at this link: https://github.com/isinghrana/fabric-samples-healthcare/blob/dec2025updates/analytics-bi-directlake-starschema/docs/5-CreateAISkill.md#optimize-semantic-model-for-power-bi-copilot-and-fabric-data-agent 
+You can easily install the Semantic Model Data Agent from the final step of the manual setup process. You will then have both the Lakehouse and Semantic Model versions of Data Agents for comparison. The first step is to add the AI Instructions to the semantic model, and you can start at this link: [`quick-setup.md`](./docs/5-CreateAISkill.md#optimize-semantic-model-for-power-bi-copilot-and-fabric-data-agent) https://github.com/isinghrana/fabric-samples-healthcare/blob/dec2025updates/analytics-bi-directlake-starschema/docs/5-CreateAISkill.md#optimize-semantic-model-for-power-bi-copilot-and-fabric-data-agent 
 ***
 
 ## Fabric Lakehouse SQL Endpoint - Sample SQL Queries
