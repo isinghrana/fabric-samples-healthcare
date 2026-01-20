@@ -87,9 +87,9 @@ Once the Pipeline job completes the solution is available to explore Reports, ru
 
 ***
 
-## Fabric Data Agents - Sample Questions to Chat with your data
+## Fabric Data Agent - Sample Questions to Chat with your data
 
-The quick setup will install two Fabric Data Agents. One will work with the Gold layer of the Lakehouse and the other will work with the Semantic Model. You can then compare the results and performance of both options. A few sample questions include:
+The quick setup will install a Lakehouse Fabric Data Agent that will work with the Gold layer of the Lakehouse. A few sample questions include:
    - What are the top 5 states by total drug costs?
    - What are the top 5 states by total drug costs for the year 2020?
    - Please share drug cost trends for Minnesota from the year 2015 to 2020
@@ -97,6 +97,7 @@ The quick setup will install two Fabric Data Agents. One will work with the Gold
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 
+You can easily install the Semantic Model Data Agent from the final step of the manual setup process. You will then have both the Lakehouse and Semantic Model versions of Data Agents for comparison. The first step is to add the AI Instructions to the semantic model, and you can start at this link: https://github.com/isinghrana/fabric-samples-healthcare/blob/dec2025updates/analytics-bi-directlake-starschema/docs/5-CreateAISkill.md#optimize-semantic-model-for-power-bi-copilot-and-fabric-data-agent 
 ***
 
 ## Fabric Lakehouse SQL Endpoint - Sample SQL Queries
