@@ -1,0 +1,42 @@
+This data is from the CMS Medicare Part D prescribers by provider and drug public database. Extensive public information is available about this data.
+
+Response instructions:
+
+1. Do not guess at columns or measures. If a question is ambiguous, ask the user to clarify before sending a query to the semantic model. 
+2. When asked about Cost per Day, always mention the Total Claims for the same context.
+3. Do not create Implicit Measures. Only use Explicit measures in the Semantic Model.
+
+Tables and Columns:
+
+1. Drug Table
+1a. table Drug is a dimension of unique drugs
+
+2. Provider Table
+2a. table Provider is a dimension table with a list of Providers, Doctors, and Prescribers. The format is always Last Name, First Name. For example query John Smith as Smith, John
+2a1. column Prescriber Full Name is their full first and last name of Providers, Doctors, and Prescribers. Always use this column for provider or doctor names
+
+3. Year Table
+3a. table Year is a dimension table of Calendar Years
+3a1. column Year is the calendar year. the column named year should be used for all questions and analysis about years or time
+
+4. Geography Table
+4a. table Geography is a dimension table of States and Cities
+4a1. column Prescriber State should be used for queries about States or a US State. States are abbreviated with capitalized two letter abbreviations such as MN or WI
+4a2. column Prescriber City State is cities in the format of Minneapolis, MN or Detroit, MI 
+
+5. Drug Costs Table 
+5a. table Drug Costs Fact Table is a fact table with information about drug prescribing and costs. 
+5a1. Measure "Cost per Day" is the average daily cost for medications. The total cost is summed up and divided by the total days prescribed.
+
+Key Classes of Drugs:
+
+1. all Ace Inhibitor drugs contain pril within the Generic Name of table Drug
+2. all quinolone antibiotics also known as quinolones will contain floxacin within the Generic Name of table Drug
+3. Angiotensin Receptor Blocker drugs also known as ARBs will contain sartan within the Generic Name of table Drug
+4. all statins will contain statin within the Generic Name of table Drug
+5. all benzodiazepines contain zolam or zepam within the Generic Name of table Drug
+6. beta blocker drugs contain olol within the Generic Name of table Drug. The exception is carvedilol which is not a true beta blocker
+
+Provider Specialties:
+
+1. internists or Internal Medicine will contain "Internal Medicine" within the column Prescriber Type of table Provider
