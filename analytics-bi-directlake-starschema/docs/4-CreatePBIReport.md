@@ -11,4 +11,4 @@ The Power BI Report that connects to the Direct Lake Semantic Model shoul look l
 ![analytics-bi-directlake](../Images/ReportExample.png) 
 
 *** 
-[Back to main Readme](../Readme.md#step-4-create-reports-using-power-bi-or-connect-using-excel----steps-are-manual-at-this-time-but-in-future-plan-to-automate-for-quick-setup-) 
+[Back to main Readme](../manual-setup.md#step-4-create-reports-using-power-bi-or-connect-using-excel----steps-are-manual-at-this-time-but-in-future-plan-to-automate-for-quick-setup-) 

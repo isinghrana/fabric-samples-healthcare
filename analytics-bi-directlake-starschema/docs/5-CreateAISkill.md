@@ -1,24 +1,42 @@
-## Create Fabric AI Skill
+## Create Fabric Data Agents and prep Fabric Semantic Model for Power BI Copilot
 
-A video walking through the process below and giving a demonstration of the capabilities of AI Skill using the contents of this repo can be found here: https://youtu.be/ftout8UX4lg 
+A video walking through the process below (for the Lakehouse/Warehouse Data Agent) and giving a demonstration of the capabilities of a Data Agent using the contents of this repo can be found here:  (Note Data Agents were previously named "AI Skills". Any reference to "AI Skills" in this video refer to "Data Agents")    https://youtu.be/ftout8UX4lg 
 
-1. You can create a new Fabric AI Skill while in your Workspace by clicking **+ New item** > **AI Skill (preview)**. Give the AI Skill a name and click **Create**.
-2. Next, select the Fabric Lakehouse or Warehouse that you would like to query using the AI Skill. If you followed step 2a and deployed a star schema in the Lakehouse select **cms_lakehouse**, and if you followed step 2b and deployed a star schema in the warehouse select **cms_warehouse.** Then click **Confirm.**
-3. In the vertical panel on the left hand side of the screen, select the five tables **cms_provider_dim_drug**, **cms_provider_dim_provider**, **cms_provider_dim_drug**, **cms_provider_dim_geography**, **year**, and **cms_provider_drug_costs_star**. The boxes next to the table names should be checked green. Click **Get Started** in the middle of the screen.
-4. In the column on the right side of the page named **Model behavior** you will see a setting for **SQL query variations** at the top. I usually leave it at the default setting of **3** but you can theoretically 1) increase it for more back-end iterations of query versions from the underlying LLM (Azure OpenAI **L**arge **L**anguage **M**odel), or 2) decrease it for fewer query variations. Fabric CU compute usage will theoretically go up and down as you change the values, too.
-5. The setting on the right hand side for **Notes for model** will give instructions to the LLM that provide context or metadata for the queries. This text is similar to a System message in Azure AI Foundry Chat. Paste in text from the example in the repo [AI_Skills_01_NotesForModel.txt](../scripts/AI_Skills_01_NotesForModel.txt) for initial testing. This example text has been modified and optimized a few times, but you can also experiment with changing it and improving the results. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along! 
-6. Download the .json file [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)
-7. The last setting in the right hand column is titled **Example SQL queries**. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json) 
+### Create Lakehouse or Warehouse Fabric Data Agent
+1. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
+2. Next, select the Fabric Lakehouse or Warehouse that you would like to query using the Data Agent. If you followed step 2a and deployed a star schema in the Lakehouse select **cms_lakehouse**, and if you followed step 2b and deployed a star schema in the warehouse select **cms_warehouse.** Then click **Confirm.**
+3. In the vertical panel on the left hand side of the screen, select the five tables **cms_provider_dim_drug**, **cms_provider_dim_provider**, **cms_provider_dim_geography**, **cms_provider_dim_year**, and **cms_provider_drug_costs_star**. The boxes next to the table names should be checked green. 
+4. Click the button at the top of the screen,  **AI instructions**. This will open a pane on the right where you can give instructions to the LLM that provide context or metadata for the queries. This text is similar to a System message in Azure AI Foundry Chat. Paste in text from the example in the repo for Lakehouse and Warehouse [AI_Skills_01_NotesForModel.txt](../scripts/AI_Skills_01_NotesForModel.txt) for initial testing. This example text has been modified and optimized a few times, but you can also experiment with changing it and improving the results. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along! Press the X in the top corner or select **AI instructions** again to hide the pane.  
+5. Download the .json file [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)
+6. Now press the **Example queries** button at the top to enable the option for supplying sample sql queries. Click the pencil icon next to that heading. Click **Import from json** and Upload the file you just downloaded at [AI_Skills_02_SQL_Examples.json](../scripts/AI_Skills_02_SQL_Examples.json)   Click the X to close this window and the X again to close the Example queries pane.
+7. Click the **Publish** button in the menu bar and your Fabric Data Agent is now ready to test with natural language queries, and should look like this.  Red boxes show the 5 tables we selected plus the AI Instructions and Example queries options we used.
 
-Your Fabric AI Skill is now ready to test with natural language queries, and should look like this:
+<img width="1308" height="909" alt="image" src="https://github.com/user-attachments/assets/f3971fa9-47a0-4382-b96b-494f29e2296f" />
 
-![analytics-bi-directlake](../Images/AIskills_screenshot.png) 
+### Optimize Semantic Model for Power BI Copilot and Fabric Data Agent
+A demo of the optimized Semantic Model and a Semantic Model Data Agent can be found here: https://youtu.be/IImV292givo 
+8. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click **Prep data for AI**. You may need to enable Large Semantic Models, instructions for which can be found here: https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-premium-large-models#enable-large-semantic-models 
+![analytics-bi-directlake](../Images/prepforai.png)
+9. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](../scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
+10. You can come back to this editor in the future to experiment with new instrutions and **Verified answers**. Your Semantic Model is now prepped for AI. 
 
-8. A few examples of queries to try include:
+### Create Semantic Model Fabric Data Agent
+11. You can create a new Fabric Data Agent while in your Workspace by clicking **+ New item** > **Data Agent (preview)**. Give the Data Agent a name and click **Create**.
+12. Next, select the Semantic Model that you would like to query using the Data Agent. Then click **Confirm.**
+13. In the vertical panel on the left hand side of the screen, select all five tables. The boxes next to the table names should be checked green. 
+14. Click the **Publish** button in the menu bar and your Fabric Data Agent is now ready to test with natural language queries
+
+### Test both Fabric Data Agents
+15. A few examples of queries to try include.  Copy and paste these into the agent query box to try them.
    - Show the top 10 quinolone drugs prescribed by internists in florida in 2022
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
-10. Words that the AI Skills demo will understand can be found in the text you pasted in **Notes for model** such as ace inhibitors, ARBs, quinolones, internists, etc. 
+16. Words that the Data Agent demo will understand can be found in the text you pasted in **Agent instructions** such as ace inhibitors, ARBs, quinolones, internists, etc.
+17. Fabric Data Agents can be queried from Azure AI Foundry Agents or Copilot Studio to provide good math within Agentic solutions. The video at the following link walks you through the process for connecting to the Microsoft Fabric Data Agent created in this repo from an Azure AI SKill Agent: https://youtu.be/yQkbd1f6JFk
+
+### Example of query time comparison
+Below is a chart of some query testing (in seconds) between the Lakehouse Data Agent and the Semantic Model Data Agent. I (Greg Beaumont) also tested a smaller Semantic Model Data Agent with a few hundred thousand rows and one year of data. The results were much better but the Lakehouse Data agent was still faster. 
+![analytics-bi-directlake](../Images/semanticvslakehouseagent.png)
 
 *** 
-[Back to main Readme](../Readme.md#step-5-create-AI-skill)
+[Back to main Readme](../Readme.md)
