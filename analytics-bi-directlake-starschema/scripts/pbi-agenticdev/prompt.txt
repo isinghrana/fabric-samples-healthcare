@@ -1,0 +1,8 @@
+
+Prompt 1: 
+Connect to semantic model '<<replace_with_semantic_model>>' in Fabric Workspace '<<Fabric_Workspace_Name>>'
+
+
+Prompt 2:
+Please use the instructions from `.\Semantic_Model_Implementation_Guidance.md` to build out a production ready semantic model which can be easily used to generate reports 
+
