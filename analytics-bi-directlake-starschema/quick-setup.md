@@ -23,6 +23,7 @@ For detailed instructions, follow the step-by-step guide below or watch this qui
   - [Steps to setup demo in your own environment](#steps-to-setup-demo-in-your-own-environment)
   - [Fabric Data Agent - Sample Questions to Chat with your data](#fabric-data-agent---sample-questions-to-chat-with-your-data)
   - [Fabric Lakehouse SQL Endpoint - Sample SQL Queries](#fabric-lakehouse-sql-endpoint---sample-sql-queries)
+  - [Power BI Copilot - Report Creation Sample Prompt](#power-bi-copilot---report-creation-sample-prompt)
 
 ***
 
@@ -125,6 +126,22 @@ WHERE Year = 2021
 GROUP BY c.Year, g.Prscrbr_State_Abrvtn;
 ```
 
+---
+
+## Power BI Copilot - Report Creation Sample Prompt
+
+In the Fabric Workspace, open the **cms_semantic_model** created by the automation notebook, click *Copilot* at the top to open Copilot pane and use the followoing prompt:
+
+
+```
+Create a report page to understand drug cost trends: 
+    - Need to see the drug costs by state 
+    - Need to see the drug costs by year 
+    - Need to see the drug costs by provider type 
+    - Need to see the total drug cost and cost per claim as tiles on the top
+    - Make sure to include filters for state and year
+
+```
 ---
 
 [Back to Main Readme](./Readme.md)
