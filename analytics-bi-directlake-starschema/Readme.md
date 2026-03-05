@@ -11,6 +11,14 @@ The dataset used is the publicly available [Medicare Part D Prescribers - by Pro
 
 ---
 
+### Update March 2026 - Exploration of Agentic AI development for Power BI Semantic Models
+
+Power BI Semantic Model for the solution was created manually, step by step instructions are documented in the Manual Setup section and it was automated using code for Quick Setup. With recent advancements in Agent AI, Agentic AI based development was explored for Power BI Semantic Model using Visual Studio Code and Power BI Modeling MCP Server.  The learnings have been shared as part of the following blog and YouTube video demo:
+- **Blog**: [Agentic AI development for Power BI Semantic Models using GitHub Copilot and Power BI Modeling MCP Server](https://medium.com/@isinghrana/agentic-development-for-power-bi-semantic-models-using-github-copilot-and-power-bi-modeling-mcp-0d1ec2efc6c4)
+- **YouTube Video**: [Demo Video](https://youtu.be/EKOG86ynOn0) 
+
+---
+
 ## 🏗️ Architecture
 
 The solution follows the **Medallion Architecture**:
