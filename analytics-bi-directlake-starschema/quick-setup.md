@@ -49,10 +49,6 @@ To enable Data Agent functionality, configure the following settings before runn
         *   *“Data sent to Azure OpenAI can be stored outside your capacity's geographic region...”*
     *   **Scope**: Enable at **Tenant** or **Capacity** Level, can be scoped to specific users via **Entra Groups**
 
-3.  **Data Agent Creation** *(Required)*
-    *   **Setting**: *“Users can create and share Data agent item types”*
-    *   **Scope**: Must be enabled at **Tenant level**; can be scoped to specific users via **Entra Groups**
-
 Relevant Documentation Links:
 * https://learn.microsoft.com/en-us/fabric/data-science/data-agent-tenant-settings
 * https://learn.microsoft.com/en-us/fabric/fundamentals/copilot-fabric-overview#available-regions
@@ -86,6 +82,17 @@ Relevant Documentation Links:
 
 Once the Pipeline job completes the solution is available to explore Reports, run SQL Queries, generate Reports from the Semantic Model using Power BI Copilot as well as chat with your data using Fabric Data Agent. The subsequent sections share sample questions and queries that you can use with Fabric Data Agent and Lakehouse SQL Endpoint.
 
+
+### Optimize Semantic Model for Power BI Copilot and Fabric Data Agent
+As of September 2026, automation scripts have been updated to create two Data  Agents, one with Lakehouse as data source and other with Semantic Model as data source. This section gives instructions to further optimize the Semantic Model to make it work better with Power BI Copilot and Fabric Data Agent (once the API is available we will try to automate this step as well but for now this is a manual step).
+
+1. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click [**Prep data for AI**](https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-prepare-data-ai). You may need to enable Large Semantic Models, instructions for which can be found here: https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-premium-large-models#enable-large-semantic-models 
+![analytics-bi-directlake](./Images/prepforai.png)
+
+2. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](./scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
+
+A demo of the optimized Semantic Model and a Semantic Model Data Agent can be found here: https://youtu.be/IImV292givo 
+
 ***
 
 ## Fabric Data Agent - Sample Questions to Chat with your data
@@ -98,7 +105,6 @@ The quick setup will install a Lakehouse Fabric Data Agent that will work with t
    - Show the Top 20 internists in Maine prescribing ace inhibitors in 2021
    - Show the top 5 doctors prescribing ARBs in Atlanta Georgia with the last name Smith in the year 2019
 
-You can easily install the **Semantic Model Data Agent** from the final step of the manual setup process. You will then have both the Lakehouse and Semantic Model versions of Data Agents for comparison. The first step is to add the AI Instructions to the semantic model, and you can start at this link: [`manual-setup.md`](./docs/5-CreateAISkill.md#optimize-semantic-model-for-power-bi-copilot-and-fabric-data-agent) 
 ***
 
 ## Fabric Lakehouse SQL Endpoint - Sample SQL Queries

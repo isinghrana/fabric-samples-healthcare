@@ -1,24 +1,21 @@
 
-# **Power BI Direct Lake Connector with 275M+ Healthcare Records**
+# **Power BI Direct Lake Connector with 300M+ Healthcare Records**
 
 ## 🚀 Overview
 
-This solution demonstrates the capabilities of **Microsoft Fabric** using over **300 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse or Warehouse**. The **Semantic Model** is also optimized for Power BI Copilot, including the standalone version that functions as a SaaS MCP server for chatting on all of your content and data.
+This solution demonstrates the capabilities of **Microsoft Fabric** using over **300 million rows** of real-world healthcare data. It showcases how to leverage the **Power BI Direct Lake connector** to query large datasets stored in Delta Parquet format—**without caching or a relational database**. **Fabric Data Agents** have also been added for the **Semantic Model** and the **Lakeouse/Warehouse**. 
 
 The dataset used is the publicly available [Medicare Part D Prescribers - by Provider and Drug](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/medicare-part-d-prescribers-by-provider-and-drug), sourced from the Centers for Medicare & Medicaid Services (CMS).
 
 > 🎥 **Watch the full demo**: YouTube Video https://youtu.be/2tLIGVZ4c8E
 
 ---
+### Updates Sep 2026 
 
-### Update March 2026 - Exploration of Agentic AI development for Power BI Semantic Models
-
-Power BI Semantic Model for the solution was created manually, step by step instructions are documented in the Manual Setup section and it was automated using code for Quick Setup. With recent advancements in Agent AI, Agentic AI based development was explored for Power BI Semantic Model using Visual Studio Code and Power BI Modeling MCP Server.  The learnings have been shared as part of the following blog and YouTube video demo:
-- **Blog**: [Agentic AI development for Power BI Semantic Models using GitHub Copilot and Power BI Modeling MCP Server](https://medium.com/@isinghrana/agentic-development-for-power-bi-semantic-models-using-github-copilot-and-power-bi-modeling-mcp-0d1ec2efc6c4)
-- **YouTube Video**: [Demo Video](https://youtu.be/EKOG86ynOn0) 
+- Fabric Data Agent with Semantic Model as Data Source included in Quick Setup (automated)
+- CMS Medicare Part D Dataset now has 304 Millions Rows of data
 
 ---
-
 ## 🏗️ Architecture
 
 The solution follows the **Medallion Architecture**:
@@ -48,7 +45,7 @@ This demo provides hands-on experience with:
 
 ### ✅ Option 1: Quick Setup (Automated)
 
-Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 275M rows of data for testing, demos and evaluation purposes. The Quick Setup will install everything including the Lakehouse Data Agent, but the Semantic Model Data Agent will need to be added manually. Currently the AI Instructions for the Semantic Model Data Agent require large semantic model storage format (a Workspace setting), and are still in Public Preview. We may add these instructions and the Semantic Model Data Agent to the Quick Setup once everything is generally available.
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 300M rows of data for testing, demos and evaluation purposes. The Quick Setup will install everything except one good to have manual update to optimize Semantic Model for Copilot and Data Agent. 
 
 Run a single notebook to set up the full environment with following components deployed:
 
@@ -58,6 +55,7 @@ Run a single notebook to set up the full environment with following components d
 - Semantic Model (optimized for Power BI Copilot and Fabric Data Agents)
 - Power BI Report
 - Data Agent for Lakehouse
+- Data Agent for Semantic Model
 
 📘 **Setup Guide**: [`quick-setup.md`](./quick-setup.md)
 
@@ -88,4 +86,11 @@ Follow the step-by-step instructions to manually set up the solution components:
 
 ---
 
+---
+
+### Exploration of Agentic AI development for Power BI Semantic Models (March 2026)
+
+Power BI Semantic Model for the solution was created manually, step by step instructions are documented in the Manual Setup section and it was automated using code for Quick Setup. With recent advancements in Agent AI, Agentic AI based development was explored for Power BI Semantic Model using Visual Studio Code and Power BI Modeling MCP Server.  The learnings have been shared as part of the following blog and YouTube video demo:
+- **Blog**: [Agentic AI development for Power BI Semantic Models using GitHub Copilot and Power BI Modeling MCP Server](https://medium.com/@isinghrana/agentic-development-for-power-bi-semantic-models-using-github-copilot-and-power-bi-modeling-mcp-0d1ec2efc6c4)
+- **YouTube Video**: [Demo Video](https://youtu.be/EKOG86ynOn0) 
 
