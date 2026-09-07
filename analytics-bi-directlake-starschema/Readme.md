@@ -45,7 +45,7 @@ This demo provides hands-on experience with:
 
 ### ✅ Option 1: Quick Setup (Automated)
 
-Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 300M rows of data for testing, demos and evaluation purposes. The Quick Setup will install everything except one manual update required at the end for Semantic Model. Manual Step is for [Prep Data](https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-prepare-data-ai) for AI which is basically adding AI instructions to the Semantic Model for it to work better with Copilot and Data Agents.
+Ideal for a fast setup with minimal effort. You can run a single Notebook and it will install an end-to-end Fabric medaalion architecture with 300M rows of data for testing, demos and evaluation purposes. The Quick Setup will install everything except one good to have manual update to optimize Semantic Model for Copilot and Data Agent. 
 
 Run a single notebook to set up the full environment with following components deployed:
 

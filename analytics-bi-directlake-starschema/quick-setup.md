@@ -86,7 +86,7 @@ Once the Pipeline job completes the solution is available to explore Reports, ru
 ### Optimize Semantic Model for Power BI Copilot and Fabric Data Agent
 As of September 2026, automation scripts have been updated to create two Data  Agents, one with Lakehouse as data source and other with Semantic Model as data source. This section gives instructions to further optimize the Semantic Model to make it work better with Power BI Copilot and Fabric Data Agent (once the API is available we will try to automate this step as well but for now this is a manual step).
 
-1. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click **Prep data for AI**. You may need to enable Large Semantic Models, instructions for which can be found here: https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-premium-large-models#enable-large-semantic-models 
+1. From your Workspace click on your semantic model **cms_semantic_model**. Near the top of the page click [**Prep data for AI**](https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-prepare-data-ai). You may need to enable Large Semantic Models, instructions for which can be found here: https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-premium-large-models#enable-large-semantic-models 
 ![analytics-bi-directlake](./Images/prepforai.png)
 
 2. Navigate to the bottom option **Add AI instructions**. Paste in text from the example in the repo for Semantic Model [AI_Skills_03_NotesforSemanticModel.txt](./scripts/AI_Skills_03_NotesforSemanticModel.txt) for initial testing. Testing and new iterations may produce better results with a richer vocabulary. If you make significant improvements, please let us know and pass them along!
