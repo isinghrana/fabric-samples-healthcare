@@ -1,6 +1,6 @@
 # Installation Notebook: Plan
 
-> **Status:** Built. `nb_fda_install.ipynb`, `install-manifest.json` and the updated pipeline, Silver and Gold notebooks are in this folder. The install was tested in a scratch workspace; the artifacts still need to be pushed to GitHub before the installer can download them (§5.3).
+> **Status:** Built and tested. A clean install in a scratch workspace from branch `isr-fda-1`, with `p_quarters = 2004q1`, succeeded: the installer took 86 s on 1 executor; the pipeline then ran Download → Silver → Gold with every validation check passing, and a re-run skipped work already done. The default `p_github_branch = main` works once `isr-fda-1` is merged.
 >
 > **Goal:** A user downloads one notebook from GitHub, imports it into a Fabric workspace and runs it. With no manual steps, it creates the lakehouse, installs the notebooks and pipeline from GitHub, and starts the pipeline that downloads the openFDA data and builds Silver and Gold.
 
@@ -140,7 +140,7 @@ The lakehouse name comes from the `p_lakehouse_name` parameter, not from the man
 - `README.md` has a **Quick install** section.
 - The plan's §7 run guide describes the pipeline with its download step.
 - The pipeline file in the repo contains placeholders, so it can't be pasted into a workspace as is. Install it with `nb_fda_install`, or fill in the placeholders the same way. The dev workspace's pipeline still has the earlier two-step version, because the download notebook there is bound to `fda_lh2` while it is being tested.
-- **The artifacts must be committed and pushed** (and merged to `main`, or installed with `p_github_branch = isr-fda-1`) before the installer can download them.
+- **The artifacts must be on the branch the installer reads.** They are pushed to `isr-fda-1`; until that branch is merged to `main`, install with `p_github_branch = isr-fda-1`.
 
 ---
 
