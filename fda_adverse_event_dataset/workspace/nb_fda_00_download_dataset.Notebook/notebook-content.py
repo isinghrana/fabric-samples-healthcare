@@ -41,7 +41,7 @@
 
 # ## Session size
 # 
-# Like the Silver and Gold notebooks, the session holds a fixed 8 executors (64 cores), so the unzip tasks run fully in parallel from the start instead of waiting for dynamic allocation to add nodes. This must be the first code cell.
+# Like the Silver and Gold notebooks, the session requests a fixed 8 executors (64 cores). Executors join over the first few minutes of the session; the notebook doesn't wait for them, because Spark hands queued tasks to each executor as soon as it joins. This must be the first code cell.
 
 # CELL ********************
 
@@ -89,7 +89,7 @@ p_unzip_folder = "fda_ds_unzipped"
 
 # ## Settings and helpers
 # 
-# Pipelines pass an empty parameter as `None`, so `param()` falls back to the default for blank values. Files are written through the default lakehouse's mount, `/lakehouse/default`. That mount exists on the driver **and on every executor**, so the Spark tasks can use plain Python file I/O against OneLake. The cell stops if no default lakehouse is attached. It also waits (up to 5 minutes) for the 8 executors to join, so the work is spread across all of them from the start.
+# Pipelines pass an empty parameter as `None`, so `param()` falls back to the default for blank values. Files are written through the default lakehouse's mount, `/lakehouse/default`. That mount exists on the driver **and on every executor**, so the Spark tasks can use plain Python file I/O against OneLake. The cell stops if no default lakehouse is attached.
 
 # CELL ********************
 
@@ -158,21 +158,8 @@ def summarize(step, results, start, done_status):
         raise RuntimeError(f"{len(failures)} file(s) failed in the {step.lower()} step; re-run the notebook to retry them")
 
 
-def wait_for_executors(timeout_seconds=300):
-    """Wait until the executors requested in %%configure have joined, so the first tasks don't all land on one node."""
-    expected = int(sc.getConf().get("spark.dynamicAllocation.minExecutors", "1"))   # spark.conf.get doesn't show the session value
-    deadline = time.time() + timeout_seconds
-    while True:
-        joined = sc._jsc.sc().getExecutorMemoryStatus().size() - 1   # the count includes the driver
-        if joined >= expected or time.time() > deadline:
-            return joined, expected
-        time.sleep(10)
-
-
-executors_joined, executors_expected = wait_for_executors()
 print(f"Quarters:           {', '.join(sorted(QUARTERS)) if QUARTERS else 'all'}")
 print(f"Parallel downloads: {MAX_PARALLEL_DOWNLOADS}")
-print(f"Executors:          {executors_joined} of {executors_expected} joined")
 print(f"Overwrite existing: {OVERWRITE_EXISTING}")
 print(f"Download folder:    {DOWNLOAD_DIRECTORY}")
 print(f"Unzip folder:       {UNZIP_DIRECTORY}")
