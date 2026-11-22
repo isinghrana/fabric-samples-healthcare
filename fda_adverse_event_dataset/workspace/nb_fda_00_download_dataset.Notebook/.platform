@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_fda_00_download_dataset",
+    "description": "Downloads and unzips the openFDA drug adverse event bulk files into Files/fda_ds and Files/fda_ds_unzipped"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "179bdcc6-a979-52d2-acbe-03c21b5e5c95"
+  }
+}

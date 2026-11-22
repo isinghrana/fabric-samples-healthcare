@@ -21,7 +21,7 @@
 | `Files/fda_ds/` | 1,799 `*.json.zip` files, ~114 GB (original downloads) |
 | `Files/fda_ds_unzipped/` | 1,799 JSON files, **~580 GB**, covering 91 quarters (2004 Q1–2026 Q3) plus 4 `all_other` files. `all_other` is the openFDA set of reports that fall outside the quarterly files. Individual files are up to ~930 MB. |
 
-The zip and unzipped files remain in place. The owner manages their retention manually. They are produced by `nb_fda_00_download_dataset`, which downloads (16 parallel threads) and unzips (8 parallel threads) every file listed in openFDA's `download.json`; it is restart-safe and skips files that already exist.
+The zip and unzipped files remain in place. The owner manages their retention manually. They are produced by `nb_fda_00_download_dataset`, which downloads (16 parallel tasks) and unzips (one task per file, 64 at a time) every file listed in openFDA's `download.json` on 8 Spark executors; it is restart-safe and skips files that already exist.
 
 ### Source file shape
 
@@ -413,10 +413,10 @@ Two periods are included: `all_time` and `last_3_years`. The minimum case count 
 
 **Notebook conventions:**
 
-- Bind notebooks to `fda_adverse_events_lakehouse`.
+- Bind notebooks to the sample's lakehouse (`fda_adverse_events_lakehouse` by default); `nb_fda_install` sets this binding when it installs them.
 - Use schema-qualified table names such as `silver.*` and `gold.*`. Schema names are parameters, which allows test runs in scratch schemas.
-- Save notebooks in this folder as `.ipynb` files.
-- The `pl_fda_one_time_build` pipeline runs steps 2–3 unattended. Rerunning it is safe because quarters that already loaded are skipped.
+- Keep the notebooks and the pipeline in the `workspace/` folder in the Fabric Git integration layout, exported with the Fabric CLI.
+- The `pl_fda_one_time_build` pipeline runs the download and steps 2–3 unattended. Rerunning it is safe because files already downloaded and quarters already loaded are skipped.
 
 **Compute:**
 
@@ -440,10 +440,12 @@ Two periods are included: `all_time` and `last_3_years`. The minimum case count 
 | Artifact | Fabric item | Source in this folder |
 |---|---|---|
 | Installer (creates the lakehouse and all items below, then starts the pipeline) | `nb_fda_install` | [nb_fda_install.ipynb](./nb_fda_install.ipynb), [install-manifest.json](./install-manifest.json); design in [installation-plan.md](./installation-plan.md) |
-| Download notebook (pipeline step 1) | `nb_fda_00_download_dataset` | [nb_fda_00_download_dataset.ipynb](./nb_fda_00_download_dataset.ipynb) |
-| Silver load notebook (pipeline step 2) | `nb_fda_01_silver_load` | [nb_fda_01_silver_load.ipynb](./nb_fda_01_silver_load.ipynb) |
-| Gold build notebook (pipeline step 3) | `nb_fda_02_gold_build` | [nb_fda_02_gold_build.ipynb](./nb_fda_02_gold_build.ipynb) |
-| Orchestration pipeline: Download Dataset → Load Silver → Build Gold | `pl_fda_one_time_build` | [pl_fda_one_time_build.json](./pl_fda_one_time_build.json). Notebook and workspace IDs are `{{...}}` placeholders that the installer fills in |
+| Download notebook (pipeline step 1) | `nb_fda_00_download_dataset` | [workspace/nb_fda_00_download_dataset.Notebook](./workspace/nb_fda_00_download_dataset.Notebook) |
+| Silver load notebook (pipeline step 2) | `nb_fda_01_silver_load` | [workspace/nb_fda_01_silver_load.Notebook](./workspace/nb_fda_01_silver_load.Notebook) |
+| Gold build notebook (pipeline step 3) | `nb_fda_02_gold_build` | [workspace/nb_fda_02_gold_build.Notebook](./workspace/nb_fda_02_gold_build.Notebook) |
+| Orchestration pipeline: Download Dataset → Load Silver → Build Gold | `pl_fda_one_time_build` | [workspace/pl_fda_one_time_build.DataPipeline](./workspace/pl_fda_one_time_build.DataPipeline) |
+
+The `workspace/` folder uses the Fabric Git integration layout and is exported from the development workspace with the Fabric CLI.
 
 ### Parameters
 
@@ -452,8 +454,7 @@ Blank or missing values use the defaults below. Pipeline runs pass an empty para
 | Parameter | Default | Used by | Purpose |
 |---|---|---|---|
 | `p_quarters` | `""` (all) | Download, Silver | Comma-separated subset to download and load, for example `2004q1,2025q4,all_other` |
-| `p_max_parallel_downloads` | `16` | Download | Parallel download threads |
-| `p_max_parallel_unzips` | `8` | Download | Parallel unzip threads (about the driver's core count) |
+| `p_max_parallel_downloads` | `16` | Download | Number of download tasks, so files downloaded at once. Unzipping uses every executor core |
 | `p_overwrite_existing` | `false` | Download | Re-download and re-unzip files that already exist |
 | `p_files_per_batch` | `128` | Silver | Target number of JSON files per Spark batch. Quarters are never split. Larger batches amortize the fixed cost of each batch, about 35 s. |
 | `p_finalize` | `true` | Silver | Deduplicate report versions, then run `OPTIMIZE` and `VACUUM` |

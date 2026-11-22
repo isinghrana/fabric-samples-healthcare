@@ -1,25 +1,31 @@
 {
+  "itemsFolder": "workspace",
+  "sourceWorkspaceId": "13e6d67e-3693-4f4a-898b-5d0949b4aa9c",
   "notebooks": [
     {
       "name": "nb_fda_00_download_dataset",
-      "file": "nb_fda_00_download_dataset.ipynb",
+      "folder": "nb_fda_00_download_dataset.Notebook",
+      "sourceItemId": "57116169-e6d1-4148-9c32-b070d596804f",
       "description": "Downloads and unzips the openFDA drug adverse event bulk files into Files/fda_ds and Files/fda_ds_unzipped"
     },
     {
       "name": "nb_fda_01_silver_load",
-      "file": "nb_fda_01_silver_load.ipynb",
+      "folder": "nb_fda_01_silver_load.Notebook",
+      "sourceItemId": "a2e69f1b-3705-4079-83da-6091f88b8380",
       "description": "Loads the openFDA JSON files (Bronze) into the Silver Delta tables"
     },
     {
       "name": "nb_fda_02_gold_build",
-      "file": "nb_fda_02_gold_build.ipynb",
+      "folder": "nb_fda_02_gold_build.Notebook",
+      "sourceItemId": "4cdbb612-6ab7-4b60-8eb9-c840af265592",
       "description": "Builds the Gold star schema, insight tables and disproportionality signals from Silver"
     }
   ],
   "pipelines": [
     {
       "name": "pl_fda_one_time_build",
-      "file": "pl_fda_one_time_build.json",
+      "folder": "pl_fda_one_time_build.DataPipeline",
+      "sourceItemId": "cd59c95e-5dac-4d6c-aa43-95be2aa87ae0",
       "description": "Download Dataset -> Load Silver -> Build Gold"
     }
   ],
