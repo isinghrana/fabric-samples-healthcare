@@ -1,6 +1,6 @@
 # Installation Notebook: Plan
 
-> **Status:** Built and tested. A clean install in a scratch workspace from branch `isr-fda-1`, with `p_quarters = 2004q1`, succeeded: the installer took 86 s on 1 executor; the pipeline then ran Download → Silver → Gold with every validation check passing, and a re-run skipped work already done. The default `p_github_branch = main` works once `isr-fda-1` is merged.
+> **Status:** Built and tested. A clean install in a scratch workspace from branch `isr-fda-1`, with `p_quarters = 2004q1`, succeeded. The installer took about 100 s on 1 executor and installed the items from the `workspace/` folder (Git integration layout). The pipeline then ran Download (on executors) → Silver → Gold in 12 minutes, with every validation check passing. The default `p_github_branch = main` works once `isr-fda-1` is merged.
 >
 > **Goal:** A user downloads one notebook from GitHub, imports it into a Fabric workspace and runs it. With no manual steps, it creates the lakehouse, installs the notebooks and pipeline from GitHub, and starts the pipeline that downloads the openFDA data and builds Silver and Gold.
 
