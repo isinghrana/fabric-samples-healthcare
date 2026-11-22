@@ -1,0 +1,52 @@
+{
+  "properties": {
+    "description": "One-time build of the FDA adverse event medallion: JSON files (Bronze) -> Silver -> Gold. The Silver load is restartable; rerunning skips quarters already loaded.",
+    "parameters": {
+      "p_quarters": { "type": "string", "defaultValue": "" },
+      "p_files_per_batch": { "type": "int", "defaultValue": 128 },
+      "p_finalize": { "type": "bool", "defaultValue": true },
+      "p_reset": { "type": "bool", "defaultValue": false },
+      "p_silver_schema": { "type": "string", "defaultValue": "silver" },
+      "p_gold_schema": { "type": "string", "defaultValue": "gold" },
+      "p_min_cases": { "type": "int", "defaultValue": 3 },
+      "p_recent_years": { "type": "int", "defaultValue": 3 }
+    },
+    "activities": [
+      {
+        "name": "Load Silver",
+        "description": "Parse the openFDA JSON files into Silver Delta tables, deduplicate report versions, optimize.",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": { "timeout": "2.00:00:00", "retry": 1, "retryIntervalInSeconds": 300, "secureOutput": false, "secureInput": false },
+        "typeProperties": {
+          "notebookId": "a2e69f1b-3705-4079-83da-6091f88b8380",
+          "workspaceId": "13e6d67e-3693-4f4a-898b-5d0949b4aa9c",
+          "parameters": {
+            "p_quarters": { "value": { "value": "@pipeline().parameters.p_quarters", "type": "Expression" }, "type": "string" },
+            "p_files_per_batch": { "value": { "value": "@pipeline().parameters.p_files_per_batch", "type": "Expression" }, "type": "int" },
+            "p_finalize": { "value": { "value": "@pipeline().parameters.p_finalize", "type": "Expression" }, "type": "bool" },
+            "p_reset": { "value": { "value": "@pipeline().parameters.p_reset", "type": "Expression" }, "type": "bool" },
+            "p_silver_schema": { "value": { "value": "@pipeline().parameters.p_silver_schema", "type": "Expression" }, "type": "string" }
+          }
+        }
+      },
+      {
+        "name": "Build Gold",
+        "description": "Build the Gold star schema, insight tables and disproportionality signals from Silver.",
+        "type": "TridentNotebook",
+        "dependsOn": [ { "activity": "Load Silver", "dependencyConditions": [ "Succeeded" ] } ],
+        "policy": { "timeout": "0.12:00:00", "retry": 1, "retryIntervalInSeconds": 300, "secureOutput": false, "secureInput": false },
+        "typeProperties": {
+          "notebookId": "4cdbb612-6ab7-4b60-8eb9-c840af265592",
+          "workspaceId": "13e6d67e-3693-4f4a-898b-5d0949b4aa9c",
+          "parameters": {
+            "p_silver_schema": { "value": { "value": "@pipeline().parameters.p_silver_schema", "type": "Expression" }, "type": "string" },
+            "p_gold_schema": { "value": { "value": "@pipeline().parameters.p_gold_schema", "type": "Expression" }, "type": "string" },
+            "p_min_cases": { "value": { "value": "@pipeline().parameters.p_min_cases", "type": "Expression" }, "type": "int" },
+            "p_recent_years": { "value": { "value": "@pipeline().parameters.p_recent_years", "type": "Expression" }, "type": "int" }
+          }
+        }
+      }
+    ]
+  }
+}

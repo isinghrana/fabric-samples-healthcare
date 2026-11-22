@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FDA Adverse Events (FAERS) – Data Dictionary and Lineage</title>
+<style>
+:root { --bronze:#a0522d; --silver:#6b7a8f; --gold:#b8860b; --ink:#1f2933; --muted:#5f6b7a; --line:#e3e8ef; --bg:#f7f9fc; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Segoe UI, system-ui, -apple-system, sans-serif; color:var(--ink); background:#fff; line-height:1.45; }
+header { background:linear-gradient(90deg,#0f3d5e,#1b6a8f); color:#fff; padding:22px 32px; }
+header h1 { margin:0 0 4px; font-size:24px; }
+header p { margin:0; opacity:.9; font-size:14px; }
+.wrap { display:flex; }
+nav { position:sticky; top:0; align-self:flex-start; width:250px; height:100vh; overflow:auto; background:var(--bg); border-right:1px solid var(--line); padding:16px; font-size:13px; }
+nav h4 { margin:14px 0 6px; text-transform:uppercase; font-size:11px; letter-spacing:.06em; color:var(--muted); }
+nav ul { list-style:none; margin:0; padding:0; }
+nav li a { display:block; padding:3px 6px; color:var(--ink); text-decoration:none; border-radius:4px; }
+nav li a:hover { background:#e6eef7; }
+main { flex:1; padding:24px 36px 60px; max-width:1350px; }
+h2 { border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:36px; }
+h2.silver { border-color:var(--silver); } h2.gold { border-color:var(--gold); } h2.hbronze { border-color:var(--bronze); }
+code { font-family:Cascadia Code, Consolas, monospace; font-size:12.5px; background:#f1f4f8; padding:1px 4px; border-radius:3px; }
+.flow { display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr 40px 1fr; align-items:stretch; gap:0; margin:16px 0 8px; }
+.box { border-radius:8px; padding:12px 14px; font-size:13px; color:#fff; }
+.box h4 { margin:0 0 6px; font-size:14px; }
+.box ul { margin:0; padding-left:16px; }
+.bronze { background:var(--bronze); } .silverb { background:var(--silver); } .goldb { background:var(--gold); } .cons { background:#5b6b3a; }
+.arrow { display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--muted); }
+.note { background:#fff8e6; border-left:4px solid #e0a800; padding:10px 14px; font-size:13.5px; margin:12px 0; }
+.info { background:#eef6fb; border-left:4px solid #1b6a8f; padding:10px 14px; font-size:13.5px; margin:12px 0; }
+section.tbl { margin:26px 0 34px; }
+section.tbl h3 { margin:0 0 8px; font-family:Cascadia Code, Consolas, monospace; font-size:17px; }
+dl.meta { display:grid; grid-template-columns:110px 1fr; gap:3px 12px; font-size:13.5px; margin:0 0 10px; background:var(--bg); padding:10px 14px; border-radius:6px; }
+dl.meta dt { font-weight:600; color:var(--muted); } dl.meta dd { margin:0; }
+table { border-collapse:collapse; width:100%; font-size:13px; }
+th, td { border:1px solid var(--line); padding:6px 8px; vertical-align:top; text-align:left; }
+th { background:#eef2f7; position:sticky; top:0; }
+table.cols td:first-child { min-width:190px; max-width:300px; overflow-wrap:anywhere; }
+td.type { color:#6a3d9a; font-family:Consolas, monospace; white-space:nowrap; }
+td.lin { color:#234; background:#fbfcfe; width:34%; }
+.lkgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+.lk h4 { margin:0 0 4px; font-size:13px; }
+.rels td:nth-child(2) { text-align:center; }
+footer { color:var(--muted); font-size:12px; margin-top:40px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FDA Human Drug Adverse Events (FAERS) – Data Dictionary &amp; Lineage</h1>
+  <p>Workspace <b>hlsfdaadverseeventsdemowus001</b> · Lakehouse <b>fda_adverse_events_lakehouse</b> · Silver and Gold schemas · Generated from the notebooks and <code style="color:#fff;background:rgba(255,255,255,.15)">medallion-architecture-plan.md</code></p>
+</header>
+<div class="wrap">
+<nav>
+  <h4>Overview</h4>
+  <ul><li><a href="#overview">Architecture &amp; flow</a></li><li><a href="#source">Source (Bronze)</a></li><li><a href="#relationships">Relationships</a></li></ul>
+  <h4>Silver</h4><ul><li><a href='#silver-adverse-event-report'>adverse_event_report</a></li><li><a href='#silver-adverse-event-drug'>adverse_event_drug</a></li><li><a href='#silver-adverse-event-reaction'>adverse_event_reaction</a></li><li><a href='#silver-drug-pharm-class'>drug_pharm_class</a></li><li><a href='#silver-load-log'>load_log</a></li><li><a href='#silver-dq-log'>dq_log</a></li></ul>
+  <h4>Gold</h4><ul><li><a href='#gold-dim-date'>dim_date</a></li><li><a href='#gold-dim-drug'>dim_drug</a></li><li><a href='#gold-dim-reaction'>dim_reaction</a></li><li><a href='#gold-dim-country'>dim_country</a></li><li><a href='#gold-dim-pharm-class'>dim_pharm_class</a></li><li><a href='#gold-bridge-drug-pharm-class'>bridge_drug_pharm_class</a></li><li><a href='#gold-fact-report'>fact_report</a></li><li><a href='#gold-fact-report-drug'>fact_report_drug</a></li><li><a href='#gold-fact-report-reaction'>fact_report_reaction</a></li><li><a href='#gold-agg-report-trend-monthly'>agg_report_trend_monthly</a></li><li><a href='#gold-agg-drug-summary'>agg_drug_summary</a></li><li><a href='#gold-agg-drug-reaction'>agg_drug_reaction</a></li><li><a href='#gold-agg-drug-reaction-signal'>agg_drug_reaction_signal</a></li></ul>
+  <h4>Reference</h4>
+  <ul><li><a href="#drug-identification">Drug identification</a></li><li><a href="#dq">Data quality</a></li><li><a href="#lookups">Code lookups</a></li><li><a href="#disclaimer">Disclaimer</a></li></ul>
+</nav>
+<main>
+
+<h2 id="overview">Architecture &amp; table-level lineage</h2>
+<div class="flow">
+  <div class="box bronze"><h4>Bronze (files)</h4><ul><li>Files/fda_ds/*.json.zip</li><li>Files/fda_ds_unzipped/*.json<br>1,799 files · ~580 GB · 2004q1–2026q3 + all_other</li></ul></div>
+  <div class="arrow">➜</div>
+  <div class="box silverb"><h4>Silver · nb_fda_01_silver_load</h4><ul><li>adverse_event_report</li><li>adverse_event_drug</li><li>adverse_event_reaction</li><li>drug_pharm_class</li><li>load_log · dq_log</li></ul></div>
+  <div class="arrow">➜</div>
+  <div class="box goldb"><h4>Gold · nb_fda_02_gold_build</h4><ul><li>dim_date · dim_drug · dim_reaction · dim_country · dim_pharm_class</li><li>bridge_drug_pharm_class</li><li>fact_report · fact_report_drug · fact_report_reaction</li><li>agg_* (4 tables)</li></ul></div>
+  <div class="arrow">➜</div>
+  <div class="box cons"><h4>Consumers (future)</h4><ul><li>Direct Lake semantic model → Power BI</li><li>Fabric Data Agent</li><li>Rayfin app</li></ul></div>
+</div>
+<p style="font-size:13.5px">Orchestrated by pipeline <code>pl_fda_one_time_build</code> (Load Silver → Build Gold). One-time full load; JSON files act as Bronze, so there are no Bronze tables. All tables are Delta, unpartitioned, V-Ordered, with no array/struct/map columns (Direct Lake, SQL endpoint, Data Agent and Rayfin compatible).</p>
+<div class="info"><b>Row counts</b> are from a full load of all 92 quarter sets (21.05 M reports). Counts for tables that depend on the rule-based <code>drug_name</code> are set by the full build.</div>
+
+<h2 id="source" class="hbronze">Source (Bronze) structure</h2>
+<p style="font-size:13.5px">Each file is one multiline JSON object. Lineage paths in this document are written relative to it:</p>
+<pre style="background:var(--bg);padding:12px;border-radius:6px;font-size:12.5px;overflow:auto">{
+  "meta":    { "results": { "total": … } },               ← used only for reconciliation (load_log.meta_total)
+  "results": [                                          ← <b>results[]</b>: one element = one safety report → silver.adverse_event_report
+    { safetyreportid, safetyreportversion, receivedate, receiptdate, transmissiondate, reporttype, serious, seriousness*,
+      occurcountry, primarysourcecountry, primarysource{qualification, reportercountry}, sender{…}, duplicate, reportduplicate, …
+      "patient": { patientonsetage, patientonsetageunit, patientsex, patientweight, patientdeath{…},
+        "reaction": [ … ]                               ← <b>results[].patient.reaction[]</b> → silver.adverse_event_reaction
+        "drug":     [ { drugcharacterization, medicinalproduct, activesubstance{activesubstancename}, …
+                       "openfda": { generic_name[], brand_name[], substance_name[], rxcui[], product_type[], pharm_class_*[] } } ]
+                                                        ← <b>results[].patient.drug[]</b> → silver.adverse_event_drug, drug_pharm_class
+      } } ]
+}</pre>
+<p style="font-size:13.5px"><b>Not loaded (excluded on purpose):</b> openFDA <code>manufacturer_name</code>, <code>product_ndc</code>, <code>package_ndc</code>, <code>application_number</code>, <code>spl_id</code>, <code>spl_set_id</code>, <code>nui</code>; drug <code>drugauthorizationnumb</code>, <code>drugbatchnumb</code>, cumulative/structured dose fields; report <code>authoritynumb</code>, <code>reportduplicate.duplicatenumb</code>, <code>receiver.*</code>; file <code>meta.*</code> (except <code>meta.results.total</code> for reconciliation).</p>
+
+<h2 id="relationships">Gold relationships</h2>
+<table class="rels"><thead><tr><th>From</th><th>Cardinality</th><th>To</th><th>Join</th></tr></thead><tbody>
+<tr><td>fact_report</td><td>* → 1</td><td>dim_date</td><td>receive_date_key = date_key</td></tr>
+<tr><td>fact_report</td><td>* → 1</td><td>dim_country</td><td>occur_country_key = country_key</td></tr>
+<tr><td>fact_report_drug</td><td>* → 1</td><td>fact_report</td><td>report_key</td></tr>
+<tr><td>fact_report_drug</td><td>* → 1</td><td>dim_drug</td><td>drug_key</td></tr>
+<tr><td>fact_report_reaction</td><td>* → 1</td><td>fact_report</td><td>report_key</td></tr>
+<tr><td>fact_report_reaction</td><td>* → 1</td><td>dim_reaction</td><td>reaction_key</td></tr>
+<tr><td>bridge_drug_pharm_class</td><td>* → 1</td><td>dim_drug / dim_pharm_class</td><td>drug_key / pharm_class_key</td></tr>
+<tr><td>agg_report_trend_monthly</td><td>* → 1</td><td>dim_date / dim_country</td><td>month_date_key / occur_country_key</td></tr>
+<tr><td>agg_drug_*</td><td>* → 1</td><td>dim_drug / dim_reaction</td><td>drug_key / reaction_key (names also included)</td></tr>
+</tbody></table>
+<div class="note">Drugs and reactions are linked <b>only through the report</b> (report_key). FAERS doesn't say which drug caused which reaction.</div>
+
+<h2 class="silver">Silver tables</h2>
+
+<section class="tbl" id="silver-adverse-event-report">
+  <h3>silver.adverse_event_report</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per safety report (latest version)</dd>
+    <dt>Purpose</dt><dd>Report-level facts: dates, report type, seriousness, reporter, patient demographics, and lineage back to the source JSON record.</dd>
+    <dt>Upstream</dt><dd>Files/fda_ds_unzipped/*.json → results[]</dd>
+    <dt>Keys</dt><dd>safetyreport_id (business key, unique after finalize); _report_uid (technical key to child rows)</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: receive_year, safetyreport_id. V-Order.</dd>
+    <dt>Rows</dt><dd>21,052,346</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>safetyreport_id</code></td><td class='type'>string</td><td>FAERS safety report ID (case number). Unique after finalize.</td><td class='lin'><code>results[].safetyreportid</code>, trimmed</td></tr>
+<tr><td><code>safetyreport_version</code></td><td class='type'>int</td><td>Version of the report; the highest version is kept.</td><td class='lin'><code>results[].safetyreportversion</code>, cast to int when numeric (empty in 2004–2012 files)</td></tr>
+<tr><td><code>company_number</code></td><td class='type'>string</td><td>Case ID assigned by the reporting company.</td><td class='lin'><code>results[].companynumb</code>, cleaned (placeholders such as UNK → NULL)</td></tr>
+<tr><td><code>receive_date</code></td><td class='type'>date</td><td>Date FDA first received the report (first version).</td><td class='lin'><code>results[].receivedate</code>, E2B date parse (formats 102/610/602); dates before 1900 or after the load date → NULL</td></tr>
+<tr><td><code>receive_year</code></td><td class='type'>int</td><td>Year of receive_date. Z-order column.</td><td class='lin'>Derived: <code>year(receive_date)</code></td></tr>
+<tr><td><code>receive_quarter</code></td><td class='type'>string</td><td>Quarter of receive_date, e.g. <code>2025-Q4</code>.</td><td class='lin'>Derived from receive_date</td></tr>
+<tr><td><code>receipt_date</code></td><td class='type'>date</td><td>Date FDA received the most recent information for the report.</td><td class='lin'><code>results[].receiptdate</code>, E2B date parse</td></tr>
+<tr><td><code>transmission_date</code></td><td class='type'>date</td><td>Date the record was created.</td><td class='lin'><code>results[].transmissiondate</code>, E2B date parse</td></tr>
+<tr><td><code>report_type</code></td><td class='type'>string</td><td>Spontaneous, Report from study, Other, Not available to sender, or Unknown.</td><td class='lin'><code>results[].reporttype</code> decoded (codes 1–4)</td></tr>
+<tr><td><code>is_expedited</code></td><td class='type'>boolean</td><td>Report met expedited (15-day) reporting criteria.</td><td class='lin'><code>results[].fulfillexpeditecriteria</code> = 1</td></tr>
+<tr><td><code>is_serious</code></td><td class='type'>boolean</td><td>Adverse event was serious.</td><td class='lin'><code>results[].serious</code> = 1</td></tr>
+<tr><td><code>is_death</code></td><td class='type'>boolean</td><td>Seriousness: resulted in death.</td><td class='lin'><code>results[].seriousnessdeath</code> = 1</td></tr>
+<tr><td><code>is_life_threatening</code></td><td class='type'>boolean</td><td>Seriousness: life-threatening.</td><td class='lin'><code>results[].seriousnesslifethreatening</code> = 1</td></tr>
+<tr><td><code>is_hospitalization</code></td><td class='type'>boolean</td><td>Seriousness: hospitalization.</td><td class='lin'><code>results[].seriousnesshospitalization</code> = 1</td></tr>
+<tr><td><code>is_disabling</code></td><td class='type'>boolean</td><td>Seriousness: disability.</td><td class='lin'><code>results[].seriousnessdisabling</code> = 1</td></tr>
+<tr><td><code>is_congenital_anomaly</code></td><td class='type'>boolean</td><td>Seriousness: congenital anomaly.</td><td class='lin'><code>results[].seriousnesscongenitalanomali</code> = 1 (source spelling)</td></tr>
+<tr><td><code>is_other_serious</code></td><td class='type'>boolean</td><td>Seriousness: other serious condition.</td><td class='lin'><code>results[].seriousnessother</code> = 1</td></tr>
+<tr><td><code>primary_source_country</code></td><td class='type'>string</td><td>Country of the primary reporter (ISO-2 where provided).</td><td class='lin'><code>results[].primarysourcecountry</code>, uppercased</td></tr>
+<tr><td><code>occur_country</code></td><td class='type'>string</td><td>Country where the event occurred. Use for US vs non-US.</td><td class='lin'><code>results[].occurcountry</code>, uppercased (empty in early files)</td></tr>
+<tr><td><code>reporter_country</code></td><td class='type'>string</td><td>Reporter country from the primary-source section.</td><td class='lin'><code>results[].primarysource.reportercountry</code>, uppercased</td></tr>
+<tr><td><code>reporter_qualification</code></td><td class='type'>string</td><td>Physician, Pharmacist, Other health professional, Lawyer, Consumer or non-health professional, or Unknown.</td><td class='lin'><code>results[].primarysource.qualification</code> decoded (codes 1–5)</td></tr>
+<tr><td><code>is_hcp_reported</code></td><td class='type'>boolean</td><td>Reported by a healthcare professional.</td><td class='lin'>Derived: qualification in 1, 2, 3</td></tr>
+<tr><td><code>sender_type</code></td><td class='type'>string</td><td>Type of sending organization (openFDA always supplies Regulatory authority).</td><td class='lin'><code>results[].sender.sendertype</code> decoded</td></tr>
+<tr><td><code>sender_organization</code></td><td class='type'>string</td><td>Sending organization (openFDA always supplies FDA-Public Use).</td><td class='lin'><code>results[].sender.senderorganization</code>, cleaned</td></tr>
+<tr><td><code>patient_sex</code></td><td class='type'>string</td><td>Male, Female, or Unknown.</td><td class='lin'><code>results[].patient.patientsex</code> decoded (0/1/2)</td></tr>
+<tr><td><code>patient_age_years</code></td><td class='type'>double</td><td>Patient age at onset, in years (2 decimals). NULL if missing or outside 0–120.</td><td class='lin'><code>results[].patient.patientonsetage</code> × factor for <code>results[].patient.patientonsetageunit</code> (800 decade, 801 year, 802 month, 803 week, 804 day, 805 hour)</td></tr>
+<tr><td><code>age_group</code></td><td class='type'>string</td><td>0-17, 18-44, 45-64, 65-74, 75+, or Unknown.</td><td class='lin'>Derived from patient_age_years</td></tr>
+<tr><td><code>patient_weight_kg</code></td><td class='type'>double</td><td>Patient weight in kg. NULL if missing or outside 0–600.</td><td class='lin'><code>results[].patient.patientweight</code>, numeric</td></tr>
+<tr><td><code>patient_death_date</code></td><td class='type'>date</td><td>Date of death when reported (rarely populated).</td><td class='lin'><code>results[].patient.patientdeath.patientdeathdate</code>, E2B date parse</td></tr>
+<tr><td><code>is_duplicate</code></td><td class='type'>boolean</td><td><b>Earlier versions of this report were submitted to FDA.</b> It does not mean the same event was reported separately under another report ID.</td><td class='lin'><code>results[].duplicate</code> = 1</td></tr>
+<tr><td><code>duplicate_source</code></td><td class='type'>string</td><td>Organizations that also hold this case, <code>; </code>-joined.</td><td class='lin'><code>results[].reportduplicate.duplicatesource</code>; the source is an object in older files and an array in newer files, so it is read as raw JSON and both shapes are parsed</td></tr>
+<tr><td><code>drug_count</code></td><td class='type'>int</td><td>Number of drugs listed on the report.</td><td class='lin'><code>size(results[].patient.drug)</code></td></tr>
+<tr><td><code>suspect_drug_count</code></td><td class='type'>int</td><td>Number of drugs marked as suspect.</td><td class='lin'>Count of <code>results[].patient.drug[]</code> with drugcharacterization = 1</td></tr>
+<tr><td><code>reaction_count</code></td><td class='type'>int</td><td>Number of reactions listed on the report.</td><td class='lin'><code>size(results[].patient.reaction)</code></td></tr>
+<tr><td><code>_source_quarter</code></td><td class='type'>string</td><td>Source quarter set, e.g. <code>2025q4</code> or <code>all_other</code>.</td><td class='lin'>Parsed from the source file name</td></tr>
+<tr><td><code>_source_file</code></td><td class='type'>string</td><td><b>Lineage:</b> source JSON file name, e.g. <code>2025q4-drug-event-0001-of-0029.json</code>.</td><td class='lin'>Spark <code>_metadata.file_path</code>, file name only</td></tr>
+<tr><td><code>_source_record_index</code></td><td class='type'>int</td><td><b>Lineage:</b> 0-based position of this report in the file's <code>results</code> array.</td><td class='lin'><code>posexplode(results)</code> position</td></tr>
+<tr><td><code>_report_uid</code></td><td class='type'>bigint</td><td>Technical key for one specific copy of a report; links child rows to the exact version kept.</td><td class='lin'><code>xxhash64(safetyreportid, safetyreportversion, _source_file, position)</code></td></tr>
+<tr><td><code>_loaded_ts</code></td><td class='type'>timestamp</td><td>When the row was loaded.</td><td class='lin'>Load time</td></tr></tbody></table>
+</section>
+<section class="tbl" id="silver-adverse-event-drug">
+  <h3>silver.adverse_event_drug</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per report × drug listed on the report</dd>
+    <dt>Purpose</dt><dd>Every drug on each report with its role (suspect, concomitant, interacting), the rule-based drug identity, openFDA enrichment, and use details.</dd>
+    <dt>Upstream</dt><dd>Files/fda_ds_unzipped/*.json → results[].patient.drug[]</dd>
+    <dt>Keys</dt><dd>safetyreport_id + drug_seq; _report_uid → adverse_event_report</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_name, safetyreport_id. V-Order.</dd>
+    <dt>Rows</dt><dd>78,346,459</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>safetyreport_id</code></td><td class='type'>string</td><td>Parent report.</td><td class='lin'><code>results[].safetyreportid</code></td></tr>
+<tr><td><code>drug_seq</code></td><td class='type'>int</td><td>1-based position of the drug on the report.</td><td class='lin'>Position in <code>results[].patient.drug</code> + 1</td></tr>
+<tr><td><code>drug_role</code></td><td class='type'>string</td><td>Suspect, Concomitant, Interacting, or Unknown.</td><td class='lin'><code>results[].patient.drug[].drugcharacterization</code> decoded (1–3)</td></tr>
+<tr><td><code>medicinal_product</code></td><td class='type'>string</td><td>Product name as reported (free text, often a brand plus strength).</td><td class='lin'><code>results[].patient.drug[].medicinalproduct</code>, cleaned</td></tr>
+<tr><td><code>medicinal_product_std</code></td><td class='type'>string</td><td>Cosmetic cleanup of medicinal_product: uppercase, trimmed, spaces collapsed, trailing periods removed, placeholders → NULL.</td><td class='lin'><code>results[].patient.drug[].medicinalproduct</code></td></tr>
+<tr><td><code>active_substance</code></td><td class='type'>string</td><td>Active substance as reported (uppercase). Mostly empty before 2013.</td><td class='lin'><code>results[].patient.drug[].activesubstance.activesubstancename</code></td></tr>
+<tr><td><code>drug_name</code></td><td class='type'>string</td><td><b>Rule-based drug identity</b> used for grouping (see Drug identification). Never NULL; <code>UNKNOWN</code> if nothing usable.</td><td class='lin'><code>openfda.generic_name[]</code> value matching the reported substance (else the shortest) → else <code>activesubstancename</code> → else <code>medicinalproduct</code>; normalized (parentheses, combination split, strengths, qualifiers, salt words, placeholders, sorted ingredients)</td></tr>
+<tr><td><code>drug_name_source</code></td><td class='type'>string</td><td>Which source produced drug_name: openfda_generic, reported_substance, product_text, or none.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>brand_names_all</code></td><td class='type'>string</td><td>All openFDA brand names, <code>; </code>-joined.</td><td class='lin'><code>results[].patient.drug[].openfda.brand_name[]</code>, distinct</td></tr>
+<tr><td><code>generic_names_all</code></td><td class='type'>string</td><td>All openFDA generic names, <code>; </code>-joined.</td><td class='lin'><code>results[].patient.drug[].openfda.generic_name[]</code>, distinct</td></tr>
+<tr><td><code>substance_names_all</code></td><td class='type'>string</td><td>All openFDA substance names, <code>; </code>-joined.</td><td class='lin'><code>results[].patient.drug[].openfda.substance_name[]</code>, distinct</td></tr>
+<tr><td><code>rxcui_all</code></td><td class='type'>string</td><td>All RxNorm RxCUIs from the matched labels, <code>; </code>-joined. Kept for future RxNorm normalization.</td><td class='lin'><code>results[].patient.drug[].openfda.rxcui[]</code>, distinct</td></tr>
+<tr><td><code>unii_all</code></td><td class='type'>string</td><td>All FDA UNII substance identifiers from the matched labels, <code>; </code>-joined. Kept for future substance-level normalization.</td><td class='lin'><code>results[].patient.drug[].openfda.unii[]</code>, distinct</td></tr>
+<tr><td><code>product_type</code></td><td class='type'>string</td><td>e.g. HUMAN PRESCRIPTION DRUG, HUMAN OTC DRUG.</td><td class='lin'><code>results[].patient.drug[].openfda.product_type[]</code>, first value</td></tr>
+<tr><td><code>drug_indication</code></td><td class='type'>string</td><td>Reason the drug was used, as reported.</td><td class='lin'><code>results[].patient.drug[].drugindication</code>, cleaned</td></tr>
+<tr><td><code>route</code></td><td class='type'>string</td><td>Route of administration (e.g. Oral, Subcutaneous). NULL when not reported; Unknown for unrecognized codes.</td><td class='lin'><code>results[].patient.drug[].drugadministrationroute</code>, zero-padded and decoded (001–067)</td></tr>
+<tr><td><code>dosage_text</code></td><td class='type'>string</td><td>Dosage as reported.</td><td class='lin'><code>results[].patient.drug[].drugdosagetext</code>, cleaned</td></tr>
+<tr><td><code>dosage_form</code></td><td class='type'>string</td><td>Dose form as reported.</td><td class='lin'><code>results[].patient.drug[].drugdosageform</code>, cleaned</td></tr>
+<tr><td><code>action_taken</code></td><td class='type'>string</td><td>Drug withdrawn, Dose reduced, Dose increased, Dose not changed, Unknown, Not applicable.</td><td class='lin'><code>results[].patient.drug[].actiondrug</code> decoded (1–6)</td></tr>
+<tr><td><code>rechallenge</code></td><td class='type'>string</td><td>Whether the reaction recurred when the drug was restarted.</td><td class='lin'><code>results[].patient.drug[].drugrecurreadministration</code> decoded (1–3)</td></tr>
+<tr><td><code>drug_start_date</code></td><td class='type'>date</td><td>Therapy start date.</td><td class='lin'><code>results[].patient.drug[].drugstartdate</code>, E2B date parse</td></tr>
+<tr><td><code>drug_end_date</code></td><td class='type'>date</td><td>Therapy end date.</td><td class='lin'><code>results[].patient.drug[].drugenddate</code>, E2B date parse</td></tr>
+<tr><td><code>treatment_duration_days</code></td><td class='type'>double</td><td>Treatment duration in days. NULL if outside 0–36,525.</td><td class='lin'><code>results[].patient.drug[].drugtreatmentduration</code> × factor for <code>drugtreatmentdurationunit</code> (801 year … 806 minute)</td></tr>
+<tr><td><code>is_openfda_matched</code></td><td class='type'>boolean</td><td>openFDA matched the product to a drug label.</td><td class='lin'><code>results[].patient.drug[].openfda.generic_name</code> or <code>brand_name</code> non-empty</td></tr>
+<tr><td><code>_source_quarter</code></td><td class='type'>string</td><td>Source quarter set.</td><td class='lin'>Parsed from the source file name</td></tr>
+<tr><td><code>_report_uid</code></td><td class='type'>bigint</td><td>Link to the exact report copy in adverse_event_report.</td><td class='lin'>Inherited from the parent report</td></tr></tbody></table>
+</section>
+<section class="tbl" id="silver-adverse-event-reaction">
+  <h3>silver.adverse_event_reaction</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per report × reaction</dd>
+    <dt>Purpose</dt><dd>Each reported reaction as a MedDRA Preferred Term with its outcome.</dd>
+    <dt>Upstream</dt><dd>Files/fda_ds_unzipped/*.json → results[].patient.reaction[]</dd>
+    <dt>Keys</dt><dd>safetyreport_id + reaction_seq; _report_uid → adverse_event_report</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: reaction_pt, safetyreport_id. V-Order.</dd>
+    <dt>Rows</dt><dd>63,154,910</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>safetyreport_id</code></td><td class='type'>string</td><td>Parent report.</td><td class='lin'><code>results[].safetyreportid</code></td></tr>
+<tr><td><code>reaction_seq</code></td><td class='type'>int</td><td>1-based position of the reaction on the report.</td><td class='lin'>Position in <code>results[].patient.reaction</code> + 1</td></tr>
+<tr><td><code>reaction_pt</code></td><td class='type'>string</td><td>Reaction as a MedDRA Preferred Term (casing harmonized in gold.dim_reaction).</td><td class='lin'><code>results[].patient.reaction[].reactionmeddrapt</code>, cleaned</td></tr>
+<tr><td><code>meddra_version</code></td><td class='type'>string</td><td>MedDRA version of the term.</td><td class='lin'><code>results[].patient.reaction[].reactionmeddraversionpt</code></td></tr>
+<tr><td><code>reaction_outcome</code></td><td class='type'>string</td><td>Recovered/resolved, Recovering/resolving, Not recovered/not resolved, Recovered with sequelae, Fatal, Unknown. NULL when not reported.</td><td class='lin'><code>results[].patient.reaction[].reactionoutcome</code> decoded (1–6)</td></tr>
+<tr><td><code>is_fatal_outcome</code></td><td class='type'>boolean</td><td>Reaction outcome was fatal.</td><td class='lin'>reactionoutcome = 5</td></tr>
+<tr><td><code>_source_quarter</code></td><td class='type'>string</td><td>Source quarter set.</td><td class='lin'>Parsed from the source file name</td></tr>
+<tr><td><code>_report_uid</code></td><td class='type'>bigint</td><td>Link to the exact report copy.</td><td class='lin'>Inherited from the parent report</td></tr></tbody></table>
+</section>
+<section class="tbl" id="silver-drug-pharm-class">
+  <h3>silver.drug_pharm_class</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per report × drug × pharmacologic class</dd>
+    <dt>Purpose</dt><dd>Pharmacologic classes for each drug, so drugs can be analyzed by class.</dd>
+    <dt>Upstream</dt><dd>Files/fda_ds_unzipped/*.json → results[].patient.drug[].openfda.pharm_class_*</dd>
+    <dt>Keys</dt><dd>_report_uid + drug_seq + class_type + pharm_class</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: pharm_class, safetyreport_id. V-Order.</dd>
+    <dt>Rows</dt><dd>96,925,539</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>safetyreport_id</code></td><td class='type'>string</td><td>Parent report.</td><td class='lin'><code>results[].safetyreportid</code></td></tr>
+<tr><td><code>drug_seq</code></td><td class='type'>int</td><td>Drug position; joins to adverse_event_drug.</td><td class='lin'>Position in <code>results[].patient.drug</code> + 1</td></tr>
+<tr><td><code>class_type</code></td><td class='type'>string</td><td>EPC (established pharmacologic class), MOA (mechanism of action), PE (physiologic effect), CS (chemical structure).</td><td class='lin'>Which openFDA array the value came from</td></tr>
+<tr><td><code>pharm_class</code></td><td class='type'>string</td><td>Class name, e.g. <code>Angiotensin 2 Receptor Blocker [EPC]</code>.</td><td class='lin'><code>results[].patient.drug[].openfda.pharm_class_epc[] / _moa[] / _pe[] / _cs[]</code>, exploded, cleaned, de-duplicated</td></tr>
+<tr><td><code>_source_quarter</code></td><td class='type'>string</td><td>Source quarter set.</td><td class='lin'>Parsed from the source file name</td></tr>
+<tr><td><code>_report_uid</code></td><td class='type'>bigint</td><td>Link to the exact report copy.</td><td class='lin'>Inherited from the parent report</td></tr></tbody></table>
+</section>
+<section class="tbl" id="silver-load-log">
+  <h3>silver.load_log</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per source quarter set loaded</dd>
+    <dt>Purpose</dt><dd>Restart log and load reconciliation. Quarters marked Succeeded are skipped on rerun.</dd>
+    <dt>Upstream</dt><dd>Load process</dd>
+    <dt>Keys</dt><dd>source_quarter</dd>
+    <dt>Layout</dt><dd>Small operational table.</dd>
+    <dt>Rows</dt><dd>92</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>source_quarter</code></td><td class='type'>string</td><td>Quarter set, e.g. 2025q4 or all_other.</td><td class='lin'>Parsed from file names</td></tr>
+<tr><td><code>file_count</code></td><td class='type'>int</td><td>JSON files in the quarter set.</td><td class='lin'>File listing</td></tr>
+<tr><td><code>meta_total</code></td><td class='type'>bigint</td><td>Report total that openFDA states for the quarter set.</td><td class='lin'><code>meta.results.total</code></td></tr>
+<tr><td><code>reports_in_files</code></td><td class='type'>bigint</td><td>Reports found in the files.</td><td class='lin'>Count of <code>results[]</code> elements</td></tr>
+<tr><td><code>report_rows</code></td><td class='type'>bigint</td><td>Report rows written (before version de-duplication).</td><td class='lin'>Load count</td></tr>
+<tr><td><code>drug_rows</code></td><td class='type'>bigint</td><td>Drug rows written.</td><td class='lin'>Load count</td></tr>
+<tr><td><code>reaction_rows</code></td><td class='type'>bigint</td><td>Reaction rows written.</td><td class='lin'>Load count</td></tr>
+<tr><td><code>pharm_class_rows</code></td><td class='type'>bigint</td><td>Pharmacologic-class rows written.</td><td class='lin'>Load count</td></tr>
+<tr><td><code>corrupt_files</code></td><td class='type'>bigint</td><td>Files where at least one field didn't match the schema (that field set to NULL).</td><td class='lin'><code>_corrupt_record</code> not NULL</td></tr>
+<tr><td><code>count_matches</code></td><td class='type'>boolean</td><td>reports_in_files = meta_total.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>status</code></td><td class='type'>string</td><td>Succeeded.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>run_id</code></td><td class='type'>string</td><td>Notebook run identifier.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>started_ts</code></td><td class='type'>timestamp</td><td>Batch start (UTC).</td><td class='lin'>Load process</td></tr>
+<tr><td><code>ended_ts</code></td><td class='type'>timestamp</td><td>Batch end (UTC).</td><td class='lin'>Load process</td></tr></tbody></table>
+</section>
+<section class="tbl" id="silver-dq-log">
+  <h3>silver.dq_log</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per quarter × table × data-quality rule × run</dd>
+    <dt>Purpose</dt><dd>Counts of values cleaned or rejected by each data-quality rule.</dd>
+    <dt>Upstream</dt><dd>Load process</dd>
+    <dt>Keys</dt><dd>source_quarter + table_name + rule + run_id</dd>
+    <dt>Layout</dt><dd>Small operational table.</dd>
+    <dt>Rows</dt><dd>varies</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>source_quarter</code></td><td class='type'>string</td><td>Quarter set, or <code>ALL</code> for the finalize step.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>table_name</code></td><td class='type'>string</td><td>Table the rule applies to.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>rule</code></td><td class='type'>string</td><td>invalid_receive_date, invalid_receipt_date, invalid_patient_age, invalid_patient_weight, unknown_report_type_code, unknown_qualification_code, unknown_drug_role_code, unknown_route_code, unknown_reaction_outcome_code, missing_safetyreportid, corrupt_files, superseded_versions_removed.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>row_count</code></td><td class='type'>bigint</td><td>Rows affected.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>run_id</code></td><td class='type'>string</td><td>Notebook run identifier.</td><td class='lin'>Load process</td></tr>
+<tr><td><code>logged_ts</code></td><td class='type'>timestamp</td><td>When the count was logged (UTC).</td><td class='lin'>Load process</td></tr></tbody></table>
+</section>
+
+<h2 class="gold">Gold tables</h2>
+
+<section class="tbl" id="gold-dim-date">
+  <h3>gold.dim_date</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per calendar day, from the earliest receive date (or 2004-01-01) to 31 December of the latest data year</dd>
+    <dt>Purpose</dt><dd>Date dimension for time-based analysis.</dd>
+    <dt>Upstream</dt><dd>Generated; range from silver.adverse_event_report.receive_date</dd>
+    <dt>Keys</dt><dd>date_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. V-Order.</dd>
+    <dt>Rows</dt><dd>14,618</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>date_key</code></td><td class='type'>int</td><td>yyyymmdd.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>date</code></td><td class='type'>date</td><td>Calendar date.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>year</code></td><td class='type'>int</td><td>Year.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>quarter</code></td><td class='type'>int</td><td>Quarter 1–4.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>month</code></td><td class='type'>int</td><td>Month 1–12.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>month_name</code></td><td class='type'>string</td><td>e.g. January.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>month_short</code></td><td class='type'>string</td><td>e.g. Jan.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>year_quarter</code></td><td class='type'>string</td><td>e.g. 2025-Q4.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>year_month</code></td><td class='type'>string</td><td>e.g. 2025-10.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>month_start_date</code></td><td class='type'>date</td><td>First day of the month.</td><td class='lin'>Generated</td></tr>
+<tr><td><code>day_of_week</code></td><td class='type'>string</td><td>e.g. Monday.</td><td class='lin'>Generated</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-dim-drug">
+  <h3>gold.dim_drug</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per drug_name (rule-based drug identity)</dd>
+    <dt>Purpose</dt><dd>Drug dimension. Many reports point to each row. Includes an <code>UNKNOWN</code> row (is_unknown = true). The same real drug can still appear under more than one name (see known gaps).</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_drug, silver.drug_pharm_class</dd>
+    <dt>Keys</dt><dd>drug_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_name. V-Order.</dd>
+    <dt>Rows</dt><dd>Set by the full build (depends on drug_name)</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>drug_key</code></td><td class='type'>bigint</td><td>Surrogate key.</td><td class='lin'><code>xxhash64(drug_name)</code></td></tr>
+<tr><td><code>drug_name</code></td><td class='type'>string</td><td>Rule-based drug name.</td><td class='lin'>silver.adverse_event_drug.drug_name</td></tr>
+<tr><td><code>brand_names</code></td><td class='type'>string</td><td>Up to 10 most frequent openFDA brand names across the drug's rows, <code>; </code>-joined.</td><td class='lin'>silver.adverse_event_drug.brand_names_all, split and counted</td></tr>
+<tr><td><code>product_type</code></td><td class='type'>string</td><td>Most frequent product type.</td><td class='lin'>silver.adverse_event_drug.product_type</td></tr>
+<tr><td><code>pharm_class_epc</code></td><td class='type'>string</td><td>Most frequent established pharmacologic class (NULL when openFDA has none).</td><td class='lin'>silver.drug_pharm_class where class_type = EPC</td></tr>
+<tr><td><code>is_unknown</code></td><td class='type'>boolean</td><td>True for the <code>UNKNOWN</code> drug (no usable name, or only placeholder text). Use it to filter in reports, the Data Agent, and the app.</td><td class='lin'>drug_name = 'UNKNOWN'</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-dim-reaction">
+  <h3>gold.dim_reaction</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per MedDRA Preferred Term (case-insensitive)</dd>
+    <dt>Purpose</dt><dd>Reaction dimension.</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_reaction</dd>
+    <dt>Keys</dt><dd>reaction_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: reaction_pt. V-Order.</dd>
+    <dt>Rows</dt><dd>25,442</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>reaction_key</code></td><td class='type'>bigint</td><td>Surrogate key.</td><td class='lin'><code>xxhash64(lower(reaction_pt))</code>; missing → 'unknown'</td></tr>
+<tr><td><code>reaction_pt</code></td><td class='type'>string</td><td>Preferred Term in its most common casing.</td><td class='lin'>silver.adverse_event_reaction.reaction_pt</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-dim-country">
+  <h3>gold.dim_country</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per country code</dd>
+    <dt>Purpose</dt><dd>Country dimension for where the event occurred.</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_report</dd>
+    <dt>Keys</dt><dd>country_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. V-Order.</dd>
+    <dt>Rows</dt><dd>254</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>country_key</code></td><td class='type'>bigint</td><td>Surrogate key.</td><td class='lin'><code>xxhash64(country_code)</code></td></tr>
+<tr><td><code>country_code</code></td><td class='type'>string</td><td>ISO-2 code, other code as reported, or UNKNOWN.</td><td class='lin'>occur_country, else primary_source_country, else UNKNOWN</td></tr>
+<tr><td><code>country_name</code></td><td class='type'>string</td><td>English country name for ISO-2 codes; other values title-cased.</td><td class='lin'>Java Locale display name</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-dim-pharm-class">
+  <h3>gold.dim_pharm_class</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per class type × pharmacologic class</dd>
+    <dt>Purpose</dt><dd>Pharmacologic class dimension.</dd>
+    <dt>Upstream</dt><dd>silver.drug_pharm_class</dd>
+    <dt>Keys</dt><dd>pharm_class_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. V-Order.</dd>
+    <dt>Rows</dt><dd>1,097</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>pharm_class_key</code></td><td class='type'>bigint</td><td>Surrogate key.</td><td class='lin'><code>xxhash64(class_type, pharm_class)</code></td></tr>
+<tr><td><code>pharm_class</code></td><td class='type'>string</td><td>Class name.</td><td class='lin'>silver.drug_pharm_class.pharm_class</td></tr>
+<tr><td><code>class_type</code></td><td class='type'>string</td><td>EPC, MOA, PE, or CS.</td><td class='lin'>silver.drug_pharm_class.class_type</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-bridge-drug-pharm-class">
+  <h3>gold.bridge_drug_pharm_class</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per drug × pharmacologic class</dd>
+    <dt>Purpose</dt><dd>Many-to-many link between drugs and classes.</dd>
+    <dt>Upstream</dt><dd>silver.drug_pharm_class joined to silver.adverse_event_drug</dd>
+    <dt>Keys</dt><dd>drug_key + pharm_class_key</dd>
+    <dt>Layout</dt><dd>Not partitioned. V-Order.</dd>
+    <dt>Rows</dt><dd>Set by the full build (depends on drug_name)</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>drug_key</code></td><td class='type'>bigint</td><td>→ dim_drug.</td><td class='lin'><code>xxhash64(drug_name)</code></td></tr>
+<tr><td><code>pharm_class_key</code></td><td class='type'>bigint</td><td>→ dim_pharm_class.</td><td class='lin'><code>xxhash64(class_type, pharm_class)</code></td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-fact-report">
+  <h3>gold.fact_report</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per safety report</dd>
+    <dt>Purpose</dt><dd>Central fact table: one row per case, with readable descriptors and seriousness flags.</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_report (+ silver.adverse_event_reaction for has_fatal_reaction)</dd>
+    <dt>Keys</dt><dd>report_key; receive_date_key → dim_date; occur_country_key → dim_country</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: receive_date_key. V-Order.</dd>
+    <dt>Rows</dt><dd>21,052,346</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>report_key</code></td><td class='type'>bigint</td><td>Surrogate key.</td><td class='lin'><code>xxhash64(safetyreport_id)</code></td></tr>
+<tr><td><code>safetyreport_id</code></td><td class='type'>string</td><td>FAERS report ID.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>receive_date_key</code></td><td class='type'>int</td><td>→ dim_date.</td><td class='lin'>receive_date as yyyymmdd</td></tr>
+<tr><td><code>receive_date</code></td><td class='type'>date</td><td>Date FDA first received the report.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>occur_country_key</code></td><td class='type'>bigint</td><td>→ dim_country.</td><td class='lin'>xxhash64 of occur_country, else primary_source_country, else UNKNOWN</td></tr>
+<tr><td><code>report_type</code></td><td class='type'>string</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>reporter_qualification</code></td><td class='type'>string</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>is_hcp_reported</code></td><td class='type'>boolean</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>sender_type</code></td><td class='type'>string</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>patient_sex</code></td><td class='type'>string</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>age_group</code></td><td class='type'>string</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>patient_age_years</code></td><td class='type'>double</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>patient_weight_kg</code></td><td class='type'>double</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>is_serious, is_death, is_life_threatening, is_hospitalization, is_disabling, is_congenital_anomaly, is_other_serious</code></td><td class='type'>boolean</td><td>Seriousness flags.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>is_expedited</code></td><td class='type'>boolean</td><td>See silver.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>has_fatal_reaction</code></td><td class='type'>boolean</td><td>At least one reaction on the report had a fatal outcome.</td><td class='lin'>max(silver.adverse_event_reaction.is_fatal_outcome) per report</td></tr>
+<tr><td><code>drug_count</code></td><td class='type'>int</td><td>Drugs on the report.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>suspect_drug_count</code></td><td class='type'>int</td><td>Suspect drugs on the report.</td><td class='lin'>silver report</td></tr>
+<tr><td><code>reaction_count</code></td><td class='type'>int</td><td>Reactions on the report.</td><td class='lin'>silver report</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-fact-report-drug">
+  <h3>gold.fact_report_drug</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per report × drug</dd>
+    <dt>Purpose</dt><dd>Drugs on each report. Joins to fact_report_reaction only through report_key (FAERS doesn't link a drug to a specific reaction).</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_drug</dd>
+    <dt>Keys</dt><dd>report_key → fact_report; drug_key → dim_drug</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_key. V-Order.</dd>
+    <dt>Rows</dt><dd>78,346,459</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>report_key</code></td><td class='type'>bigint</td><td>→ fact_report.</td><td class='lin'><code>xxhash64(safetyreport_id)</code></td></tr>
+<tr><td><code>drug_key</code></td><td class='type'>bigint</td><td>→ dim_drug.</td><td class='lin'><code>xxhash64(drug_name)</code></td></tr>
+<tr><td><code>drug_seq</code></td><td class='type'>int</td><td>Drug position on the report.</td><td class='lin'>silver drug</td></tr>
+<tr><td><code>drug_role</code></td><td class='type'>string</td><td>Suspect, Concomitant, Interacting, Unknown.</td><td class='lin'>silver drug</td></tr>
+<tr><td><code>is_suspect</code></td><td class='type'>boolean</td><td>drug_role = Suspect.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>route</code></td><td class='type'>string</td><td>Route of administration.</td><td class='lin'>silver drug</td></tr>
+<tr><td><code>action_taken</code></td><td class='type'>string</td><td>Action taken with the drug.</td><td class='lin'>silver drug</td></tr>
+<tr><td><code>rechallenge</code></td><td class='type'>string</td><td>Rechallenge result.</td><td class='lin'>silver drug</td></tr>
+<tr><td><code>drug_indication</code></td><td class='type'>string</td><td>Reported indication.</td><td class='lin'>silver drug</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-fact-report-reaction">
+  <h3>gold.fact_report_reaction</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>One row per report × reaction</dd>
+    <dt>Purpose</dt><dd>Reactions on each report.</dd>
+    <dt>Upstream</dt><dd>silver.adverse_event_reaction</dd>
+    <dt>Keys</dt><dd>report_key → fact_report; reaction_key → dim_reaction</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: reaction_key. V-Order.</dd>
+    <dt>Rows</dt><dd>63,154,910</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>report_key</code></td><td class='type'>bigint</td><td>→ fact_report.</td><td class='lin'><code>xxhash64(safetyreport_id)</code></td></tr>
+<tr><td><code>reaction_key</code></td><td class='type'>bigint</td><td>→ dim_reaction.</td><td class='lin'><code>xxhash64(lower(reaction_pt))</code></td></tr>
+<tr><td><code>reaction_seq</code></td><td class='type'>int</td><td>Reaction position on the report.</td><td class='lin'>silver reaction</td></tr>
+<tr><td><code>reaction_outcome</code></td><td class='type'>string</td><td>Reaction outcome.</td><td class='lin'>silver reaction</td></tr>
+<tr><td><code>is_fatal_outcome</code></td><td class='type'>boolean</td><td>Outcome was fatal.</td><td class='lin'>silver reaction</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-agg-report-trend-monthly">
+  <h3>gold.agg_report_trend_monthly</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>Month × country × report type × reporter qualification</dd>
+    <dt>Purpose</dt><dd>Pre-computed monthly trend of report volume and seriousness.</dd>
+    <dt>Upstream</dt><dd>gold.fact_report</dd>
+    <dt>Keys</dt><dd>month_start_date + occur_country_key + report_type + reporter_qualification</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: month_start_date. V-Order.</dd>
+    <dt>Rows</dt><dd>130,870</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>month_start_date</code></td><td class='type'>date</td><td>First day of the receive month.</td><td class='lin'>trunc(receive_date, month)</td></tr>
+<tr><td><code>month_date_key</code></td><td class='type'>int</td><td>→ dim_date.</td><td class='lin'>month_start_date as yyyymmdd</td></tr>
+<tr><td><code>occur_country_key</code></td><td class='type'>bigint</td><td>→ dim_country.</td><td class='lin'>fact_report</td></tr>
+<tr><td><code>report_type</code></td><td class='type'>string</td><td>Report type.</td><td class='lin'>fact_report</td></tr>
+<tr><td><code>reporter_qualification</code></td><td class='type'>string</td><td>Reporter qualification.</td><td class='lin'>fact_report</td></tr>
+<tr><td><code>reports</code></td><td class='type'>bigint</td><td>Reports.</td><td class='lin'>count</td></tr>
+<tr><td><code>serious_reports, death_reports, hospitalization_reports, life_threatening_reports</code></td><td class='type'>bigint</td><td>Reports with each seriousness flag.</td><td class='lin'>sum of fact_report flags</td></tr>
+<tr><td><code>fatal_outcome_reports</code></td><td class='type'>bigint</td><td>Reports with a fatal reaction outcome.</td><td class='lin'>sum of has_fatal_reaction</td></tr>
+<tr><td><code>hcp_reported_reports</code></td><td class='type'>bigint</td><td>Reports from healthcare professionals.</td><td class='lin'>sum of is_hcp_reported</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-agg-drug-summary">
+  <h3>gold.agg_drug_summary</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>Suspect drug × period (all_time, last_3_years)</dd>
+    <dt>Purpose</dt><dd>Per-drug profile: volume, seriousness, demographics, dates, top indication. Each report counts once per suspect drug. Excludes the <code>UNKNOWN</code> drug.</dd>
+    <dt>Upstream</dt><dd>gold.fact_report, gold.fact_report_drug (is_suspect), gold.dim_drug</dd>
+    <dt>Keys</dt><dd>drug_key + period</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_name. V-Order.</dd>
+    <dt>Rows</dt><dd>Set by the full build (depends on drug_name)</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>drug_key</code></td><td class='type'>bigint</td><td>→ dim_drug.</td><td class='lin'>fact_report_drug</td></tr>
+<tr><td><code>drug_name</code></td><td class='type'>string</td><td>Drug name (no join needed).</td><td class='lin'>dim_drug</td></tr>
+<tr><td><code>period</code></td><td class='type'>string</td><td>all_time, or last_3_years ending at the latest receive date.</td><td class='lin'>Derived from receive_date</td></tr>
+<tr><td><code>reports</code></td><td class='type'>bigint</td><td>Reports with this suspect drug.</td><td class='lin'>count</td></tr>
+<tr><td><code>serious_reports, death_reports, hospitalization_reports, life_threatening_reports, fatal_outcome_reports, hcp_reported_reports</code></td><td class='type'>bigint</td><td>Reports with each flag.</td><td class='lin'>fact_report flags</td></tr>
+<tr><td><code>female_reports, male_reports</code></td><td class='type'>bigint</td><td>Reports by patient sex.</td><td class='lin'>fact_report.patient_sex</td></tr>
+<tr><td><code>age_0_17_reports, age_18_44_reports, age_45_64_reports, age_65_74_reports, age_75_plus_reports, age_unknown_reports</code></td><td class='type'>bigint</td><td>Reports by age group.</td><td class='lin'>fact_report.age_group</td></tr>
+<tr><td><code>first_receive_date, last_receive_date</code></td><td class='type'>date</td><td>Earliest and latest receive dates.</td><td class='lin'>fact_report.receive_date</td></tr>
+<tr><td><code>top_indication</code></td><td class='type'>string</td><td>Most frequent reported indication, excluding 'Product used for unknown indication'.</td><td class='lin'>fact_report_drug.drug_indication</td></tr>
+<tr><td><code>serious_pct</code></td><td class='type'>double</td><td>serious_reports / reports (0–1, 4 decimals).</td><td class='lin'>Derived</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-agg-drug-reaction">
+  <h3>gold.agg_drug_reaction</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>Suspect drug × reaction × period, where reports ≥ 3</dd>
+    <dt>Purpose</dt><dd>Reactions co-reported with each suspect drug, ranked within the drug. Excludes the <code>UNKNOWN</code> drug.</dd>
+    <dt>Upstream</dt><dd>gold.fact_report, gold.fact_report_drug, gold.fact_report_reaction, gold.dim_drug, gold.dim_reaction</dd>
+    <dt>Keys</dt><dd>drug_key + reaction_key + period</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_name, reaction_pt. V-Order.</dd>
+    <dt>Rows</dt><dd>Set by the full build (depends on drug_name)</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>drug_key, drug_name</code></td><td class='type'>bigint, string</td><td>Suspect drug.</td><td class='lin'>dim_drug</td></tr>
+<tr><td><code>reaction_key, reaction_pt</code></td><td class='type'>bigint, string</td><td>Reaction.</td><td class='lin'>dim_reaction</td></tr>
+<tr><td><code>period</code></td><td class='type'>string</td><td>all_time or last_3_years.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>reports</code></td><td class='type'>bigint</td><td>Distinct reports listing both the suspect drug and the reaction.</td><td class='lin'>count</td></tr>
+<tr><td><code>serious_reports, death_reports</code></td><td class='type'>bigint</td><td>Of those, serious / death reports.</td><td class='lin'>fact_report flags</td></tr>
+<tr><td><code>fatal_outcome_reports</code></td><td class='type'>bigint</td><td>Of those, reports where this reaction was fatal.</td><td class='lin'>fact_report_reaction.is_fatal_outcome</td></tr>
+<tr><td><code>rank_in_drug</code></td><td class='type'>int</td><td>Rank of the reaction by reports within the drug and period.</td><td class='lin'>row_number</td></tr></tbody></table>
+</section>
+<section class="tbl" id="gold-agg-drug-reaction-signal">
+  <h3>gold.agg_drug_reaction_signal</h3>
+  <dl class="meta">
+    <dt>Grain</dt><dd>Suspect drug × reaction × period, where a ≥ 3</dd>
+    <dt>Purpose</dt><dd>Disproportionality signals (hypothesis-generating only). Universe: reports with at least one identified (non-UNKNOWN) suspect drug and one reaction, per period. Excludes the <code>UNKNOWN</code> drug.</dd>
+    <dt>Upstream</dt><dd>gold.fact_report, gold.fact_report_drug, gold.fact_report_reaction, gold.dim_drug, gold.dim_reaction</dd>
+    <dt>Keys</dt><dd>drug_key + reaction_key + period</dd>
+    <dt>Layout</dt><dd>Not partitioned. Z-order: drug_name, reaction_pt. V-Order.</dd>
+    <dt>Rows</dt><dd>Set by the full build (depends on drug_name)</dd>
+  </dl>
+  <table class="cols"><thead><tr><th>Column</th><th>Type</th><th>Description</th><th>Source / lineage</th></tr></thead>
+  <tbody><tr><td><code>drug_key, drug_name</code></td><td class='type'>bigint, string</td><td>Suspect drug.</td><td class='lin'>dim_drug</td></tr>
+<tr><td><code>reaction_key, reaction_pt</code></td><td class='type'>bigint, string</td><td>Reaction.</td><td class='lin'>dim_reaction</td></tr>
+<tr><td><code>period</code></td><td class='type'>string</td><td>all_time or last_3_years.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>a</code></td><td class='type'>bigint</td><td>Reports with the drug and the reaction.</td><td class='lin'>2×2 table</td></tr>
+<tr><td><code>b</code></td><td class='type'>bigint</td><td>Reports with the drug, without the reaction.</td><td class='lin'>drug_reports − a</td></tr>
+<tr><td><code>c</code></td><td class='type'>bigint</td><td>Reports with the reaction, without the drug.</td><td class='lin'>reaction_reports − a</td></tr>
+<tr><td><code>d</code></td><td class='type'>bigint</td><td>Reports with neither.</td><td class='lin'>n_total − a − b − c</td></tr>
+<tr><td><code>n_total</code></td><td class='type'>bigint</td><td>Reports in the universe for the period.</td><td class='lin'>count</td></tr>
+<tr><td><code>drug_reports, reaction_reports</code></td><td class='type'>bigint</td><td>Reports with the drug / with the reaction.</td><td class='lin'>count</td></tr>
+<tr><td><code>prr, prr_lower_95, prr_upper_95</code></td><td class='type'>double</td><td>Proportional reporting ratio with 95% CI.</td><td class='lin'>(a/(a+b)) / (c/(c+d))</td></tr>
+<tr><td><code>ror, ror_lower_95, ror_upper_95</code></td><td class='type'>double</td><td>Reporting odds ratio with 95% CI.</td><td class='lin'>(a·d) / (b·c)</td></tr>
+<tr><td><code>chi_square</code></td><td class='type'>double</td><td>Chi-square with Yates correction.</td><td class='lin'>Derived</td></tr>
+<tr><td><code>signal_flag</code></td><td class='type'>boolean</td><td>Evans criteria: PRR ≥ 2, chi-square ≥ 4, a ≥ 3.</td><td class='lin'>Derived</td></tr></tbody></table>
+</section>
+
+<h2 id="drug-identification">Drug identification (<code>drug_name</code>)</h2>
+<p style="font-size:13.5px">FAERS has no standardized drug identifier. <code>drug_name</code> is derived per drug row by simple rules.</p>
+<h4>Step A – choose a source (first available wins)</h4>
+<table><thead><tr><th>Order</th><th>Source</th><th>Value used</th><th>drug_name_source</th></tr></thead><tbody>
+<tr><td>1</td><td><code>openfda.generic_name[]</code></td><td>One value from the list (see below)</td><td>openfda_generic</td></tr>
+<tr><td>2</td><td><code>activesubstance.activesubstancename</code></td><td>Reported active substance</td><td>reported_substance</td></tr>
+<tr><td>3</td><td><code>medicinalproduct</code></td><td>Reported product name</td><td>product_text</td></tr>
+<tr><td>–</td><td>none usable</td><td><code>UNKNOWN</code></td><td>none</td></tr>
+</tbody></table>
+<h4>Choosing among several openFDA generic names</h4>
+<p style="font-size:13.5px">openFDA lists the generic names of every label it matched, so 19.6% of matched drug rows have several values. Each value is normalized (step B), then: (1) use the value that matches the normalized reported active substance; (2) except when that value is just the shortest value plus extra words such as an unlisted salt (combinations with <code> / </code> are exempt); (3) otherwise use the shortest value, with ties broken alphabetically.</p>
+<table><thead><tr><th>openFDA generic names</th><th>Reported active substance</th><th>drug_name</th><th>Why</th></tr></thead><tbody>
+<tr><td><code>ASPIRIN; ASPIRIN 81 MG; ASPIRIN 325 MG</code></td><td>–</td><td><code>ASPIRIN</code></td><td>Shortest</td></tr>
+<tr><td><code>METFORMIN; METFORMIN ER 500 MG</code></td><td><code>METFORMIN HYDROCHLORIDE</code></td><td><code>METFORMIN</code></td><td>Matches after normalization</td></tr>
+<tr><td><code>HYDROCORTISONE; ANTI-ITCH CREAM; ANTI ITCH; …</code></td><td><code>HYDROCORTISONE</code></td><td><code>HYDROCORTISONE</code></td><td>Matches the reported substance; the shortest value is a marketing description</td></tr>
+<tr><td><code>LIDICAINE; LIDOCAINE; …</code></td><td><code>LIDOCAINE</code></td><td><code>LIDOCAINE</code></td><td>Matches the reported substance; the shortest value is a label typo</td></tr>
+<tr><td><code>LOSARTAN POTASSIUM AND HYDROCHLOROTHIAZIDE; LOSARTAN POTASSIUM</code></td><td><code>HYDROCHLOROTHIAZIDE&#92;LOSARTAN POTASSIUM</code></td><td><code>HYDROCHLOROTHIAZIDE / LOSARTAN</code></td><td>Matches the reported combination</td></tr>
+<tr><td><code>CLOPIDOGREL; CLOPIDOGREL BISULFATE</code></td><td><code>CLOPIDOGREL BISULFATE</code></td><td><code>CLOPIDOGREL</code></td><td>The match only adds a salt word</td></tr>
+</tbody></table>
+<h4>Step B – normalize</h4>
+<table><thead><tr><th>Order</th><th>Rule</th><th>Example</th></tr></thead><tbody>
+<tr><td>1</td><td>Remove text in parentheses</td><td><code>LOSARTAN (LOSARTAN)</code> → <code>LOSARTAN</code></td></tr>
+<tr><td>2</td><td>Split combinations on <code>&#92;</code>, <code>/</code>, or <code>AND</code></td><td><code>LOSARTAN POTASSIUM AND HYDROCHLOROTHIAZIDE</code> → two ingredients</td></tr>
+<tr><td>3</td><td>Remove strengths: a leading concentration, a part that is only a strength or number, and everything from a number that follows a space. Numbers inside a name are kept.</td><td><code>ASPIRIN 81 MG</code> → <code>ASPIRIN</code>; <code>HUMIRA 40 MG/0.8 ML PEN</code> → <code>HUMIRA</code>; <code>0.9% SODIUM CHLORIDE INJECTION</code> → <code>SODIUM CHLORIDE INJECTION</code>; <code>5-FU</code>, <code>COVID-19 VACCINE</code> unchanged</td></tr>
+<tr><td>4</td><td>Remove a trailing qualifier: <code> NOS</code>, <code>, UNSPECIFIED</code>, <code> UNSPECIFIED FORM</code></td><td><code>INSULIN NOS</code> → <code>INSULIN</code>; <code>MENTHOL, UNSPECIFIED FORM</code> → <code>MENTHOL</code></td></tr>
+<tr><td>5</td><td>Remove a trailing salt word (HYDROCHLORIDE, HCL, SODIUM, POTASSIUM, CALCIUM, MAGNESIUM, BESYLATE, CITRATE, SULFATE, MESYLATE) unless what remains is a mineral (SODIUM, POTASSIUM, CALCIUM, MAGNESIUM, FERROUS, ZINC)</td><td><code>LOSARTAN POTASSIUM</code> → <code>LOSARTAN</code>; <code>MAGNESIUM SULFATE</code> unchanged</td></tr>
+<tr><td>6</td><td>Drop placeholder ingredients: text that starts with UNKNOWN or UNSPECIFIED, or consists only of generic words (DRUG, MEDICATION, INGREDIENT, PRODUCT, OTHER, NOT SPECIFIED, NO … NAME, NOS, …)</td><td><code>UNSPECIFIED INGREDIENT</code>, <code>NO DRUG NAME</code> → nothing; <code>ASPIRIN / UNKNOWN DRUG</code> → <code>ASPIRIN</code></td></tr>
+<tr><td>7</td><td>Sort ingredients, remove duplicates, join with <code> / </code></td><td>→ <code>HYDROCHLOROTHIAZIDE / LOSARTAN</code></td></tr>
+</tbody></table>
+<p style="font-size:13.5px">If nothing is left, the next source in step A is tried. If no source gives a name, <code>drug_name</code> is <code>UNKNOWN</code> (<code>drug_name_source</code> = none). <code>UNKNOWN</code> stays in the facts and <code>dim_drug</code> (<code>is_unknown</code> = true) but is excluded from <code>agg_drug_summary</code>, <code>agg_drug_reaction</code>, and <code>agg_drug_reaction_signal</code>.</p>
+<div class="note"><b>Known gaps:</b> brand names typed by reporters (<code>HUMIRA</code>) and misspellings stay separate; salt words not on the list (BISULFATE, TARTRATE…) still split; dose-form words without a number remain (<code>LOSARTAN POT TAB</code>); a strength before the name (<code>81 MG ASPIRIN</code>) or a drug only in parentheses (<code>476 (MESALAZINE)</code>) loses the name; vague class phrases (<code>DRUG USED IN DIABETES</code>) are kept; biosimilars stay distinct (<code>INFLIXIMAB-DYYB</code>); openFDA lists that mix products can pick an imperfect generic when no substance is reported; no RxNorm vocabulary is used (<code>rxcui_all</code> and <code>unii_all</code> are kept for later).</div>
+
+<h2 id="dq">Data quality &amp; validation</h2>
+<table><thead><tr><th>Rule</th><th>Action</th><th>Logged as (silver.dq_log.rule)</th></tr></thead><tbody>
+<tr><td>Missing safetyreportid</td><td>Row dropped</td><td>missing_safetyreportid</td></tr>
+<tr><td>Superseded report versions (same ID)</td><td>Keep highest version, then latest receipt_date, then latest source quarter; delete older copies and their child rows</td><td>superseded_versions_removed</td></tr>
+<tr><td>Unparseable date, before 1900, or after load date</td><td>Set to NULL</td><td>invalid_receive_date, invalid_receipt_date</td></tr>
+<tr><td>Age outside 0–120 years / weight outside 0–600 kg</td><td>Set to NULL</td><td>invalid_patient_age, invalid_patient_weight</td></tr>
+<tr><td>Unknown code value</td><td>Set to Unknown</td><td>unknown_*_code</td></tr>
+<tr><td>Blank or placeholder text (UNK, N/A, NULL, …)</td><td>Set to NULL</td><td>–</td></tr>
+<tr><td>Field not matching the schema in a file</td><td>Field set to NULL; file counted</td><td>corrupt_files</td></tr>
+</tbody></table>
+<p style="font-size:13.5px"><b>Validation gates:</b> reports match <code>meta.results.total</code> per quarter; one row per safetyreport_id after finalize; no child rows without a parent; every report has <code>_source_file</code>; Gold totals reconcile with Silver; Gold keys unique; no orphan drug/reaction keys; <code>UNKNOWN</code> absent from drug-level aggregates.</p>
+
+<h2 id="lookups">Code lookups</h2>
+<div class="lkgrid"><div class='lk'><h4>report_type ← reporttype</h4><table><tbody><tr><td><code>1</code></td><td>Spontaneous</td></tr><tr><td><code>2</code></td><td>Report from study</td></tr><tr><td><code>3</code></td><td>Other</td></tr><tr><td><code>4</code></td><td>Not available to sender</td></tr></tbody></table></div><div class='lk'><h4>reporter_qualification ← primarysource.qualification</h4><table><tbody><tr><td><code>1</code></td><td>Physician</td></tr><tr><td><code>2</code></td><td>Pharmacist</td></tr><tr><td><code>3</code></td><td>Other health professional</td></tr><tr><td><code>4</code></td><td>Lawyer</td></tr><tr><td><code>5</code></td><td>Consumer or non-health professional</td></tr></tbody></table></div><div class='lk'><h4>patient_sex ← patientsex</h4><table><tbody><tr><td><code>0</code></td><td>Unknown</td></tr><tr><td><code>1</code></td><td>Male</td></tr><tr><td><code>2</code></td><td>Female</td></tr></tbody></table></div><div class='lk'><h4>patientonsetageunit → years</h4><table><tbody><tr><td><code>800</code></td><td>Decade (×10)</td></tr><tr><td><code>801</code></td><td>Year</td></tr><tr><td><code>802</code></td><td>Month (÷12)</td></tr><tr><td><code>803</code></td><td>Week</td></tr><tr><td><code>804</code></td><td>Day</td></tr><tr><td><code>805</code></td><td>Hour</td></tr></tbody></table></div><div class='lk'><h4>drug_role ← drugcharacterization</h4><table><tbody><tr><td><code>1</code></td><td>Suspect</td></tr><tr><td><code>2</code></td><td>Concomitant</td></tr><tr><td><code>3</code></td><td>Interacting</td></tr></tbody></table></div><div class='lk'><h4>action_taken ← actiondrug</h4><table><tbody><tr><td><code>1</code></td><td>Drug withdrawn</td></tr><tr><td><code>2</code></td><td>Dose reduced</td></tr><tr><td><code>3</code></td><td>Dose increased</td></tr><tr><td><code>4</code></td><td>Dose not changed</td></tr><tr><td><code>5</code></td><td>Unknown</td></tr><tr><td><code>6</code></td><td>Not applicable</td></tr></tbody></table></div><div class='lk'><h4>rechallenge ← drugrecurreadministration</h4><table><tbody><tr><td><code>1</code></td><td>Yes - reaction recurred</td></tr><tr><td><code>2</code></td><td>No - reaction did not recur</td></tr><tr><td><code>3</code></td><td>Unknown</td></tr></tbody></table></div><div class='lk'><h4>reaction_outcome ← reactionoutcome</h4><table><tbody><tr><td><code>1</code></td><td>Recovered/resolved</td></tr><tr><td><code>2</code></td><td>Recovering/resolving</td></tr><tr><td><code>3</code></td><td>Not recovered/not resolved</td></tr><tr><td><code>4</code></td><td>Recovered with sequelae</td></tr><tr><td><code>5</code></td><td>Fatal</td></tr><tr><td><code>6</code></td><td>Unknown</td></tr></tbody></table></div><div class='lk'><h4>drugtreatmentdurationunit → days</h4><table><tbody><tr><td><code>801</code></td><td>Year</td></tr><tr><td><code>802</code></td><td>Month</td></tr><tr><td><code>803</code></td><td>Week</td></tr><tr><td><code>804</code></td><td>Day</td></tr><tr><td><code>805</code></td><td>Hour</td></tr><tr><td><code>806</code></td><td>Minute</td></tr></tbody></table></div><div class='lk'><h4>route ← drugadministrationroute</h4><table><tbody><tr><td><code>001–067</code></td><td>67 E2B routes, e.g. 048 Oral, 058 Subcutaneous, 042 Intravenous (not otherwise specified), 065 Unknown</td></tr></tbody></table></div></div>
+
+<h2 id="disclaimer">Disclaimer</h2>
+<div class="note"><p><b>About this data.</b> FAERS adverse event reports are voluntarily submitted and are not validated. They can't establish that a drug caused a reaction, and report counts can't be used to estimate how often a reaction occurs. A report can list several drugs and several reactions, and reactions aren't linked to a specific drug. Disproportionality signals (PRR and ROR) only suggest hypotheses. Cases reported to FDA by more than one party, under different report IDs, aren't de-duplicated. Don't rely on these data to make decisions about medical care.</p>
+<p><b>Drug identification.</b> FAERS has no standardized drug identifier. Each reported drug is named by simple rules: the openFDA generic name that matches the reported active substance, otherwise the shortest openFDA generic name; if openFDA has no match, the reported active substance, otherwise the reported product name; then parenthetical text, strengths, qualifiers such as NOS, and common salt words are removed, and combination products are written as alphabetically sorted ingredients. Placeholder entries such as UNSPECIFIED INGREDIENT or UNKNOWN DRUG are grouped as UNKNOWN, which is excluded from drug-level summaries and signals. No authoritative drug vocabulary such as RxNorm is used. Misspellings, brand names entered as free text, and uncommon entries may appear as separate drugs, so drug-level counts and signals are approximate and intended for demonstration only.</p></div>
+
+<footer>Source: openFDA Drug Adverse Event bulk downloads (<a href="https://open.fda.gov/apis/drug/event/">open.fda.gov/apis/drug/event</a>; field definitions <a href="https://open.fda.gov/fields/drugevent.yaml">drugevent.yaml</a>). See <a href="medallion-architecture-plan.md">medallion-architecture-plan.md</a> for the full design.</footer>
+</main>
+</div>
+</body>
+</html>
