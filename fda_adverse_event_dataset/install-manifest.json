@@ -1,0 +1,27 @@
+{
+  "notebooks": [
+    {
+      "name": "nb_fda_00_download_dataset",
+      "file": "nb_fda_00_download_dataset.ipynb",
+      "description": "Downloads and unzips the openFDA drug adverse event bulk files into Files/fda_ds and Files/fda_ds_unzipped"
+    },
+    {
+      "name": "nb_fda_01_silver_load",
+      "file": "nb_fda_01_silver_load.ipynb",
+      "description": "Loads the openFDA JSON files (Bronze) into the Silver Delta tables"
+    },
+    {
+      "name": "nb_fda_02_gold_build",
+      "file": "nb_fda_02_gold_build.ipynb",
+      "description": "Builds the Gold star schema, insight tables and disproportionality signals from Silver"
+    }
+  ],
+  "pipelines": [
+    {
+      "name": "pl_fda_one_time_build",
+      "file": "pl_fda_one_time_build.json",
+      "description": "Download Dataset -> Load Silver -> Build Gold"
+    }
+  ],
+  "runPipeline": "pl_fda_one_time_build"
+}

@@ -21,7 +21,7 @@
 | `Files/fda_ds/` | 1,799 `*.json.zip` files, ~114 GB (original downloads) |
 | `Files/fda_ds_unzipped/` | 1,799 JSON files, **~580 GB**, covering 91 quarters (2004 Q1–2026 Q3) plus 4 `all_other` files. `all_other` is the openFDA set of reports that fall outside the quarterly files. Individual files are up to ~930 MB. |
 
-The zip and unzipped files remain in place. The owner manages their retention manually.
+The zip and unzipped files remain in place. The owner manages their retention manually. They are produced by `nb_fda_00_download_dataset`, which downloads (16 parallel threads) and unzips (8 parallel threads) every file listed in openFDA's `download.json`; it is restart-safe and skips files that already exist.
 
 ### Source file shape
 
@@ -439,17 +439,22 @@ Two periods are included: `all_time` and `last_3_years`. The minimum case count 
 
 | Artifact | Fabric item | Source in this folder |
 |---|---|---|
-| Silver load notebook | `nb_fda_01_silver_load` | [nb_fda_01_silver_load.ipynb](./nb_fda_01_silver_load.ipynb) |
-| Gold build notebook | `nb_fda_02_gold_build` | [nb_fda_02_gold_build.ipynb](./nb_fda_02_gold_build.ipynb) |
-| Orchestration pipeline | `pl_fda_one_time_build` | [pl_fda_one_time_build.json](./pl_fda_one_time_build.json) |
+| Installer (creates the lakehouse and all items below, then starts the pipeline) | `nb_fda_install` | [nb_fda_install.ipynb](./nb_fda_install.ipynb), [install-manifest.json](./install-manifest.json); design in [installation-plan.md](./installation-plan.md) |
+| Download notebook (pipeline step 1) | `nb_fda_00_download_dataset` | [nb_fda_00_download_dataset.ipynb](./nb_fda_00_download_dataset.ipynb) |
+| Silver load notebook (pipeline step 2) | `nb_fda_01_silver_load` | [nb_fda_01_silver_load.ipynb](./nb_fda_01_silver_load.ipynb) |
+| Gold build notebook (pipeline step 3) | `nb_fda_02_gold_build` | [nb_fda_02_gold_build.ipynb](./nb_fda_02_gold_build.ipynb) |
+| Orchestration pipeline: Download Dataset → Load Silver → Build Gold | `pl_fda_one_time_build` | [pl_fda_one_time_build.json](./pl_fda_one_time_build.json). Notebook and workspace IDs are `{{...}}` placeholders that the installer fills in |
 
 ### Parameters
 
-Blank or missing values use the defaults below. Pipeline runs pass an empty parameter as null, and both notebooks handle that.
+Blank or missing values use the defaults below. Pipeline runs pass an empty parameter as null, and the notebooks handle that.
 
 | Parameter | Default | Used by | Purpose |
 |---|---|---|---|
-| `p_quarters` | `""` (all) | Silver | Comma-separated subset to load, for example `2004q1,2025q4,all_other` |
+| `p_quarters` | `""` (all) | Download, Silver | Comma-separated subset to download and load, for example `2004q1,2025q4,all_other` |
+| `p_max_parallel_downloads` | `16` | Download | Parallel download threads |
+| `p_max_parallel_unzips` | `8` | Download | Parallel unzip threads (about the driver's core count) |
+| `p_overwrite_existing` | `false` | Download | Re-download and re-unzip files that already exist |
 | `p_files_per_batch` | `128` | Silver | Target number of JSON files per Spark batch. Quarters are never split. Larger batches amortize the fixed cost of each batch, about 35 s. |
 | `p_finalize` | `true` | Silver | Deduplicate report versions, then run `OPTIMIZE` and `VACUUM` |
 | `p_reset` | `false` | Silver | Drop all Silver tables and reload from scratch. Required when existing tables have a different layout; the notebook stops with a message if a reset is needed. |
@@ -459,8 +464,8 @@ Blank or missing values use the defaults below. Pipeline runs pass an empty para
 
 ### Run the full build
 
-1. Open `pl_fda_one_time_build` in the workspace and select **Run**. This loads every quarter into `silver` and then builds `gold`. Set `p_reset = true` to rebuild from scratch, which the current production tables need.
-2. If the Silver activity fails or times out, run the pipeline again with `p_reset = false`. Quarters already marked `Succeeded` in `silver.load_log` are skipped.
+1. **New workspace:** import `nb_fda_install.ipynb` and run it. It creates the lakehouse, installs the notebooks and the pipeline, and starts the pipeline (see [installation-plan.md](./installation-plan.md)). **Existing install:** open `pl_fda_one_time_build` and select **Run**. The download step skips files already present, then every quarter is loaded into `silver` and `gold` is built. Set `p_reset = true` to rebuild Silver from scratch.
+2. If an activity fails or times out, run the pipeline again with `p_reset = false`. Files already downloaded and quarters already marked `Succeeded` in `silver.load_log` are skipped.
 3. Check the notebook exit values:
    - **Silver** exits with report counts, orphan checks, lineage checks, distinct drug names, rows per `drug_name_source`, and any quarters with count mismatches or corrupt files. It also prints the top 25 suspect drugs for a spot-check.
    - **Gold** exits with reconciliation and key checks.
