@@ -127,7 +127,7 @@ The lakehouse name comes from the `p_lakehouse_name` parameter, not from the man
 
 | Notebook | Change | Why |
 |---|---|---|
-| `nb_fda_00_download_dataset` | No changes for now (it is being tested). Later, its header should say that it runs as the first pipeline step | Docs |
+| `nb_fda_00_download_dataset` | Fails with a clear message if no default lakehouse is attached. Without this check, `/lakehouse/default/Files` would be created on the driver's local disk and the download would go there. Header notes that it is the first pipeline step and that the installer sets its lakehouse | Fresh installs |
 | `nb_fda_01_silver_load` | Fails with a clear message if `p_source_path` has no openFDA JSON files ("run `nb_fda_00_download_dataset` first"). Header notes its place in the pipeline and that the installer sets its lakehouse | Fresh installs |
 | `nb_fda_02_gold_build` | Fails with a clear message if any Silver table is missing ("run `nb_fda_01_silver_load` first"). Header notes its place in the pipeline and that the installer sets its lakehouse | Fresh installs |
 | All three notebooks | **No code changes for the lakehouse.** They already use relative paths (`Files/...`, `/lakehouse/default/...`) and unqualified schemas (`silver.*`, `gold.*`), so they work against whatever default lakehouse the installer sets | Requirement 3 |
@@ -139,7 +139,7 @@ The lakehouse name comes from the `p_lakehouse_name` parameter, not from the man
 - `nb_fda_install.ipynb`, `install-manifest.json` and this plan are in `fda_adverse_event_dataset/`.
 - `README.md` has a **Quick install** section.
 - The plan's §7 run guide describes the pipeline with its download step.
-- The pipeline file in the repo contains placeholders, so it can't be pasted into a workspace as is. Install it with `nb_fda_install`, or fill in the placeholders the same way. The dev workspace's pipeline still has the earlier two-step version, because the download notebook there is bound to `fda_lh2` while it is being tested.
+- The pipeline file in the repo contains placeholders, so it can't be pasted into a workspace as is. Install it with `nb_fda_install`, or fill in the placeholders the same way. The dev workspace's pipeline still has the earlier two-step version (Load Silver → Build Gold).
 - **The artifacts must be on the branch the installer reads.** They are pushed to `isr-fda-1`; until that branch is merged to `main`, install with `p_github_branch = isr-fda-1`.
 
 ---
